@@ -1,0 +1,20 @@
+$clr-working:#FDAB3D;
+$clr-undefined: #D0D0D0;
+$clr-stuck: #E37688;
+$clr-done: #33D391;
+
+$clr-left1: #579BFC;
+$clr-left2: #A25DDC;
+
+.task-preview{
+    height: 36px;
+    display: block;
+
+    // background-color: rgb(245, 246, 248);
+    background-color: rgba(253, 253, 250, 0.95);/*non-highlighted color*/
+border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
+
+td{
+    border: 1px solid lightcoral;
+}
+}
