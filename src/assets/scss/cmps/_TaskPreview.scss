@@ -8,13 +8,77 @@ $clr-left2: #A25DDC;
 
 .task-preview{
     height: 36px;
-    display: block;
 
     // background-color: rgb(245, 246, 248);
     background-color: rgba(253, 253, 250, 0.95);/*non-highlighted color*/
 border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
 
-td{
-    border: 1px solid lightcoral;
+    td{
+        background-color: #E6E9EF;
+    }
 }
+
+.task-group{
+    th{
+        color: rgb(87, 155, 252);
+    }
+    .flex{
+        display: flex;
+    }
+    .group-title{
+        font-size: 18px;
+        font-weight: 300;
+        text-align: left; /*TODO remove or poss put in entire th*/
+        white-space: nowrap; /*TODO poss put in entire th, will see overflow*/    
+    }   
+
+    .up{
+        position: relative;
+        top: -16px;
+    }
+
+    .down{
+        position: -8px;
+    }
+    
+    .up, .down, .expand{
+        background-color: rgb(225, 225, 225);
+
+    }
+
+    .expand::before{
+        font-family: AwesomeSolid;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 19px;
+        content: "\f338";
+        color: rgb(102, 102, 102);
+
+
+    }
+    .up::before{
+        font-family: AwesomeSolid;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 19px;
+        content: "\f077";
+        color: rgb(102, 102, 102);
+
+
+    }
+    .down::before{
+        font-family: AwesomeSolid;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 19px;
+        content: "\f078";
+        color: rgb(102, 102, 102);
+
+
+    }
+    .collapse::before{
+
+    }
+
+
 }
