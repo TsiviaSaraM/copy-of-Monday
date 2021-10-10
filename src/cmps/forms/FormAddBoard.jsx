@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 
-export function FormAddBoard({onAddBoard}) {
+export const FormAddBoard = ({onAddBoard}) => {
 
     const [newBoard, setNewBoard] = useState(null)
 
@@ -17,14 +17,18 @@ export function FormAddBoard({onAddBoard}) {
         console.log('newBoard', newBoard);
     }
 
+    const addBoard = () => {
+        onAddBoard(newBoard)
+    }
+
     return (
         <div className="form-add-board">
             <form action="">
-                <p className="x" onClick={closeForm}>x</p>
+                <p className="x" onClick={closeForm}>close form</p>
                 <h1>Create board</h1>
 
                 <label htmlFor="board_name">Board name</label>
-                <input type="text" id="board_name" placeholder="new board" name="privacy" onChange={handleChange}/>
+                <input type="text" id="board_name" placeholder="new board" name="title" onChange={handleChange}/>
 
                 <p>Privacy</p>
                 <input type="radio" id="main" name="privacy"  onChange={handleChange}/>
@@ -35,9 +39,9 @@ export function FormAddBoard({onAddBoard}) {
                 <label htmlFor="main">shareable</label>
 
                 <button onClick={closeForm} className="btn-cancel">Cancel</button>
-                <button onClick={onAddBoard} className="btn-create-board">Create Board</button>
+                <button onClick={addBoard} className="btn-create-board">Create Board</button>
 
-                NE
+                
 
             </form>
         </div>

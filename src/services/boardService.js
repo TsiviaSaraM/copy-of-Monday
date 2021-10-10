@@ -294,8 +294,8 @@ function tryBoard(id) {
     return Promise.resolve({ ...board })
 }
 
-function getById(id) {
-    const board = gBoards.find(board => board._id === id)
+async function getById(id) {
+    const board = await gBoards.find(board => board._id === id)
     if (!board) return Promise.reject()
     return Promise.resolve({ ...board })
 }
@@ -314,6 +314,9 @@ function save(boardToSave) {
         gBoards.splice(idx, 1, boardToSave)
     } else {
         boardToSave._id = makeId()
+        boardToSave.groups = []
+        boardToSave.members = []
+        boardToSave.columns = []
         gBoards.push(boardToSave)
     }
     storageService.store(STORAGE_KEY, gBoards)

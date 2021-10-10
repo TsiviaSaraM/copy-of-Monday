@@ -19,27 +19,28 @@ export const TaskApp = () => {
 
         useEffect(() => {
             dispatch(loadBoards())
+            // if (!currBoard) dispa
             // return () => {
                 
             // }
         }, [])
         
-        const onAddBoard = (board) => {
-            console.log('adding board');
-            dispatch(saveBoard(board))
+        const onAddBoard = async (board) => {
+            await dispatch(saveBoard(board))
+            dispatch(loadBoards())
         }
 
-        const onSelectBoard = (board) => {
-            dispatch(getBoardById(board._id)) //sets the currBoard
-            console.log('currBoard', currBoard);
+        const onSelectBoard = async (board) => {
+            await dispatch(getBoardById(board._id)) //sets the currBoard
         }
 
         const onRemoveBoard = async (board) => {
             await dispatch(removeBoard(board._id))
         }
 
-        const onEditBoard = (updatedBoard) => {
-
+        const onEditBoard = async (updatedboard) => {
+            await dispatch(saveBoard(updatedboard))
+            dispatch(loadBoards()) //TODO may not need this
         }
  
         if (!boards) return (<p>loading</p>)
@@ -50,7 +51,7 @@ export const TaskApp = () => {
                 {boards.forEach(board => {
                     <p>{board._id}</p>  
                 })}
-                <TaskBoard board={boards[1]} ></TaskBoard>
+                <TaskBoard board={currBoard} ></TaskBoard>
             </div>
         )
 }

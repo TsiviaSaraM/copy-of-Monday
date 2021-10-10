@@ -4,7 +4,6 @@ import { BoardFilter } from './BoardFilter';
 import { TaskGroup } from './TaskGroup.jsx'
 
 export default function TaskBoard({ board }) {
-    console.log(board);
     if (!board) return (<p>loading...</p>)
     return (
         <div>
@@ -23,7 +22,7 @@ export default function TaskBoard({ board }) {
 
             <BoardControls />
             <BoardFilter />
-            {board.groups.map(group => <TaskGroup group={group} key={group.id} ></TaskGroup>)}
+            {board.groups ? board.groups.map(group => <TaskGroup group={group} key={group.id} ></TaskGroup>) : <p>there are no groups</p>}
             </div>
         </div>
     )

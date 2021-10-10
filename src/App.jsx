@@ -17,6 +17,7 @@ function _App() {
         <AppAside></AppAside>
         <Switch>
           <Route path="/user" component={ActivityPage}></Route>
+          <Route path="/boards/:id" component={TaskApp}></Route>
           <Route path="/boards" component={TaskApp}></Route>
           <Route path="/" component={TaskApp}></Route>
         </Switch>

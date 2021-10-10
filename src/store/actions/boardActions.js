@@ -27,8 +27,6 @@ export function tryBoard(boardId) {
 }
 
 export function saveBoard(board){
-  console.log(board);
-  debugger
   const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
   return async dispatch => {
       await boardService.save(board)
