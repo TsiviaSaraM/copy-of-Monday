@@ -11,6 +11,8 @@ export function loadBoards() {
     }
   }
 }
+
+//sets currBoard and returns the board
 export function getBoardById(boardId) {
   return async dispatch => {
     const board = await boardService.getById(boardId)
@@ -23,6 +25,17 @@ export function tryBoard(boardId) {
     dispatch({ type: 'UPDATE_BOARD', board })
   }
 }
+
+export function saveBoard(board){
+  console.log(board);
+  debugger
+  const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
+  return async dispatch => {
+      await boardService.save(board)
+      dispatch({type, board})
+  }
+}
+
 
 export function removeBoard(boardId) {
   return async dispatch => {

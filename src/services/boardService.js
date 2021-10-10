@@ -1,79 +1,344 @@
-import { storageService } from './asyncStorageService'
-// import { httpService } from './http.service'
-import boards from './../data/board.json'
-// import { utilService } from './util-service'
-const SCORE_FOR_REVIEW = 10
-
-console.log(boards);
+import { storageService } from './storageService.js'
+import { makeId } from './utilService.js'
 
 export const boardService = {
     query,
-    getById,
+    save,
     remove,
-    update,
+    getById,
     getEmptyBoard,
-    add,
+    tryBoard
 }
 
-window.boardService = boardService
+const STORAGE_KEY = 'boards'
+
+// const gDefaultBoards = [
+//     { _id: 'r2', name: 'Salad-O-Matic', strength: 80, type: 'Cooking' },
+//     { _id: 'r3', name: 'Dusty', strength: 100, type: 'Cleaning' },
+//     { _id: 'r1', name: 'Dominique Sote', strength: 100, type: 'Pleasure' },
+//     { _id: 'r4', name: 'DevTron', strength: 40, type: 'Office' }
+// ]
+
+const gDefaultBoards = [
+    {
+        "_id": "b101",
+        "title": "Board #1 title",
+        "description": "Add board description",
+        "createdAt": 1589983468418,
+        "createdBy": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "style": {},
+        "labels": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            }
+        ],
+        "members": [
+            {
+                "_id": "u101",
+                "fullname": "Tal Tarablus",
+                "imgUrl": "https://www.google.com"
+            }
+        ],
+        "columns":[],
+        "groups": [
+            {
+                "id": "g101",
+                "title": "Group 1",
+                "tasks": [
+                    {
+                        "id": "c101",
+                        "title": "Replace logo",
+                        "status": "done"
+                    },
+                    {
+                        "id": "c102",
+                        "title": "Add Samples",
+                        "status": "done"
+                    }
+                ],
+                "style": {}
+            },
+            {
+                "id": "g102",
+                "title": "Group 2",
+                "tasks": [
+                    {
+                        "id": "c103",
+                        "title": "Do that",
+                        "status": "done"
+                    },
+                    {
+                        "id": "c104",
+                        "title": "Help me",
+                        "status": "done",
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            }
+                        ],
+                        "labelIds": ["101"],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
+                        }
+                    }
+                ],
+                "style": {}
+            }
+        ],
+        "activities": [
+            {
+                "id": "a101",
+                "txt": "Changed Color",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "c101",
+                    "title": "Replace Logo"
+                }
+            }
+        ]
+    },
+    {
+        "_id": "b102",
+        "title": "Robot dev proj (board2)",
+        "description": "Add board description",
+        "createdAt": 1589983468418,
+        "createdBy": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "style": {},
+        "labels": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            }
+        ],
+        "members": [
+            {
+                "_id": "u101",
+                "fullname": "Tal Tarablus",
+                "imgUrl": "https://www.google.com"
+            }
+        ],
+        "columns":[],
+        "groups": [
+            {
+                "id": "g101",
+                "title": "Group 1",
+                "tasks": [
+                    {
+                        "id": "c101",
+                        "title": "Replace logo",
+                        "status": "done"
+                    },
+                    {
+                        "id": "c102",
+                        "title": "Add Samples",
+                        "status": "done"
+                    }
+                ],
+                "style": {}
+            },
+            {
+                "id": "g102",
+                "title": "Group 2",
+                "tasks": [
+                    {
+                        "id": "c103",
+                        "title": "Do that",
+                        "status": "done"
+                    },
+                    {
+                        "id": "c104",
+                        "title": "Help me",
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            }
+                        ],
+                        "labelIds": ["101"],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u101",
+                            "username": "Tal",
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
+                        },
+                        "status": "done"
+                    }
+                ],
+                "style": {}
+            }
+        ],
+        "activities": [
+            {
+                "id": "a101",
+                "txt": "Changed Color",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "task": {
+                    "id": "c101",
+                    "title": "Replace Logo"
+                }
+            }
+        ]
+    }
+]
+
+var gBoards = _loadBoards()
 
 function query(filterBy) {
-    console.log('front end board service');
-    //TODO filterBy can be added as param below
-    return storageService.query('board')
-    // return httpService.get(`board`, filterBy)
-}
-
-function getById(boardId) {
-    return storageService.get('board', boardId)
-    // return httpService.get(`board/${boardId}`)
-}
-function remove(boardId) {
-    console.log('removing board...');
-    return storageService.remove('board', boardId)
-    // return httpService.delete(`board/${boardId}`)
-}
-
-async function update(board) {
-    console.log('board in service front:', board);
-    return storageService.put('board', board)
-    // board = await httpService.put(`board/${board._id}`, board)
-    // console.log('board in service front:', board);
-    // return board;
-
-
-    // Handle case in which admin updates other board's details
-    // if (getLoggedinUser()._id === board._id) _saveLocalBoard(board)
-}
-
-async function add(board) {
-
-    board = _createBoard(board.name, board.price)
-    return storageService.post('board', board)
-    // board = await httpService.post(`board`, board)
-}
-
-function _saveLocalBoard(board) {
-    sessionStorage.setItem('loggedinBoard', JSON.stringify(board))
-    return board
-}
-
-function _createBoard(name, price=100, type="Funny", inStock=false) {
-    return {
-        // _id:utilService.makeId(),
-        name,
-        price,
-        type,
-        createdAt: new Date(),
-        inStock,
-        reviews: [],
+    let boardsToReturn = gBoards;
+    if (filterBy) {
+        var { type, maxStrength, minStrength, name } = filterBy
+        maxStrength = maxStrength || Infinity
+        minStrength = minStrength || 0
+        boardsToReturn = gBoards.filter(board => board.type.toLowerCase().includes(type.toLowerCase()) && board.name.toLowerCase().includes(name.toLowerCase())
+            && (board.strength < maxStrength)
+            && board.strength > minStrength)
     }
+    return Promise.resolve([...boardsToReturn]);
+}
+
+
+function tryBoard(id) {
+    const board = gBoards.find(board => board._id === id)
+    board.strength -= 10
+    return Promise.resolve({ ...board })
+}
+
+function getById(id) {
+    const board = gBoards.find(board => board._id === id)
+    if (!board) return Promise.reject()
+    return Promise.resolve({ ...board })
+}
+
+function remove(id) {
+    const idx = gBoards.findIndex(board => board._id === id)
+    gBoards.splice(idx, 1)
+    if (!gBoards.length) gBoards = gDefaultBoards.slice()
+    storageService.store(STORAGE_KEY, gBoards)
+    return Promise.resolve()
+}
+
+function save(boardToSave) {
+    if (boardToSave._id) {
+        const idx = gBoards.findIndex(board => board._id === boardToSave._id)
+        gBoards.splice(idx, 1, boardToSave)
+    } else {
+        boardToSave._id = makeId()
+        gBoards.push(boardToSave)
+    }
+    storageService.store(STORAGE_KEY, gBoards)
+    return Promise.resolve(boardToSave);
 }
 
 function getEmptyBoard() {
-    console.log('getting empty board...');
-    return { _id: '', name: '', price:0, type:'', inStock:false, reviews: []}
+    // console.log('getting empty board in service');
+    // return Promise.resolve({
+    //     name: '',
+    //     type: '',
+    //     strength: 100
+    // })
+    return {
+            id: '',
+            name: '',
+            type: '',
+            strength: 100
+        }
 }
 
-
+function _loadBoards() {
+    let boards = storageService.load(STORAGE_KEY)
+    if (!boards || !boards.length) boards = gDefaultBoards
+    storageService.store(STORAGE_KEY, boards)
+    return boards
+}
 
