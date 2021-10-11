@@ -13,7 +13,7 @@ const INITIAL_STATE = {
       case 'SET_BOARD':
         return {
           ...state,
-          currBoard: action.board
+          currBoard: action.currBoard
         }
       case 'SET_FILTER_BY':
         return {

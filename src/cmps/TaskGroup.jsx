@@ -19,7 +19,7 @@ export function TaskGroup({ group, id }) {
                                 <div className="up"></div>
                             </div>
 
-                            <p className="group-title">Group Title</p>
+                            <p className="group-title">{group.title}</p>
                         </div>
                         
                     </th>

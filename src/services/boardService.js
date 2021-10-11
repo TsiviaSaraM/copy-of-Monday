@@ -7,17 +7,11 @@ export const boardService = {
     remove,
     getById,
     getEmptyBoard,
-    tryBoard
+    getGroups,
+    saveGroup
 }
 
 const STORAGE_KEY = 'boards'
-
-// const gDefaultBoards = [
-//     { _id: 'r2', name: 'Salad-O-Matic', strength: 80, type: 'Cooking' },
-//     { _id: 'r3', name: 'Dusty', strength: 100, type: 'Cleaning' },
-//     { _id: 'r1', name: 'Dominique Sote', strength: 100, type: 'Pleasure' },
-//     { _id: 'r4', name: 'DevTron', strength: 40, type: 'Office' }
-// ]
 
 const gDefaultBoards = [
     {
@@ -274,8 +268,9 @@ const gDefaultBoards = [
 
 var gBoards = _loadBoards()
 
-function query(filterBy) {
-    let boardsToReturn = gBoards;
+async function query(filterBy) {
+    // let boardsToReturn = gBoards;
+    let boardsToReturn = _loadBoards()
     if (filterBy) {
         var { type, maxStrength, minStrength, name } = filterBy
         maxStrength = maxStrength || Infinity
@@ -285,13 +280,6 @@ function query(filterBy) {
             && board.strength > minStrength)
     }
     return Promise.resolve([...boardsToReturn]);
-}
-
-
-function tryBoard(id) {
-    const board = gBoards.find(board => board._id === id)
-    board.strength -= 10
-    return Promise.resolve({ ...board })
 }
 
 async function getById(id) {
@@ -340,8 +328,29 @@ function getEmptyBoard() {
 
 function _loadBoards() {
     let boards = storageService.load(STORAGE_KEY)
-    if (!boards || !boards.length) boards = gDefaultBoards
-    storageService.store(STORAGE_KEY, boards)
+    if (!boards || !boards.length) {
+        boards = gDefaultBoards
+        storageService.store(STORAGE_KEY, boards)
+    }
     return boards
 }
 
+//functions for the groupService, maybe just use the functions above
+function getGroups(boardId) {return gBoards.find(board => board._id === boardId).groups}
+// function saveGroups(boardToUpdate, updatedGroups) {save({...board, groups: [...board.groups, newGroup]})}
+
+function saveGroup(board, groupToSave) {
+    // const boardGroups = boardService.getGroups(board)
+    const boardGroups = board.groups
+    if (groupToSave.id) {
+        const idx = boardGroups.findIndex(group => group.id === groupToSave.id)
+        boardGroups.splice(idx, 1, groupToSave)
+    } else {
+        groupToSave.id = makeId()
+        if (!groupToSave.tasks) groupToSave.tasks = []
+        if (!groupToSave.style) groupToSave.style = {}
+        boardGroups.push(groupToSave)
+    }
+    // boardService.saveGroups(board, boardGroups)
+    return save({...board, groups: boardGroups} )
+}
