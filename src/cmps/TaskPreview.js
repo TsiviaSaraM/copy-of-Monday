@@ -1,13 +1,15 @@
 import React from 'react'
 
 export function TaskPreview({task, id}) {
+
+
     return (
         <tr className="task-preview">
             <td>{task.title}</td>
             <td>MEMBERS</td>
             <td>{task.status}</td>
             <td>{task.dueDate}</td>
-            <td></td>
+            <td >edit task</td>
             <td></td>
         
         </tr>

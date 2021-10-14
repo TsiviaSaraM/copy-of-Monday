@@ -2,7 +2,13 @@ import React from 'react'
 import { TaskPreview } from './TaskPreview'
 
 
-export function TaskGroup({ group, id }) {
+export function TaskGroup({ group, id, onEditBoard }) {
+
+    const editGroup = () => {
+        group.title = prompt('new group title')
+
+    }
+
     return (
         <div className="task-group">
 
@@ -19,7 +25,7 @@ export function TaskGroup({ group, id }) {
                                 <div className="up"></div>
                             </div>
 
-                            <p className="group-title">Group Title</p>
+                            <p className="group-title">{group.title}</p>
                         </div>
                         
                     </th>
@@ -39,6 +45,7 @@ export function TaskGroup({ group, id }) {
                 ))}
                 </tbody>
             </table>
+            <p onClick={editGroup }>edit group</p>
 
         </div>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { useDispatch } from 'react-redux'
 import { BoardAside } from '../cmps/BoardAside.jsx'
-import TaskBoard from '../cmps/TaskBoard.jsx'
+import {TaskBoard} from '../cmps/TaskBoard.jsx'
 import { boardService } from '../services/boardService'
 import { userService } from '../services/userService'
 import { removeBoard, loadBoards, getBoardById, saveBoard } from '../store/actions/boardActions.js'
@@ -51,7 +51,7 @@ export const TaskApp = () => {
                 {boards.forEach(board => {
                     <p>{board._id}</p>  
                 })}
-                <TaskBoard board={currBoard} ></TaskBoard>
+                <TaskBoard board={currBoard} onEditBoard={onEditBoard}  ></TaskBoard>
             </div>
         )
 }
