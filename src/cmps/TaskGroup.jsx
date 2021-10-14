@@ -10,6 +10,28 @@ export const TaskGroup = ({ group, onEditGroup, onDeleteGroup }) => {
 
     }
 
+    const addTask = () => {
+        const newTask = {
+            "title": prompt('new task title'),
+            "status": ""
+        }
+        group.tasks.push(newTask)
+        onEditGroup(group)
+    }
+
+    const onEditTask = (updatedTask) => {
+        console.log('updated task', updatedTask);
+        const taskIndex = group.tasks.findIndex(task => task.id === updatedTask.id)
+        group.tasks.splice(taskIndex, 1, updatedTask)
+        onEditGroup(group)
+    }
+
+    const onRemoveTask = (taskId) => {
+        const taskIndex = group.tasks.findIndex(task => task.id === taskId)
+        group.tasks.splice(taskIndex, 1)
+        onEditGroup(group)
+    }
+
     return (
         <div className="task-group">
 
@@ -41,13 +63,13 @@ export const TaskGroup = ({ group, onEditGroup, onDeleteGroup }) => {
 
 
                 {group.tasks.map(task => (
-                    <TaskPreview task={task} key={task.id} ></TaskPreview>
-
+                    <TaskPreview task={task} key={task.id} onEditTask={onEditTask} onRemoveTask={onRemoveTask}></TaskPreview>
                 ))}
                 </tbody>
             </table>
             <p onClick={editGroup }>edit group</p>
             <p onClick={() => onDeleteGroup(group.id)} >delete group</p>
+            <p onClick={addTask} >add Task</p>
 
         </div>
     )
