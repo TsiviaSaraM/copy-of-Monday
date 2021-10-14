@@ -4,7 +4,7 @@ import { BoardFilter } from './BoardFilter';
 import { TaskGroup } from './TaskGroup.jsx';
 
 //board is state.currBoard
-export const TaskBoard = ({ board, onEditBoard }) => {
+export const TaskBoard = ({ board, onEditBoard,  }) => {
 
     const addGroup = () => {
         const newGroup = {
@@ -15,6 +15,21 @@ export const TaskBoard = ({ board, onEditBoard }) => {
             "style": {}
         }
         board.groups.push(newGroup)
+        onEditBoard(board)
+    }
+
+    const onEditGroup = (updatedGroup) => {
+        console.log('updated group: ', updatedGroup);
+        const groupIndex = board.groups.findIndex(group => group.id === updatedGroup.id)
+        board.groups.splice(groupIndex, 1, updatedGroup)
+        onEditBoard(board)
+        // const newBoard = {...board, groups:[...board.groups]}
+    }
+
+    const onDeleteGroup = (groupId) => {
+        console.log('group do delete', groupId);
+        const groupIndex = board.groups.findIndex(group => group.id === groupId)
+        board.groups.splice(groupIndex, 1)
         onEditBoard(board)
     }
 
@@ -41,7 +56,7 @@ export const TaskBoard = ({ board, onEditBoard }) => {
 
                 {/* may need to put "if (board.groups && board.groups.length )" */}
                 {board.groups.length ? board.groups.map(group =>
-                    <TaskGroup group={group} key={group.id} onEditBoard={onEditBoard} ></TaskGroup>
+                    <TaskGroup group={group} key={group.id} onDeleteGroup={onDeleteGroup} onEditBoard={onEditBoard} onEditGroup={onEditGroup} ></TaskGroup>
                 ) : <p>there are no groups</p>}
             </div>
         </div>

@@ -2,10 +2,11 @@ import React from 'react'
 import { TaskPreview } from './TaskPreview'
 
 
-export function TaskGroup({ group, id, onEditBoard }) {
+export const TaskGroup = ({ group, onEditGroup, onDeleteGroup }) => {
 
     const editGroup = () => {
         group.title = prompt('new group title')
+        onEditGroup(group)
 
     }
 
@@ -46,6 +47,7 @@ export function TaskGroup({ group, id, onEditBoard }) {
                 </tbody>
             </table>
             <p onClick={editGroup }>edit group</p>
+            <p onClick={() => onDeleteGroup(group.id)} >delete group</p>
 
         </div>
     )

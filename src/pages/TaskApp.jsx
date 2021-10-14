@@ -42,7 +42,7 @@ export const TaskApp = () => {
             await dispatch(saveBoard(updatedboard))
             dispatch(loadBoards()) //TODO may not need this
         }
- 
+
         if (!boards) return (<p>loading</p>)
 
         return (
@@ -51,7 +51,7 @@ export const TaskApp = () => {
                 {boards.forEach(board => {
                     <p>{board._id}</p>  
                 })}
-                <TaskBoard board={currBoard} onEditBoard={onEditBoard}  ></TaskBoard>
+                <TaskBoard board={currBoard} onEditBoard={onEditBoard} ></TaskBoard>
             </div>
         )
 }
