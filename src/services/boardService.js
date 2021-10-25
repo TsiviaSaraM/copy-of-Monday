@@ -19,6 +19,7 @@ const STORAGE_KEY = 'boards'
 //     { _id: 'r4', name: 'DevTron', strength: 40, type: 'Office' }
 // ]
 
+//status can be done, working, stuck or none
 const gDefaultBoards = [
     {
         "_id": "b101",

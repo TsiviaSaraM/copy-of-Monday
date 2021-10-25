@@ -1,0 +1,42 @@
+
+.form-edit-status{
+    // TODO these colors are used in the table of tasks, make sure no repeated scss
+    .working{background-color:  rgb(253, 171, 61);}
+    .none{ background-color: rgb(103, 104, 121);}
+    .stuck{background-color: rgb(226, 68, 92);}
+    .done{background-color: rgb(0, 200, 117)}
+    color: white;
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 16px;
+    width: 144px; /*This is same as the status column width in TaskPreview*/
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1 0 auto;
+    align-content: space-between;
+    height: 272px;
+
+    .option{
+        height: 32px;
+        line-height: 32px;
+        width: 112px;
+        text-align: center;
+        border-radius: 2px;
+        margin-bottom: 8px;
+        // display: flex;
+       p{
+        //    margin: auto;
+       }
+    }
+
+    // justify-content: flex-start;
+    // align-items: flex-start;
+    overflow: hidden;
+    // width: 144px;
+}
