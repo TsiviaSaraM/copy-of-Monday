@@ -1,17 +1,16 @@
 import React from 'react'
 
-export const FormEditDate = ({currDate, editDate}) => {
+export const FormEditDate = ({oldDate, editDate, styles}) => {
     
 
     const onEditDate = (event) => {
-        const date = event.target.value
-        editDate(date)
+        const newDate = event.target.value
+        editDate(newDate)
     }
 
     return (
-        <div className="form-edit-date">
-            <input type="date" value={currDate} onClick={onEditDate} />
-            <button >submit</button>
-        </div>
+        <form className="form-edit-date" style={styles} action="">
+            <input type="date" value={oldDate} onChange={onEditDate} />
+        </form>
     )
 }

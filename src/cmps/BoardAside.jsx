@@ -2,6 +2,7 @@ import React from 'react'
 import { BoardFilter } from './BoardFilter'
 import { FormAddBoard } from './forms/FormAddBoard'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragAndDropList } from './DragAndDropList';
 
 //board CRUD is here
 export function BoardAside({ boards, onAddBoard, onRemoveBoard, onEditBoard, onSelectBoard }) {
@@ -41,7 +42,7 @@ export function BoardAside({ boards, onAddBoard, onRemoveBoard, onEditBoard, onS
             </li>)}
             <FormAddBoard onAddBoard={onAddBoard} />
 
-
+                <DragAndDropList></DragAndDropList>
 
             {/* <div className="practise-drag-drop">
                 <DragDropContext onDragEnd={() => { }}>

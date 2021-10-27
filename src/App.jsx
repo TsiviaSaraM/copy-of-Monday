@@ -7,22 +7,26 @@ import './App.css';
 import { ActivityPage } from './pages/ActivityPage';
 import { TaskApp } from './pages/TaskApp';
 import { AppAside } from './cmps/AppAside';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 function _App() {
 
   return (
 
+      <DragDropContext onDragEnd={()=>{}}>
     <Router>
-      <div className="main-app">
-        <AppAside></AppAside>
-        <Switch>
-          <Route path="/user" component={ActivityPage}></Route>
-          <Route path="/boards/:id" component={TaskApp}></Route>
-          <Route path="/boards" component={TaskApp}></Route>
-          <Route path="/" component={TaskApp}></Route>
-        </Switch>
-      </div>
+
+        <div className="main-app">
+          <AppAside></AppAside>
+          <Switch>
+            <Route path="/user" component={ActivityPage}></Route>
+            <Route path="/boards/:id" component={TaskApp}></Route>
+            <Route path="/boards" component={TaskApp}></Route>
+            <Route path="/" component={TaskApp}></Route>
+          </Switch>
+        </div>
     </Router>
+      </DragDropContext>
 
   )
 }

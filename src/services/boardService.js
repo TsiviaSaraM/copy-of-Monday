@@ -7,6 +7,7 @@ export const boardService = {
     remove,
     getById,
     getEmptyBoard,
+    getEmptyTask,
     tryBoard
 }
 
@@ -337,6 +338,14 @@ function getEmptyBoard() {
             type: '',
             strength: 100
         }
+}
+
+export function getEmptyTask(){
+    return {
+       id: makeId(4),
+       status:'',
+       title:''
+    }
 }
 
 function _loadBoards() {

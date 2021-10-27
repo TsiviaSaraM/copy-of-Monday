@@ -47,3 +47,4 @@ export function setFilterBy(filterBy) {
     dispatch({ type: 'SET_FILTER_BY', filterBy })
   }
 }
+

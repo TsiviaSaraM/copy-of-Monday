@@ -1,23 +1,21 @@
 import React from 'react'
 import { TaskPreview } from './TaskPreview'
-
+// import { getEmptyTask } from './../services/boardService'
+import { Droppable } from 'react-beautiful-dnd'
 
 export const TaskGroup = ({ group, onEditGroup, onDeleteGroup }) => {
 
-    const editGroup = () => {
-        group.title = prompt('new group title')
-        onEditGroup(group)
+    // const editGroup = () => {
+    //     group.title = prompt('new group title')
+    //     onEditGroup(group)
 
-    }
+    // }
 
-    const addTask = () => {
-        const newTask = {
-            "title": prompt('new task title'),
-            "status": ""
-        }
-        group.tasks.push(newTask)
-        onEditGroup(group)
-    }
+    // const addTask = () => {
+    //     const newTask = getEmptyTask()
+    //     group.tasks.push(newTask)
+    //     onEditGroup(group)
+    // }
 
     const onEditTask = (updatedTask) => {
         console.log('updated task', updatedTask);
@@ -33,44 +31,24 @@ export const TaskGroup = ({ group, onEditGroup, onDeleteGroup }) => {
     }
 
     return (
-        <div className="task-group">
+        // <div >
 
-            <table>
-                <thead>
-                <tr>
-
-                    <th >
-                        <div className="flex">
-                            <div className="expand">
-                            </div>
-                            <div className="collapse">
-                                <div className="down"></div>
-                                <div className="up"></div>
-                            </div>
-
-                            <p className="group-title">{group.title}</p>
-                        </div>
-                        
-                    </th>
-                    <th>Members</th>
-                    <th>Status</th>
-                    <th>Due date</th>
-                    <th>priority</th>
-                    <th>other</th>
-                </tr>
-                </thead>
-                <tbody>
-
-
-                {group.tasks.map(task => (
-                    <TaskPreview task={task} key={task.id} onEditTask={onEditTask} onRemoveTask={onRemoveTask}></TaskPreview>
-                ))}
-                </tbody>
-            </table>
-            <p onClick={editGroup }>edit group</p>
-            <p onClick={() => onDeleteGroup(group.id)} >delete group</p>
-            <p onClick={addTask} >add Task</p>
-
-        </div>
+           
+               
+                <Droppable className="task-group" droppableId={group.id}>
+                    {provided => (
+                        <tbody
+                        ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            {group.tasks.map((task, index) => (
+                                <TaskPreview  task={task} index={index} key={task.id} onEditTask={onEditTask} onRemoveTask={onRemoveTask}></TaskPreview>
+                            ))}
+                            {provided.placeholder}
+                        </tbody>
+                    )}
+                </Droppable>
+            
+        // </div>
     )
 }

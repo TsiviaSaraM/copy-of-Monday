@@ -1,10 +1,12 @@
 import React from 'react'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { BoardControls } from './BoardControls';
 import { BoardFilter } from './BoardFilter';
 import { TaskGroup } from './TaskGroup.jsx';
+import { getEmptyTask } from './../services/boardService'
 
 //board is state.currBoard
-export const TaskBoard = ({ board, onEditBoard,  }) => {
+export const TaskBoard = ({ board, onEditBoard, }) => {
 
     const addGroup = () => {
         const newGroup = {
@@ -33,7 +35,17 @@ export const TaskBoard = ({ board, onEditBoard,  }) => {
         onEditBoard(board)
     }
 
-    
+    const editGroup = (group) => {
+        group.title = prompt('new group title')
+        onEditGroup(group)
+
+    }
+
+    const addTask = (group) => {
+        const newTask = getEmptyTask()
+        group.tasks.push(newTask)
+        onEditGroup(group)
+    }
 
     if (!board) return (<p>loading...</p>)
     return (
@@ -55,8 +67,51 @@ export const TaskBoard = ({ board, onEditBoard,  }) => {
                 <BoardFilter />
 
                 {/* may need to put "if (board.groups && board.groups.length )" */}
+
+
                 {board.groups.length ? board.groups.map(group =>
-                    <TaskGroup group={group} key={group.id} onDeleteGroup={onDeleteGroup} onEditBoard={onEditBoard} onEditGroup={onEditGroup} ></TaskGroup>
+
+
+
+                (
+                    <div key={group.id}>
+                        <table>
+                            <thead>
+                                <tr>
+
+                                    <th >
+                                        <div className="flex">
+                                            <div className="expand">
+                                            </div>
+                                            <div className="collapse">
+                                                <div className="down"></div>
+                                                <div className="up"></div>
+                                            </div>
+
+                                            <p className="group-title">{group.title}</p>
+                                        </div>
+
+                                    </th>
+                                    <th>Members</th>
+                                    <th>Status</th>
+                                    <th>Due date</th>
+                                    <th>priority</th>
+                                    <th>other</th>
+                                </tr>
+                            </thead>
+
+                            <TaskGroup group={group} key={group.id} onDeleteGroup={onDeleteGroup}
+                                onEditBoard={onEditBoard} onEditGroup={onEditGroup} >
+
+
+                            </TaskGroup>
+
+                        </table>
+                        <p onClick={()=>editGroup(group)}>edit group</p>
+                        <p onClick={() => onDeleteGroup(group.id)} >delete group</p>
+                        <p onClick={()=>addTask(group)} >add Task</p>
+                    </div>)
+
                 ) : <p>there are no groups</p>}
             </div>
         </div>

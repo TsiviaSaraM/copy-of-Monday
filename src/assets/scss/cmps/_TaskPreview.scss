@@ -29,8 +29,9 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     td{
         background-color: #E6E9EF;
         overflow: hidden;
-        position: relative;
+        
     }
+    // tr{position: relative;}
 }
 
 .task-group{
@@ -39,6 +40,7 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     th{
         color: rgb(87, 155, 252);
     }
+    tbody{position: relative;}
     .flex{
         display: flex;
     }

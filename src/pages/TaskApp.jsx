@@ -21,7 +21,6 @@ export const TaskApp = () => {
             dispatch(loadBoards())
             // if (!currBoard) dispa
             // return () => {
-                
             // }
         }, [])
         

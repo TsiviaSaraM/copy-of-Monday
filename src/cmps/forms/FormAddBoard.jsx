@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
 
-export const FormAddBoard = ({onAddBoard}) => {
+export const FormAddBoard = ({onAddBoard, styles}) => {
 
     const [newBoard, setNewBoard] = useState(null)
-
     const closeForm = () => {
         console.log('closing the form');
     }
