@@ -3,7 +3,7 @@ import { FormEditStatus } from './forms/FormEditStatus'
 import { FormEditDate } from './forms/FormEditDate'
 import { Draggable } from 'react-beautiful-dnd'
 
-export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index }) => {
+export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId }) => {
 
     const [statusForm, setStatusForm] = useState(false)
     const [dateForm, setDateForm] = useState(false)
@@ -47,7 +47,7 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index }) => {
     return (
         <>
 
-            <Draggable draggableId={task.id} index={index}>
+            <Draggable draggableId={groupId + '*' + task.id} index={index} key={task.id} type="TASK">
                 {provided => (
 
                     <tr className="task-preview"

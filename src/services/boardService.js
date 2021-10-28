@@ -355,4 +355,12 @@ function _loadBoards() {
     return boards
 }
 
+function getGroupById(board, groupId){
+    return board.groups.find(group=>group.id === groupId)
+}
+
+function getTaskById(board, taskId){
+    
+}
+
 

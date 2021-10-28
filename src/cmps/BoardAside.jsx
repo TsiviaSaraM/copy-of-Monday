@@ -34,7 +34,6 @@ export function BoardAside({ boards, onAddBoard, onRemoveBoard, onEditBoard, onS
 
 
             {boards.map(board => <li key={board._id} >
-
                 <svg viewBox="0 0 20 20" fill="currentColor" width="19" height="19" role="img" aria-hidden="true" aria-label="Public board" className="icon_component"><path d="M7.5 4.5H16C16.2761 4.5 16.5 4.72386 16.5 5V15C16.5 15.2761 16.2761 15.5 16 15.5H7.5L7.5 4.5ZM6 4.5H4C3.72386 4.5 3.5 4.72386 3.5 5V15C3.5 15.2761 3.72386 15.5 4 15.5H6L6 4.5ZM2 5C2 3.89543 2.89543 3 4 3H16C17.1046 3 18 3.89543 18 5V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V5Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
                 <p onClick={() => onSelectBoard(board)} >{board.title} </p>
                 <svg onClick={() => onEditBoardName(board)} viewBox="0 0 20 20" fill="currentColor" width="16" height="16" role="img" aria-hidden="true" aria-label="Rename Board" className="edit-board icon_component icon_component--no-focus-style"><path d="M13.8542 3.59561C13.8541 3.59568 13.8542 3.59555 13.8542 3.59561L4.80915 12.6503L3.81363 16.189L7.35682 15.1957L16.4018 6.14C16.4746 6.06722 16.5161 5.96795 16.5161 5.86503C16.5161 5.76221 16.4753 5.6636 16.4026 5.59083C16.4025 5.59076 16.4026 5.59091 16.4026 5.59083L14.4038 3.59568C14.3309 3.52292 14.232 3.48197 14.1289 3.48197C14.026 3.48197 13.927 3.52297 13.8542 3.59561ZM12.8051 2.54754C13.1562 2.19695 13.6324 2 14.1289 2C14.6254 2 15.1016 2.19693 15.4527 2.54747C15.4527 2.5475 15.4527 2.54745 15.4527 2.54747L17.4515 4.54263C17.8026 4.89333 18 5.36914 18 5.86503C18 6.36091 17.8028 6.8365 17.4518 7.18719L8.26993 16.3799C8.17984 16.4701 8.06798 16.5356 7.94516 16.57L2.94244 17.9724C2.68418 18.0448 2.4069 17.9723 2.21725 17.7829C2.0276 17.5934 1.95512 17.3165 2.02768 17.0586L3.43296 12.0633C3.46728 11.9413 3.53237 11.8301 3.62199 11.7404L12.8051 2.54754Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
@@ -43,41 +42,6 @@ export function BoardAside({ boards, onAddBoard, onRemoveBoard, onEditBoard, onS
             <FormAddBoard onAddBoard={onAddBoard} />
 
                 <DragAndDropList></DragAndDropList>
-
-            {/* <div className="practise-drag-drop">
-                <DragDropContext onDragEnd={() => { }}>
-                    <Droppable droppableId="characters">
-                        {provided => {
-                            <div
-                            innerRef={provided.innerRef}
-                                {...provided.dragHandleProps}
-                                {...provided.droppableProps}
-                            >
-                                <Draggable draggableId='1' index={1} >
-                                    {provided => {
-                                        <div
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        innerRef={provided.innerRef}
-                                        >hello</div>
-                                    }}
-                            
-                            
-
-                                </Draggable>
-                                <Draggable draggableId='2' index={2}>
-                                    <p>hello</p>
-
-                                </Draggable>
-                                {provided.placeholder}
-                            </div>
-
-
-                        }}
-
-                    </Droppable>
-                </DragDropContext>
-            </div> */}
 
         </div>
     )

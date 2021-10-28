@@ -13,7 +13,7 @@ function _App() {
 
   return (
 
-      <DragDropContext onDragEnd={()=>{}}>
+      // <DragDropContext onDragEnd={()=>{}}>
     <Router>
 
         <div className="main-app">
@@ -26,7 +26,7 @@ function _App() {
           </Switch>
         </div>
     </Router>
-      </DragDropContext>
+      // </DragDropContext>
 
   )
 }

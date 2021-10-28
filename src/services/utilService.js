@@ -1,4 +1,5 @@
 
+//the id for tasks and groups may not contain the * char
 export function makeId(length = 5) {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

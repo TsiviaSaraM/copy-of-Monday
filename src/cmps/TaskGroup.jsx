@@ -1,54 +1,54 @@
 import React from 'react'
-import { TaskPreview } from './TaskPreview'
-// import { getEmptyTask } from './../services/boardService'
-import { Droppable } from 'react-beautiful-dnd'
+import { TaskList } from './TaskList.jsx';
+import { Draggable } from 'react-beautiful-dnd'
 
-export const TaskGroup = ({ group, onEditGroup, onDeleteGroup }) => {
-
-    // const editGroup = () => {
-    //     group.title = prompt('new group title')
-    //     onEditGroup(group)
-
-    // }
-
-    // const addTask = () => {
-    //     const newTask = getEmptyTask()
-    //     group.tasks.push(newTask)
-    //     onEditGroup(group)
-    // }
-
-    const onEditTask = (updatedTask) => {
-        console.log('updated task', updatedTask);
-        const taskIndex = group.tasks.findIndex(task => task.id === updatedTask.id)
-        group.tasks.splice(taskIndex, 1, updatedTask)
-        onEditGroup(group)
-    }
-
-    const onRemoveTask = (taskId) => {
-        const taskIndex = group.tasks.findIndex(task => task.id === taskId)
-        group.tasks.splice(taskIndex, 1)
-        onEditGroup(group)
-    }
-
+export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGroup, addTask, editGroup }) => {
     return (
-        // <div >
 
-           
-               
-                <Droppable className="task-group" droppableId={group.id}>
-                    {provided => (
-                        <tbody
+        <div >
+            I am a task group
+
+            <Draggable draggableId={group.id} index={index} type="GROUP">
+                {provided => (
+                    <div className="draggable-group"
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
-                            {group.tasks.map((task, index) => (
-                                <TaskPreview  task={task} index={index} key={task.id} onEditTask={onEditTask} onRemoveTask={onRemoveTask}></TaskPreview>
-                            ))}
-                            {provided.placeholder}
-                        </tbody>
-                    )}
-                </Droppable>
-            
-        // </div>
+                    >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div className="flex">
+                                            <div className="expand">
+                                            </div>
+                                            <div className="collapse">
+                                                <div className="down"></div>
+                                                <div className="up"></div>
+                                            </div>
+                                            <p className="group-title">{group.title}</p>
+                                        </div>
+                                    </th>
+                                    <th>Members</th>
+                                    <th>Status</th>
+                                    <th>Due date</th>
+                                    <th>priority</th>
+                                    <th>other</th>
+                                </tr>
+                            </thead>
+
+                            <TaskList group={group} key={group.id} onDeleteGroup={onDeleteGroup}
+                                onEditBoard={onEditBoard} onEditGroup={onEditGroup}>
+                            </TaskList>
+                        </table>
+                    </div>
+                )}
+            </Draggable>
+            <p onClick={() => editGroup(group)}>edit group</p>
+            <p onClick={() => onDeleteGroup(group.id)}>delete group</p>
+            <p onClick={() => addTask(group)}>add Task</p>
+            {group.id}
+        </div>
+
     )
 }
