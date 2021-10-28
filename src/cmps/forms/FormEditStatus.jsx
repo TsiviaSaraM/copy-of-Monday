@@ -1,8 +1,7 @@
 import React from 'react'
 
-export const FormEditStatus = ({selectStatus, styles}) => {
+export const FormEditStatus = ({selectStatus, styles, togglestatusFormOpen}) => {
 
-    console.log('styles in form', styles);
     //todo use 'macro' for statuses
     return (
     <div className="form-edit-status" style={styles}>

@@ -2,7 +2,7 @@ import React from 'react'
 
 export function BoardFilter() {
     return (
-        <div>
+        <div className="board-filter">
             <div className="new-group">new group</div>
             <div className="search">Search</div>
             <div className="person">person</div>

@@ -12,7 +12,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     const addGroup = () => {
         const newGroup = {
             "id": Math.random().toString(),
-            "title": prompt('new group title'),
+            "title": 'New Group',
             "tasks": [
             ],
             "style": {}
@@ -93,9 +93,9 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                     <div className="board-description" >
                         {board.description}
                     </div>
-                    <p onClick={addGroup} >add group</p>
-                    <BoardControls />
-                    <BoardFilter />
+                    
+                    <BoardControls addGroup={addGroup} />
+                    {/* <BoardFilter /> */}
                     {/* may need to put "if (board.groups && board.groups.length )" */}
                     {board.groups.length ?
                    

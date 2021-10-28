@@ -1,47 +1,56 @@
 import React, { useState } from 'react'
+import { useRef } from 'react'
 import { FormEditStatus } from './forms/FormEditStatus'
 import { FormEditDate } from './forms/FormEditDate'
 import { Draggable } from 'react-beautiful-dnd'
+import { useOnClickOutside } from '../hooks/useOnClickOutside'
+
 
 export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId }) => {
 
-    const [statusForm, setStatusForm] = useState(false)
-    const [dateForm, setDateForm] = useState(false)
-    const [styles, setStyles] = useState({
+    const [statusFormOpen, setStatusFormOpen] = useState(false)
+    const [dateFormOpen, setDateFormOpen] = useState(false)
+    const [styles, setStyles] = useState({})
 
-    })
+    // Create a ref that we add to the element for which we want to detect outside clicks
+    const ref = useRef();
+    // State for our modal
+    //   const [isModalOpen, setModalOpen] = useState(false);
+    // Call hook passing in the ref and a function to call on outside click
+    useOnClickOutside(ref, () => setStatusFormOpen(false));
+    useOnClickOutside(ref, () => setDateFormOpen(false));
 
     const editTask = () => {
         task.title = prompt("new title")
         onEditTask(task)
     }
 
-    const toggleStatusForm = (event) => {
+    const togglestatusFormOpen = (event) => {
         const { pageX, pageY } = event
         setStyles({ ...styles, left: pageX, top: pageY })
-        setStatusForm(!statusForm)
+        setStatusFormOpen(!statusFormOpen)
     }
 
-    const toggleDateForm = (event) => {
-        if (!dateForm) {
+    const toggleDateFormOpen = (event) => {
+        if (!dateFormOpen) {
             const { pageX, pageY } = event
             setStyles({ ...styles, left: pageX, top: pageY })
 
         }
-        setDateForm(!dateForm)
+        setDateFormOpen(!dateFormOpen)
     }
 
     const selectStatus = (newStatus) => {
         task.status = newStatus
         console.log('task status', task.status);
-
+        setStatusFormOpen(false)
         onEditTask(task)
     }
 
     const editDate = (newDate) => {
         task.dueDate = newDate
         onEditTask(task)
-        setDateForm(false)
+        setDateFormOpen(false)
     }
 
     return (
@@ -54,21 +63,33 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                    
+
                     >
                         <td>{task.title}</td>
                         <td>MEMBERS</td>
-                        <td className={"status " + task.status} onClick={toggleStatusForm}>
+                        <td className={"status " + task.status} onClick={togglestatusFormOpen}>
                             {task.status}
                         </td>
-                        <td onClick={toggleDateForm}>
+                        <td onClick={toggleDateFormOpen}>
                             {task.dueDate}
                         </td>
                         <td onClick={editTask}>edit task</td>
                         <td onClick={() => onRemoveTask(task.id)} >remove task</td>
-                        {dateForm && <td><FormEditDate styles={styles} oldDate={task.dueDate} editDate={editDate}></FormEditDate></td>}
-                        {statusForm && <td  ><FormEditStatus styles={styles} selectStatus={selectStatus} className={task.id}></FormEditStatus></td>}
+                        {dateFormOpen && <td  ref={ref}><FormEditDate  styles={styles} oldDate={task.dueDate} editDate={editDate}></FormEditDate></td>}
+                        {statusFormOpen && <td  ref={ref} ><FormEditStatus togglestatusFormOpen={togglestatusFormOpen} styles={styles} selectStatus={selectStatus} className={task.id}></FormEditStatus></td>}
                         <td>{task.id}</td>
+                        {/* <td className={"status " + task.status} >
+                                {statusFormOpen ? (
+                                    <div ref={ref}>
+                                        {task.status}
+                                      
+                                    </div>
+                                ) : 
+                                (
+                                    <div ref={ref} onClick={() => setStatusFormOpen(true)}>{task.status}</div>
+                                )}
+                            
+                        </td> */}
                     </tr>
                 )}
             </Draggable>

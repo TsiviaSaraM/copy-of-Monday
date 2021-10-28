@@ -41,8 +41,49 @@
     padding-left: 30px;
 }
 
+.btn-add-group{
+    // border-radius: 4px 0 0 4px; //this is for if there is another button touching it
+    // border-radius: 4px;
+    // cursor: pointer;
+    // align-items: center;
+    // justify-content: center;
+    width: 75.4531px;//this can be made wider is there will be no button touching it
+    height: 32px;
+    // margin-right: 14px;
+    background-color: rgb(0, 115, 234);
+    color: white;
+    font-family: 'Roboto,' 'sans-serif';
+    font-size: 14px;
+    border: 0px;
+}
 
 .board-description{
     font-size: 14px;
     font-weight: 400; 
+}
+
+.board-controls{
+    display: flex;
+    >*{
+        margin-right: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+    }
+    >div{
+        color: rgb(50, 51, 56);
+        font-size: 15px;
+    }
+    >:hover{
+        background-color: #e6e9ef;
+    }
+    .btn-add-group{
+        :hover{
+            background-color: rgb(0, 96, 185);
+            // background-color: yellow;
+            color: pink;
+        }
+    }
 }
