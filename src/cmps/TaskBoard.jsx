@@ -42,8 +42,10 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
 
     }
 
-    const addTask = (group) => {
+    const addTask = (group, title) => {
+        if (!title) return
         const newTask = getEmptyTask()
+        newTask.title = title
         group.tasks.push(newTask)
         onEditGroup(group)
     }

@@ -64,7 +64,11 @@ const gDefaultBoards = [
                         "status": "done"
                     }
                 ],
-                "style": {}
+                "style": {
+                    "hover" : "#579bfc",
+                    "color" : "#abcdfe" 
+
+                }
             },
             {
                 "id": "g102",
@@ -127,7 +131,10 @@ const gDefaultBoards = [
                         }
                     }
                 ],
-                "style": {}
+                "style": {
+                "hover": "#a25ddc",
+                "color": "#d1aeee"
+                }
             }
         ],
         "activities": [
@@ -189,7 +196,10 @@ const gDefaultBoards = [
                         "status": "done"
                     }
                 ],
-                "style": {}
+                "style": {
+                    "hover": "#a25ddc",
+                    "color": "#d1aeee"
+                    }
             },
             {
                 "id": "g102",
@@ -252,7 +262,10 @@ const gDefaultBoards = [
                         "status": "done"
                     }
                 ],
-                "style": {}
+                "style": {
+                    "hover" : "#579bfc",
+                    "color" : "#abcdfe" 
+                }
             }
         ],
         "activities": [

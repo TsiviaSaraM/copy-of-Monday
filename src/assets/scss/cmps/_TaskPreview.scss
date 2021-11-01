@@ -9,6 +9,10 @@ $clr-left2: #A25DDC;
 
 
 .task-preview{
+    :first-child{
+        background-color: #33D391;
+        margin: 8px solid black;
+    }
     height: 36px;
     .status{
         color: white;
@@ -101,11 +105,44 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     }
     
 }
-
+.row-add-task{
+    display: flex;
+    border: 1px solid rgb(230, 233, 239);
+    .margin-left{
+        width: 8px;
+    }
     .add-task{
-        border: 1px solid rgb(230, 233, 239);
         cursor: text;
-        :hover{
-            border-color: rgb(50, 51, 56);
+        background-color: white;
+        color: rgb(50, 51, 56);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .input-add-task{
+            border: 1px solid rgb(230, 233, 239);
+            padding: 5px 0px 3px 20px;
+            width: 100%;
+
+        }
+        .input-add-task:focus{
+            border: 1px solid rgb(0, 115, 234);
+        }
+        .input-add-task:focus-visible{
+            border: 1px solid rgb(0, 115, 234);
+            // outline-color: rgb(0, 115, 234);
+            outline: none;
         }
     }
+    .margin-right{
+        background-color: rgb(230, 233, 239);
+        width: 8px;
+        // border-right: 8px solid rgb(230, 233, 239);
+    }
+    
+    .input-add-task:hover{
+        border: 1px solid rgb(50, 51, 56);
+        // height: 100%;?
+    }
+}
+
+

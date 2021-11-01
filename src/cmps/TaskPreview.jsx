@@ -65,19 +65,20 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
                         ref={provided.innerRef}
 
                     >
-                        <td>{task.title}</td>
+                        
+                        <td className="task-detail td-title">{task.title}</td>
                         <td>MEMBERS</td>
-                        <td className={"status " + task.status} onClick={togglestatusFormOpen}>
+                        <td className={"task-detail status " + task.status} onClick={togglestatusFormOpen}>
                             {task.status}
                         </td>
-                        <td onClick={toggleDateFormOpen}>
+                        <td className="task-detail" onClick={toggleDateFormOpen}>
                             {task.dueDate}
                         </td>
-                        <td onClick={editTask}>edit task</td>
-                        <td onClick={() => onRemoveTask(task.id)} >remove task</td>
+                        <td className="task-detail" onClick={editTask}>edit task</td>
+                        <td className="task-detail" onClick={() => onRemoveTask(task.id)} >remove task</td>
                         {dateFormOpen && <td  ref={ref}><FormEditDate  styles={styles} oldDate={task.dueDate} editDate={editDate}></FormEditDate></td>}
                         {statusFormOpen && <td  ref={ref} ><FormEditStatus togglestatusFormOpen={togglestatusFormOpen} styles={styles} selectStatus={selectStatus} className={task.id}></FormEditStatus></td>}
-                        <td>{task.id}</td>
+                        <td className="task-detail" >{task.id}</td>
                         {/* <td className={"status " + task.status} >
                                 {statusFormOpen ? (
                                     <div ref={ref}>

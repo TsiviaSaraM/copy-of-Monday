@@ -1,8 +1,12 @@
 import React from 'react'
 import { TaskList } from './TaskList.jsx';
 import { Draggable } from 'react-beautiful-dnd'
+import { useState } from 'react';
+import { AddTask } from './AddTask.jsx';
 
 export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGroup, addTask, editGroup }) => {
+    const [hoverAddRow, sethoverAddRow] = useState(false)
+    const [showAddBtn, setshowAddBtn] = useState(false)
     return (
 
         <div >
@@ -39,15 +43,15 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
                             <TaskList group={group} key={group.id} onDeleteGroup={onDeleteGroup}
                                 onEditBoard={onEditBoard} onEditGroup={onEditGroup}>
                             </TaskList>
-                           
+
                         </table>
                     </div>
                 )}
             </Draggable>
-            <div className="add-task" onClick={() => addTask(group)}>+Add</div>
+            
+            <AddTask group={group} addTask={addTask}></AddTask>
             <p onClick={() => editGroup(group)}>edit group</p>
             <p onClick={() => onDeleteGroup(group.id)}>delete group</p>
-            {group.id}
         </div>
 
     )
