@@ -6,7 +6,6 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
     return (
 
         <div >
-            I am a task group
 
             <Draggable draggableId={group.id} index={index} type="GROUP">
                 {provided => (
@@ -23,7 +22,7 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
                                             <div className="expand">
                                             </div>
                                             <div className="collapse">
-                                                <div className="down"></div>
+                                                <div className="down">v</div>
                                                 <div className="up"></div>
                                             </div>
                                             <p className="group-title">{group.title}</p>
@@ -40,13 +39,14 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
                             <TaskList group={group} key={group.id} onDeleteGroup={onDeleteGroup}
                                 onEditBoard={onEditBoard} onEditGroup={onEditGroup}>
                             </TaskList>
+                           
                         </table>
                     </div>
                 )}
             </Draggable>
+            <div className="add-task" onClick={() => addTask(group)}>+Add</div>
             <p onClick={() => editGroup(group)}>edit group</p>
             <p onClick={() => onDeleteGroup(group.id)}>delete group</p>
-            <p onClick={() => addTask(group)}>add Task</p>
             {group.id}
         </div>
 

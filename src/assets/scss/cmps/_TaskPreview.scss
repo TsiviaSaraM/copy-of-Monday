@@ -99,6 +99,13 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     .status{
         width: 144px;
     }
-
-
+    
 }
+
+    .add-task{
+        border: 1px solid rgb(230, 233, 239);
+        cursor: text;
+        :hover{
+            border-color: rgb(50, 51, 56);
+        }
+    }
