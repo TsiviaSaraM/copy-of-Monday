@@ -45,6 +45,18 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
                             </TaskList>
 
                         </table>
+                        {group.tasks.map(task => 
+                        <div className="task-list-2" key={task.id}>
+                            <div className="margin-left" style={{ backgroundColor: group.style.hover}}></div>
+                            <div className="title">{task.title}</div>
+                            <div className="person">task.person</div>
+                            <div className="status">status: {task.status}</div>
+                            <div className="date">due:{task.dueDate}</div>
+                            <div className="margin-right"></div>
+                        </div>
+                            
+                            )}
+
                     </div>
                 )}
             </Draggable>

@@ -7,18 +7,17 @@ export const boardService = {
     remove,
     getById,
     getEmptyBoard,
+    getEmptyGroup,
     getEmptyTask,
     tryBoard
 }
 
-const STORAGE_KEY = 'boards'
+const groupHoverColors = ['#66ccff', '#037f4c', '#00c875', '#9cd326', '#cab641', '#ffcb00', '#784bd1', '#a25ddc', '#0086c0', 
+'#579bfc', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080']
+const groupDefaultColors = ['#66ccff', '#81bfa5', '#80e3ba', '#9cd326', '#e4daa0', '#ffe580', '#bba5e8', '#d1aeee', '#80c2df', 
+'#abcdfd', '##dd99a9', '#f0a1ad', '#ff8ac4', '#fface1', '#ffb196', 'fed59e', '#bfa9a3', '#e1e1e1', '#bfbfbf']
 
-// const gDefaultBoards = [
-//     { _id: 'r2', name: 'Salad-O-Matic', strength: 80, type: 'Cooking' },
-//     { _id: 'r3', name: 'Dusty', strength: 100, type: 'Cleaning' },
-//     { _id: 'r1', name: 'Dominique Sote', strength: 100, type: 'Pleasure' },
-//     { _id: 'r4', name: 'DevTron', strength: 40, type: 'Office' }
-// ]
+const STORAGE_KEY = 'boards'
 
 //status can be done, working, stuck or none
 const gDefaultBoards = [
@@ -353,6 +352,22 @@ function getEmptyBoard() {
         }
 }
 
+
+export function getEmptyGroup(){
+    const RandomColorPicker = Math.floor(Math.random() * groupDefaultColors.length)
+    return {
+        // id: '',
+        id: 'g' + makeId(3),
+        title: 'New Group',
+        tasks: [],
+        style: {
+            color: groupDefaultColors[RandomColorPicker],
+            hover: groupHoverColors[RandomColorPicker],
+        }
+        
+    }
+}
+
 export function getEmptyTask(){
     return {
        id: makeId(4),
@@ -360,6 +375,7 @@ export function getEmptyTask(){
        title:''
     }
 }
+
 
 function _loadBoards() {
     let boards = storageService.load(STORAGE_KEY)

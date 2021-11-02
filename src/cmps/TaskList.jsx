@@ -34,6 +34,7 @@ export const TaskList = ({ group, onEditGroup, onDeleteGroup }) => {
     // <p>TASK_LIST</p>
                 <Droppable className="task-group" droppableId={group.id} type="TASK">
                     {provided => (
+                        
                         <tbody
                         ref={provided.innerRef}
                             {...provided.droppableProps}

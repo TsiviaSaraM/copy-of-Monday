@@ -1,4 +1,5 @@
 import React from 'react'
+import { getEmptyGroup } from './../services/boardService';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { BoardControls } from './BoardControls';
 import { BoardFilter } from './BoardFilter';
@@ -10,13 +11,14 @@ import { TaskGroup } from './TaskGroup';
 export const TaskBoard = ({ board, onEditBoard, }) => {
 
     const addGroup = () => {
-        const newGroup = {
-            "id": Math.random().toString(),
-            "title": 'New Group',
-            "tasks": [
-            ],
-            "style": {}
-        }
+        // const newGroup = {
+        //     "id": Math.random().toString(),
+        //     "title": 'New Group',
+        //     "tasks": [
+        //     ],
+        //     "style": {}
+        // }
+        const newGroup = getEmptyGroup()
         board.groups.push(newGroup)
         onEditBoard(board)
     }
@@ -111,7 +113,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                                     
                                     {board.groups.map((group, index) => 
                                     
-                                    <div key={group.id}>{group.id} and {index}
+                                    <div key={group.id}>
                                         <TaskGroup group={group} index={index} key={group.id} onEditBoard={onEditBoard} onEditGroup={onEditGroup}
                                         onDeleteGroup={onDeleteGroup} editGroup={editGroup} addTask={addTask}></TaskGroup>
                                     </div>)}
