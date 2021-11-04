@@ -12,10 +12,10 @@ export const boardService = {
     tryBoard
 }
 
-const groupHoverColors = ['#66ccff', '#037f4c', '#00c875', '#9cd326', '#cab641', '#ffcb00', '#784bd1', '#a25ddc', '#0086c0', 
-'#579bfc', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080']
-const groupDefaultColors = ['#66ccff', '#81bfa5', '#80e3ba', '#9cd326', '#e4daa0', '#ffe580', '#bba5e8', '#d1aeee', '#80c2df', 
-'#abcdfd', '##dd99a9', '#f0a1ad', '#ff8ac4', '#fface1', '#ffb196', 'fed59e', '#bfa9a3', '#e1e1e1', '#bfbfbf']
+const groupHoverColors = ['#66ccff', '#037f4c', '#00c875', '#9cd326', '#cab641', '#ffcb00', '#784bd1', '#a25ddc', '#0086c0',
+    '#579bfc', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080']
+const groupDefaultColors = ['#66ccff', '#81bfa5', '#80e3ba', '#9cd326', '#e4daa0', '#ffe580', '#bba5e8', '#d1aeee', '#80c2df',
+    '#abcdfd', '##dd99a9', '#f0a1ad', '#ff8ac4', '#fface1', '#ffb196', 'fed59e', '#bfa9a3', '#e1e1e1', '#bfbfbf']
 
 const STORAGE_KEY = 'boards'
 
@@ -46,7 +46,7 @@ const gDefaultBoards = [
                 "imgUrl": "https://www.google.com"
             }
         ],
-        "columns":[],
+        "columns": [],
         "groups": [
             {
                 "id": "g101",
@@ -64,8 +64,8 @@ const gDefaultBoards = [
                     }
                 ],
                 "style": {
-                    "hover" : "#579bfc",
-                    "color" : "#abcdfe" 
+                    "hover": "#579bfc",
+                    "color": "#abcdfe"
 
                 }
             },
@@ -131,8 +131,8 @@ const gDefaultBoards = [
                     }
                 ],
                 "style": {
-                "hover": "#a25ddc",
-                "color": "#d1aeee"
+                    "hover": "#a25ddc",
+                    "color": "#d1aeee"
                 }
             }
         ],
@@ -178,7 +178,7 @@ const gDefaultBoards = [
                 "imgUrl": "https://www.google.com"
             }
         ],
-        "columns":[],
+        "columns": [],
         "groups": [
             {
                 "id": "g101",
@@ -198,7 +198,7 @@ const gDefaultBoards = [
                 "style": {
                     "hover": "#a25ddc",
                     "color": "#d1aeee"
-                    }
+                }
             },
             {
                 "id": "g102",
@@ -262,8 +262,8 @@ const gDefaultBoards = [
                     }
                 ],
                 "style": {
-                    "hover" : "#579bfc",
-                    "color" : "#abcdfe" 
+                    "hover": "#579bfc",
+                    "color": "#abcdfe"
                 }
             }
         ],
@@ -288,17 +288,57 @@ const gDefaultBoards = [
 
 var gBoards = _loadBoards()
 
-function query(filterBy) {
-    let boardsToReturn = gBoards;
-    if (filterBy) {
-        var { type, maxStrength, minStrength, name } = filterBy
-        maxStrength = maxStrength || Infinity
-        minStrength = minStrength || 0
-        boardsToReturn = gBoards.filter(board => board.type.toLowerCase().includes(type.toLowerCase()) && board.name.toLowerCase().includes(name.toLowerCase())
-            && (board.strength < maxStrength)
-            && board.strength > minStrength)
+function query(boardFilter) {
+    var boardsToReturn = gBoards;
+
+    if (boardFilter) {
+        boardsToReturn = boardsToReturn.filter(board => board.title.includes(boardFilter))
     }
+
+    //FILTER HAS MOVED TO STORE
+    // if (filterBy) {
+    //     boardsToReturn = boardsToReturn.map(board => {
+    //         return {
+    //             ...board, groups: board.groups.map(group => {
+    //                 console.log(group.title);
+    //                 return {
+    //                     ...group,
+    //                     tasks: group.tasks.filter(task => {
+    //                         return task.title.includes(filterBy)
+    //                     }
+    //                     )
+    //                 }
+
+    //             })
+    //         }
+    //     })
+    // }
     return Promise.resolve([...boardsToReturn]);
+}
+
+function _filteredGroups(filterBy, groups) {
+
+    return groups.map(group => {
+        const filteredTasks = _filteredTasks(filterBy, group.tasks)
+        // debugger
+        if (!filteredTasks.length) return
+        return { ...group, tasks: filteredTasks }
+    })
+}
+
+// function _filteredGroup(filterBy, group) {
+//     group.tasks.filter(task => _filteredTask())
+//     return {...group, tasks: }
+// }
+
+function _filteredTasks(filterBy, group) {
+    return { ...group, tasks: group.tasks.filter(task => task.title.includes(filterBy)) }
+}
+
+
+function _filteredTask(filterBy, task) {
+    if (task.title.includes(filterBy)) return true
+    else return false
 }
 
 
@@ -345,15 +385,15 @@ function getEmptyBoard() {
     //     strength: 100
     // })
     return {
-            id: '',
-            name: '',
-            type: '',
-            strength: 100
-        }
+        id: '',
+        name: '',
+        type: '',
+        strength: 100
+    }
 }
 
 
-export function getEmptyGroup(){
+export function getEmptyGroup() {
     const RandomColorPicker = Math.floor(Math.random() * groupDefaultColors.length)
     return {
         // id: '',
@@ -364,15 +404,15 @@ export function getEmptyGroup(){
             color: groupDefaultColors[RandomColorPicker],
             hover: groupHoverColors[RandomColorPicker],
         }
-        
+
     }
 }
 
-export function getEmptyTask(){
+export function getEmptyTask() {
     return {
-       id: makeId(4),
-       status:'',
-       title:''
+        id: makeId(4),
+        status: '',
+        title: ''
     }
 }
 
@@ -384,12 +424,12 @@ function _loadBoards() {
     return boards
 }
 
-function getGroupById(board, groupId){
-    return board.groups.find(group=>group.id === groupId)
+function getGroupById(board, groupId) {
+    return board.groups.find(group => group.id === groupId)
 }
 
-function getTaskById(board, taskId){
-    
+function getTaskById(board, taskId) {
+
 }
 
 

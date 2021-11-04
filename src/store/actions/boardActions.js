@@ -1,10 +1,10 @@
 import { boardService } from '../../services/boardService'
 
-export function loadBoards() {
+export function loadBoards(boardFilter) {
   return async (dispatch, getState) => {
-    const { filterBy } = getState().boardModule
+    // const { filterBy } = getState().boardModule
     try {
-      const boards = await boardService.query(filterBy)
+      const boards = await boardService.query(boardFilter)
       dispatch({ type: 'SET_BOARDS', boards })
     } catch (err) {
       console.log(err);
@@ -13,9 +13,19 @@ export function loadBoards() {
 }
 
 //sets currBoard and returns the board
-export function getBoardById(boardId) {
+export function getBoardById(boardId, taskFilter) {
   return async dispatch => {
     const board = await boardService.getById(boardId)
+    if (taskFilter) {
+      board.groups = board.groups.map(group => {
+        return {
+          ...group,
+          tasks: group.tasks.filter(task => {
+            return task.title.includes(taskFilter)
+          })
+        }
+      })
+    }
     dispatch({ type: 'SET_BOARD', board })
   }
 }
@@ -26,11 +36,11 @@ export function tryBoard(boardId) {
   }
 }
 
-export function saveBoard(board){
+export function saveBoard(board) {
   const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
   return async dispatch => {
-      await boardService.save(board)
-      dispatch({type, board})
+    await boardService.save(board)
+    dispatch({ type, board })
   }
 }
 

@@ -6,6 +6,9 @@ $clr-done: #33D391;
 $clr-left1: #579BFC;
 $clr-left2: #A25DDC;
 
+$clr-row: #f5f6f8;
+$clr-row-hover: #e6e9ef;
+
 
 
 .task-preview{
@@ -105,6 +108,8 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     }
     
 }
+
+
 .row-add-task{
     display: flex;
     border: 1px solid rgb(230, 233, 239);
@@ -145,6 +150,9 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     }
 }
 
+.task-list-2:hover{
+    background-color: #e6e9ef;
+}
 .task-list-2{
     display: flex;
     font-size: 13px;
@@ -157,6 +165,11 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
         border-right: 1px solid rgb(158, 158, 158);
         border-bottom: 1px solid rgb(158, 158, 158);
     }
+    .status, .date{
+        width: 140px;
+    }
+    .person{width: 98px;}
+    .status:hover{background-color: #d1d8de;}
 }
 
 .margin-right{

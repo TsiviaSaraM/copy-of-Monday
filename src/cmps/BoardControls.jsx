@@ -1,6 +1,9 @@
 import React from 'react'
+import { AppFilter } from './AppFilter'
 
-export function BoardControls({ addGroup }) {
+export function BoardControls({ addGroup, handleFilterChange }) {
+
+
     return (
         <div className="board-controls">
             <button className="btn-add-group" onClick={addGroup} >add group</button>
@@ -9,7 +12,9 @@ export function BoardControls({ addGroup }) {
                 <span>search</span>
             </div>
             <div className="person">person</div>
-            <div className="filter">filter</div>
+            <div className="filter">  
+                <AppFilter handleFilterChange={handleFilterChange}></AppFilter>
+            </div>
             <div className="sort"></div>
             <div className="hidden"></div>
             <div className="height"></div>

@@ -3,12 +3,26 @@ import { getEmptyGroup } from './../services/boardService';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { BoardControls } from './BoardControls';
 import { BoardFilter } from './BoardFilter';
+import { useDispatch } from 'react-redux';
 
 import { getEmptyTask } from './../services/boardService'
 import { TaskGroup } from './TaskGroup';
+import { getBoardById, loadBoards, setFilterBy } from '../store/actions/boardActions';
 
 //board is state.currBoard
 export const TaskBoard = ({ board, onEditBoard, }) => {
+
+    const dispatch = useDispatch()
+
+    const handleFilterChange = async (filterBy) => {
+        console.log('filterBy', filterBy);
+        try {
+            await setFilterBy(filterBy)
+            dispatch(getBoardById(board._id, filterBy))
+        } catch (error) {
+            console.log(error);            
+        }
+    }
 
     const addGroup = () => {
         // const newGroup = {
@@ -98,7 +112,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                         {board.description}
                     </div>
                     
-                    <BoardControls addGroup={addGroup} />
+                    <BoardControls handleFilterChange={handleFilterChange} addGroup={addGroup} />
                     {/* <BoardFilter /> */}
                     {/* may need to put "if (board.groups && board.groups.length )" */}
                     {board.groups.length ?

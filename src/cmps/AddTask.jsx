@@ -19,7 +19,7 @@ export const AddTask = ({addTask, group}) => {
 
                 <div ref={ref} className="add-task" onClick={() => setShowAddBtn(true)}>
                     <input onChange={handleChange} className="input-add-task" type="text" placeholder="+Add" />
-                    {showAddBtn && <button className="btn-add-group" onMouseUp={() => setShowAddBtn(false)} onMouseDown={() => addTask(group, taskTitle)}>Add</button>}
+                    {showAddBtn && <button className="btn-add-group" onMouseUp={() => {setShowAddBtn(false);}} onMouseDown={() => addTask(group, taskTitle)}>Add</button>}
                 </div>
 
                 <div className="margin-right"></div>

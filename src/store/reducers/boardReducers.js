@@ -1,7 +1,11 @@
 const INITIAL_STATE = {
     boards: [],
     currBoard: null,
-    filterBy: null
+    filterBy: {
+      boardFilter: '',
+      groupFilter: '',
+      taskFilter: '',
+    }
   }
   export function boardReducer(state = INITIAL_STATE, action) {
     switch (action.type) {

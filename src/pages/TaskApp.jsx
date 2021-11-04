@@ -13,7 +13,7 @@ export const TaskApp = () => {
 
     
         const dispatch = useDispatch()
-        const {boards, currBoard} = useSelector(state => state.boardModule)
+        const {boards, currBoard, filterBy} = useSelector(state => state.boardModule)
 
         // const {currBoard} = useSelector(state => state.currBoard)
 
@@ -22,7 +22,7 @@ export const TaskApp = () => {
             // if (!currBoard) dispa
             // return () => {
             // }
-        }, [])
+        }, [filterBy])
         
         const onAddBoard = async (board) => {
             await dispatch(saveBoard(board))
