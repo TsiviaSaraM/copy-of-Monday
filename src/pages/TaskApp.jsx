@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { useDispatch } from 'react-redux'
 import { BoardAside } from '../cmps/BoardAside.jsx'
 import {TaskBoard} from '../cmps/TaskBoard.jsx'
-import { boardService } from '../services/boardService'
 import { userService } from '../services/userService'
 import { removeBoard, loadBoards, getBoardById, saveBoard } from '../store/actions/boardActions.js'
 import { useEffect } from 'react'
@@ -24,7 +23,12 @@ export const TaskApp = () => {
             // }
         }, [filterBy])
         
+        const setBoardFilter = (boardFilter) => {
+            dispatch(loadBoards(boardFilter))
+        }
+
         const onAddBoard = async (board) => {
+  
             await dispatch(saveBoard(board))
             dispatch(loadBoards())
         }
@@ -46,7 +50,7 @@ export const TaskApp = () => {
 
         return (
             <div className="task-app">
-                <BoardAside boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
+                <BoardAside setBoardFilter={setBoardFilter} boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
                 {boards.forEach(board => {
                     <p>{board._id}</p>  
                 })}

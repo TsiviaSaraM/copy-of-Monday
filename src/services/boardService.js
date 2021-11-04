@@ -320,7 +320,6 @@ function _filteredGroups(filterBy, groups) {
 
     return groups.map(group => {
         const filteredTasks = _filteredTasks(filterBy, group.tasks)
-        // debugger
         if (!filteredTasks.length) return
         return { ...group, tasks: filteredTasks }
     })
@@ -368,7 +367,10 @@ function save(boardToSave) {
         gBoards.splice(idx, 1, boardToSave)
     } else {
         boardToSave._id = makeId()
-        boardToSave.groups = []
+        boardToSave.groups = [
+            getEmptyGroup(),
+            getEmptyGroup()
+        ]
         boardToSave.members = []
         boardToSave.columns = []
         gBoards.push(boardToSave)
@@ -388,7 +390,12 @@ function getEmptyBoard() {
         id: '',
         name: '',
         type: '',
-        strength: 100
+        strength: 100,
+        groups: [
+            // getEmptyGroup(),
+            // getEmptyGroup()
+        ]
+
     }
 }
 

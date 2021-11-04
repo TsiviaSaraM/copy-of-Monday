@@ -1,0 +1,58 @@
+.board-aside{
+    width: 255px;
+    min-height: 100vh;
+    background-color: #F5F6F8;
+    border: 1px solid rgb(230, 233, 239);
+    hr{
+        margin-bottom: 16px;
+    }
+    .board-preview{
+        cursor: pointer;
+        height: 32px; 
+    }
+    
+
+    .board-preview:hover, .board-control:hover{
+        background-color: #e6e9ef;
+        .kebab{
+            display: flex;
+        }
+    }
+    li:active{
+        background-color: #cce5ff;
+    }
+    .board-preview-container, .board-control-container{
+        padding-left: 12px;
+    }
+    // .board-preview-container:first-child{
+    //     margin-top: 16px;
+    // }
+    .board-preview, .board-control{
+        color: rgb(50, 51, 56);
+        margin: 1px;
+        padding: 0px 8px;
+        font-weight: 400;
+        align-items: center;
+        padding-right: 8px;
+        margin-right: 8px;
+        border-radius: 4px;
+        height: 32px;
+        .kebab{
+            display: none;
+            font-size: 20px;
+        }
+        .left-side-icon{
+            color:rgb(103, 104, 121);
+            // margin: 0 auto;
+        }
+        .title{
+            // margin: 0 auto;
+            margin-left: 6px;
+            flex-grow: 1;
+        }
+    }
+    .board-preview:first-child{
+        margin-top: 3px;
+    }
+    // .kebab{background-color: pink;}
+}

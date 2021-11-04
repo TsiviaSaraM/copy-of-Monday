@@ -16,4 +16,11 @@ h1, h2, h3, h4, h5, h6, p{
 
 li{list-style: none;}
 
+.flex{display: flex;}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+
 // body{background-color: red;}
