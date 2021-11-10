@@ -140,3 +140,46 @@
     overflow: hidden;
     // width: 144px;
 }
+
+.form-board-aside-controls{
+    background-color: white;
+    position: fixed;
+    left: 269px;
+    top: 290px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 17px 6px rgba(0, 0, 0, 0.1);
+    color: rgb(50, 51, 56);
+    // font-size: 15px;
+    font-weight: 300;
+    vertical-align: baseline;
+    width: 264px;
+    // padding: 8px;
+    .form-row{
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 24px; /*POSS remove this*/
+        font-weight: 400;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        .left-side-icon{
+            flex-basis: 16px;
+            margin-right: 8px;
+            color: rgb(103, 104, 121);
+        }
+        .text{
+            flex-basis: 0%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            text-overflow: ellipsis;
+        }
+    }
+    .row-group{
+        border-bottom: 1px solid rgb(230, 233, 239);
+        padding: 8px;
+    }
+    .form-row:hover{
+        background-color: rgb(230, 233, 239); 
+    }
+}

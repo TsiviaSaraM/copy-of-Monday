@@ -18,6 +18,11 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
     }
 
     const addBoard = () => {
+        if (!newBoard.title) {
+            alert('please give your board a title')
+            return
+        }
+        // debugger
         onAddBoard(newBoard)
         setAddBoardFormOpen(false);
     }

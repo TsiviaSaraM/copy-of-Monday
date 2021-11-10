@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { getEmptyGroup } from './../services/boardService';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { BoardControls } from './BoardControls';
@@ -13,6 +13,8 @@ import { getBoardById, loadBoards, setFilterBy } from '../store/actions/boardAct
 export const TaskBoard = ({ board, onEditBoard, }) => {
 
     const dispatch = useDispatch()
+
+
 
     const handleFilterChange = async (filterBy) => {
         console.log('filterBy', filterBy);

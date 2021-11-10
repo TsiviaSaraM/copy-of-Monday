@@ -7,6 +7,7 @@ import './App.css';
 import { ActivityPage } from './pages/ActivityPage';
 import { TaskApp } from './pages/TaskApp';
 import { AppAside } from './cmps/AppAside';
+import {HomePage} from './pages/HomePage'
 import { DragDropContext } from 'react-beautiful-dnd';
 
 function _App() {
@@ -21,7 +22,7 @@ function _App() {
           <Switch>
             <Route path="/user" component={ActivityPage}></Route>
             <Route path="/boards/:id" component={TaskApp}></Route>
-            <Route path="/boards" component={TaskApp}></Route>
+            <Route path="/boards" component={HomePage}></Route>
             <Route path="/" component={TaskApp}></Route>
           </Switch>
         </div>
