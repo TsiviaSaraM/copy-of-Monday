@@ -22,8 +22,8 @@ function _App() {
           <Switch>
             <Route path="/user" component={ActivityPage}></Route>
             <Route path="/boards/:id" component={TaskApp}></Route>
-            <Route path="/boards" component={HomePage}></Route>
-            <Route path="/" component={TaskApp}></Route>
+            <Route path="/boards" component={TaskApp}></Route>
+            <Route path="/" component={HomePage}></Route>
           </Switch>
         </div>
     </Router>

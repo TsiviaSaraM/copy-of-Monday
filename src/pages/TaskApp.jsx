@@ -18,20 +18,38 @@ export const TaskApp = ({match, history}) => {
 
     // const {currBoard} = useSelector(state => state.currBoard)
 
+    // const componentDidMount = 
+    // () => {
+    //     if (match.params.id) return
+    //     const id = boards[0]._id
+    //     dispatch(getBoardById(id, filterBy))
+    // } 
+
     useEffect(async () => {
         await dispatch(loadBoards())
-        const { id } = match.params
-        dispatch(getBoardById(id, filterBy))
+        if (match.params.id) {
+            const { id } = match.params
+            dispatch(getBoardById(id, filterBy))
+        } 
         // eslint-disable-next-line
     }, [match.params.id])
     // }, [filterBy])
+
+    // useEffect(() => {
+    //     if (!match.params.id && boards.length) {
+    //         const id = boards[0]._id
+    //         dispatch(getBoardById(id, filterBy))
+    //     }
+    //     return () => {
+    //         cleanup
+    //     }
+    // }, [boards])
 
 const setBoardFilter = (boardFilter) => {
     dispatch(loadBoards(boardFilter))
 }
 
 const onAddBoard = async (board) => {
-    // debugger
     await dispatch(saveBoard(board))
     dispatch(loadBoards())
 }
@@ -64,7 +82,7 @@ return (
         {boards.forEach(board => {
             <p>{board._id}</p>
         })}
-        <TaskBoard board={currBoard} onEditBoard={onEditBoard} ></TaskBoard>
+        { match.params.id && <TaskBoard board={currBoard} onEditBoard={onEditBoard} ></TaskBoard>}
     </div>
 )
 }
