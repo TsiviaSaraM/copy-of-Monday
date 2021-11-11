@@ -45,10 +45,10 @@ export function saveBoard(board) {
 }
 
 export function insertBoard(board, position) {
-
+  console.log('board=', board.title, 'position=', position);
   return async dispatch => {
-    await boardService.insertBoard(board, position)
-    dispatch({board, position})
+    await boardService.save(board, position)
+    dispatch({type: 'UPDATE_BOARD', board, position})
   }
 }
 

@@ -25,10 +25,14 @@ const INITIAL_STATE = {
           filterBy: action.filterBy
         }
       case 'INSERT_BOARD':
-        const {position } = action
+        const {position, board } = action
+        const updatedBoards = {...state.boards}
+        updatedBoards.splice(position, 0, board)
+        debugger
+        console.log('board=', board.title, 'position=', position, 'boards=', updatedBoards);
         return {
           ...state,
-          boards: [...state.boards.slice(0, position), action.board, ...state.boards.slice(position)]
+          boards: updatedBoards
         }
       case 'ADD_BOARD':
         return {

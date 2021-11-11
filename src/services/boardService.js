@@ -9,7 +9,7 @@ export const boardService = {
     getEmptyBoard,
     getEmptyGroup,
     getEmptyTask,
-    tryBoard
+    tryBoard,
 }
 
 const groupHoverColors = ['#66ccff', '#037f4c', '#00c875', '#9cd326', '#cab641', '#ffcb00', '#784bd1', '#a25ddc', '#0086c0',
@@ -361,7 +361,8 @@ function remove(id) {
     return Promise.resolve()
 }
 
-function save(boardToSave) {
+function save(boardToSave, position = -1) {
+    //if this is an update
     if (boardToSave._id) {
         const idx = gBoards.findIndex(board => board._id === boardToSave._id)
         gBoards.splice(idx, 1, boardToSave)
@@ -373,7 +374,8 @@ function save(boardToSave) {
         ]
         boardToSave.members = []
         boardToSave.columns = []
-        gBoards.push(boardToSave)
+        gBoards.splice(position, 0, boardToSave)
+        // else gBoards.push(boardToSave)
     }
     storageService.store(STORAGE_KEY, gBoards)
     return Promise.resolve(boardToSave);
@@ -439,4 +441,5 @@ function getTaskById(board, taskId) {
 
 }
 
+// function insertBoard
 

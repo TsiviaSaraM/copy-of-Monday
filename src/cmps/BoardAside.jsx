@@ -10,7 +10,7 @@ import { FormBoardAsideControls } from './forms/FormBoardAsideControls';
 import { GoKebabHorizontal } from 'react-icons/go'
 
 //board CRUD is here
-export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onSelectBoard, setBoardFilter, insertBoard }) => {
+export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onSelectBoard, setBoardFilter, onInsertBoard }) => {
 
     
     const [addBoardFormOpen, setAddBoardFormOpen] = useState(false)
@@ -23,9 +23,9 @@ export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onS
     })
 
     const insertNewBoard = (direction, activeBoard) => {
-        const difference  = direction === 'ABOVE' ? 1 : 0
+        const difference  = direction === 'ABOVE' ? 0 : 1
         const position = boards.findIndex(board => board._id === activeBoard._id) + difference
-        insertBoard(position)
+        onInsertBoard(position)
     }
 
     const onEditBoardName = (board) => {
