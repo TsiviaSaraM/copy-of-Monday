@@ -44,6 +44,14 @@ export function saveBoard(board) {
   }
 }
 
+export function insertBoard(board, position) {
+
+  return async dispatch => {
+    await boardService.insertBoard(board, position)
+    dispatch({board, position})
+  }
+}
+
 
 export function removeBoard(boardId) {
   return async dispatch => {

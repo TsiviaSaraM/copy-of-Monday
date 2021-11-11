@@ -24,6 +24,12 @@ const INITIAL_STATE = {
           ...state,
           filterBy: action.filterBy
         }
+      case 'INSERT_BOARD':
+        const {position } = action
+        return {
+          ...state,
+          boards: [...state.boards.slice(0, position), action.board, ...state.boards.slice(position)]
+        }
       case 'ADD_BOARD':
         return {
           ...state,

@@ -10,18 +10,23 @@ import { FormBoardAsideControls } from './forms/FormBoardAsideControls';
 import { GoKebabHorizontal } from 'react-icons/go'
 
 //board CRUD is here
-export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onSelectBoard, setBoardFilter }) => {
+export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onSelectBoard, setBoardFilter, insertBoard }) => {
 
     
     const [addBoardFormOpen, setAddBoardFormOpen] = useState(false)
     const [controlsFormOpen, setControlsFormOpen] = useState(false)
     const [boardToControl, setBoardToControl] = useState(null)
     const ref = useRef()
-    useOnClickOutside(ref, () => setAddBoardFormOpen(false))
+    useOnClickOutside(ref, () => {
+        setAddBoardFormOpen(false)
+        setControlsFormOpen(false)
+    })
 
-    // const showForm = (formClass) => {
-
-    // }
+    const insertNewBoard = (direction, activeBoard) => {
+        const difference  = direction === 'ABOVE' ? 1 : 0
+        const position = boards.findIndex(board => board._id === activeBoard._id) + difference
+        insertBoard(position)
+    }
 
     const onEditBoardName = (board) => {
         const newName = prompt('new name')
@@ -41,7 +46,10 @@ export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onS
 
             {
                 controlsFormOpen &&
-                <FormBoardAsideControls setControlsFormOpen={setControlsFormOpen} board={boardToControl} onSelectBoard={onSelectBoard} onAddBoard={onAddBoard} />
+                <div ref={ref}>
+
+                    <FormBoardAsideControls insertNewBoard={insertNewBoard} onEditBoard={onEditBoard} onRemoveBoard={onRemoveBoard} setControlsFormOpen={setControlsFormOpen} board={boardToControl} onSelectBoard={onSelectBoard} onAddBoard={onAddBoard} />
+                </div>
             }
 
             {addBoardFormOpen &&

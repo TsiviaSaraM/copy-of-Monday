@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const FormBoardAsideControls = ({history, board, onSelectBoard, onAddBoard, setControlsFormOpen}) => {
+export const FormBoardAsideControls = ({insertNewBoard, onEditBoard, board, onSelectBoard, onAddBoard, setControlsFormOpen, onRemoveBoard}) => {
 
     const onOpenInNewWindow = () => {
         const origin = window.origin
@@ -15,6 +15,12 @@ export const FormBoardAsideControls = ({history, board, onSelectBoard, onAddBoar
             )
     }
 
+    const onRenameBoard = () => {
+        setControlsFormOpen(false)
+        board.title = prompt('enter new name')
+        onEditBoard(board)
+    }
+
     return (
         <div className="form-board-aside-controls flex-col">
 
@@ -23,7 +29,7 @@ export const FormBoardAsideControls = ({history, board, onSelectBoard, onAddBoar
                     <div className="left-side-icon">
                         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true" aria-label="Open Board in New Tab" className="icon_component icon_component--no-focus-style"><path d="M4.07692 3.75C3.99022 3.75 3.90706 3.78444 3.84575 3.84575C3.78444 3.90706 3.75 3.99022 3.75 4.07692V15.9231C3.75 16.0098 3.78444 16.0929 3.84575 16.1542C3.90706 16.2156 3.99022 16.25 4.07692 16.25H15.9231C16.0098 16.25 16.0929 16.2156 16.1542 16.1542C16.2156 16.0929 16.25 16.0098 16.25 15.9231V11.0769C16.25 10.6627 16.5858 10.3269 17 10.3269C17.4142 10.3269 17.75 10.6627 17.75 11.0769V15.9231C17.75 16.4076 17.5575 16.8723 17.2149 17.2149C16.8723 17.5575 16.4076 17.75 15.9231 17.75H4.07692C3.59239 17.75 3.12771 17.5575 2.78509 17.2149C2.44248 16.8723 2.25 16.4076 2.25 15.9231V4.07692C2.25 3.59239 2.44248 3.12771 2.78509 2.78509C3.12771 2.44248 3.59239 2.25 4.07692 2.25H8.92308C9.33729 2.25 9.67308 2.58579 9.67308 3C9.67308 3.41421 9.33729 3.75 8.92308 3.75H4.07692ZM12.4808 3C12.4808 2.58579 12.8166 2.25 13.2308 2.25H17C17.2005 2.25 17.3825 2.32864 17.5171 2.45675C17.5262 2.46537 17.535 2.47422 17.5436 2.48328C17.6073 2.55021 17.6562 2.62602 17.6904 2.70659C17.7288 2.79671 17.75 2.89588 17.75 3V6.76923C17.75 7.18344 17.4142 7.51923 17 7.51923C16.5858 7.51923 16.25 7.18344 16.25 6.76923V4.81066L10.5303 10.5303C10.2374 10.8232 9.76256 10.8232 9.46967 10.5303C9.17678 10.2374 9.17678 9.76256 9.46967 9.46967L15.1893 3.75H13.2308C12.8166 3.75 12.4808 3.41421 12.4808 3Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
                     </div>
-                    <div className="text" onClick={() => onOpenInNewWindow()} >Open Board in New Tab {board.title}</div>
+                    <div className="text" onClick={() => onOpenInNewWindow()} >Open Board in New Tab</div>
                 </div>
 
             </div>
@@ -33,7 +39,7 @@ export const FormBoardAsideControls = ({history, board, onSelectBoard, onAddBoar
                     <div className="left-side-icon">
                         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true" aria-label="Rename Board" className="icon_component icon_component--no-focus-style"><path d="M13.8542 3.59561C13.8541 3.59568 13.8542 3.59555 13.8542 3.59561L4.80915 12.6503L3.81363 16.189L7.35682 15.1957L16.4018 6.14C16.4746 6.06722 16.5161 5.96795 16.5161 5.86503C16.5161 5.76221 16.4753 5.6636 16.4026 5.59083C16.4025 5.59076 16.4026 5.59091 16.4026 5.59083L14.4038 3.59568C14.3309 3.52292 14.232 3.48197 14.1289 3.48197C14.026 3.48197 13.927 3.52297 13.8542 3.59561ZM12.8051 2.54754C13.1562 2.19695 13.6324 2 14.1289 2C14.6254 2 15.1016 2.19693 15.4527 2.54747C15.4527 2.5475 15.4527 2.54745 15.4527 2.54747L17.4515 4.54263C17.8026 4.89333 18 5.36914 18 5.86503C18 6.36091 17.8028 6.8365 17.4518 7.18719L8.26993 16.3799C8.17984 16.4701 8.06798 16.5356 7.94516 16.57L2.94244 17.9724C2.68418 18.0448 2.4069 17.9723 2.21725 17.7829C2.0276 17.5934 1.95512 17.3165 2.02768 17.0586L3.43296 12.0633C3.46728 11.9413 3.53237 11.8301 3.62199 11.7404L12.8051 2.54754Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
                     </div>
-                    <div className="text">Rename Board</div>
+                    <div className="text" onClick={onRenameBoard}>Rename Board</div>
                 </div>
 
                 <div className="form-row" onClick={duplicateBoard}>
@@ -49,21 +55,21 @@ export const FormBoardAsideControls = ({history, board, onSelectBoard, onAddBoar
                     <div className="left-side-icon">
                         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true" aria-label="Delete" className="icon_component icon_component--no-focus-style"><path d="M8.30035 1.86462C7.77994 1.86462 7.29477 2.08976 6.94732 2.46719C6.60179 2.84253 6.41724 3.33927 6.41724 3.84552V4.32642H4.901H2.63477C2.22055 4.32642 1.88477 4.6622 1.88477 5.07642C1.88477 5.49063 2.22055 5.82642 2.63477 5.82642H4.151V16.1545C4.151 16.6608 4.33556 17.1575 4.68109 17.5328C5.02853 17.9103 5.51371 18.1354 6.03411 18.1354H13.9659C14.4863 18.1354 14.9715 17.9103 15.3189 17.5328C15.6645 17.1575 15.849 16.6608 15.849 16.1545V5.82642H17.3652C17.7794 5.82642 18.1152 5.49063 18.1152 5.07642C18.1152 4.6622 17.7794 4.32642 17.3652 4.32642H15.099H13.5828V3.84552C13.5828 3.33927 13.3982 2.84253 13.0527 2.46719C12.7053 2.08976 12.2201 1.86462 11.6997 1.86462H8.30035ZM7.16447 5.82642C7.16539 5.82642 7.16631 5.82642 7.16724 5.82642H12.8328C12.8337 5.82642 12.8346 5.82642 12.8356 5.82642H14.349V16.1545C14.349 16.3012 14.2948 16.4306 14.2153 16.5169C14.1378 16.6012 14.0465 16.6354 13.9659 16.6354H6.03411C5.95348 16.6354 5.86223 16.6012 5.78468 16.5169C5.7052 16.4306 5.651 16.3012 5.651 16.1545V5.82642H7.16447ZM12.0828 4.32642V3.84552C12.0828 3.69887 12.0286 3.56943 11.9491 3.4831C11.8716 3.39886 11.7803 3.36462 11.6997 3.36462H8.30035C8.21972 3.36462 8.12847 3.39886 8.05091 3.4831C7.97144 3.56943 7.91724 3.69887 7.91724 3.84552V4.32642L12.0828 4.32642Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
                     </div>
-                    <div className="text">Delete</div>
+                    <div className="text" onClick={()=>{onRemoveBoard(board)}}>Delete</div>
                 </div>
 
                 <div className="form-row">
                     <div className="left-side-icon">
                         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true" aria-label="Create new Board below" className="icon_component icon_component--no-focus-style"><path d="M10.75 6C10.75 5.58579 10.4142 5.25 10 5.25C9.58579 5.25 9.25 5.58579 9.25 6V9.25H6C5.58579 9.25 5.25 9.58579 5.25 10C5.25 10.4142 5.58579 10.75 6 10.75H9.25V14C9.25 14.4142 9.58579 14.75 10 14.75C10.4142 14.75 10.75 14.4142 10.75 14V10.75H14C14.4142 10.75 14.75 10.4142 14.75 10C14.75 9.58579 14.4142 9.25 14 9.25H10.75V6Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
                     </div>
-                    <div className="text">Create new Board above</div>
+                    <div className="text" onClick={()=>insertNewBoard('ABOVE', board)}>Create new Board above</div>
                 </div>
 
                 <div className="form-row">
                     <div className="left-side-icon">
                         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true" aria-label="Create new Board below" className="icon_component icon_component--no-focus-style"><path d="M10.75 6C10.75 5.58579 10.4142 5.25 10 5.25C9.58579 5.25 9.25 5.58579 9.25 6V9.25H6C5.58579 9.25 5.25 9.58579 5.25 10C5.25 10.4142 5.58579 10.75 6 10.75H9.25V14C9.25 14.4142 9.58579 14.75 10 14.75C10.4142 14.75 10.75 14.4142 10.75 14V10.75H14C14.4142 10.75 14.75 10.4142 14.75 10C14.75 9.58579 14.4142 9.25 14 9.25H10.75V6Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
                     </div>
-                    <div className="text">Create new Board below</div>
+                    <div className="text" onClick={()=>insertNewBoard('BELOW', board)}>Create new Board below</div>
                 </div>
 
             </div>

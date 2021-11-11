@@ -45,6 +45,10 @@ const onRemoveBoard = async (board) => {
     await dispatch(removeBoard(board._id))
 }
 
+const insertBoard = (position) => {
+    dispatch(insertBoard(position))
+}
+
 const onEditBoard = async (updatedboard) => {
     await dispatch(saveBoard(updatedboard))
     dispatch(loadBoards()) //TODO may not need this
@@ -54,7 +58,7 @@ if (!boards) return (<p>loading</p>)
 
 return (
     <div className="task-app">
-        <BoardAside setBoardFilter={setBoardFilter} boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
+        <BoardAside insertBoard={insertBoard} setBoardFilter={setBoardFilter} boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
         {boards.forEach(board => {
             <p>{board._id}</p>
         })}
