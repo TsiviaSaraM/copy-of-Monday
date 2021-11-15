@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const FormBoardAsideControls = ({insertNewBoard, onEditBoard, board, onSelectBoard, onAddBoard, setControlsFormOpen, onRemoveBoard}) => {
+export const FormBoardAsideControls = ({insertNewBoard, onEditBoard, board, onAddBoard, setControlsFormOpen, onRemoveBoard}) => {
+
+
+    //TODO have 1 function that all clicks go to, with param=typeOfAction, and switch case, and close the form before the switch case
 
     const onOpenInNewWindow = () => {
         const origin = window.origin
@@ -23,6 +26,7 @@ export const FormBoardAsideControls = ({insertNewBoard, onEditBoard, board, onSe
     const onRenameBoard = () => {
         setControlsFormOpen(false)
         board.title = prompt('enter new name')
+        if (!board.title) board.title = 'no title'
         onEditBoard(board)
     }
 

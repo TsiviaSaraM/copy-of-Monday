@@ -10,20 +10,9 @@ import { useParams } from 'react-router'
 
 
 export const TaskApp = ({match, history}) => {
-    // const {currBoard} = useSelector(state => state.boardModule)
 
     const dispatch = useDispatch()
     const { boards, currBoard, filterBy } = useSelector(state => state.boardModule)
-    // const { id } = useParams()
-
-    // const {currBoard} = useSelector(state => state.currBoard)
-
-    // const componentDidMount = 
-    // () => {
-    //     if (match.params.id) return
-    //     const id = boards[0]._id
-    //     dispatch(getBoardById(id, filterBy))
-    // } 
 
     useEffect(async () => {
         await dispatch(loadBoards())
@@ -33,17 +22,6 @@ export const TaskApp = ({match, history}) => {
         } 
         // eslint-disable-next-line
     }, [match.params.id])
-    // }, [filterBy])
-
-    // useEffect(() => {
-    //     if (!match.params.id && boards.length) {
-    //         const id = boards[0]._id
-    //         dispatch(getBoardById(id, filterBy))
-    //     }
-    //     return () => {
-    //         cleanup
-    //     }
-    // }, [boards])
 
 const setBoardFilter = (boardFilter) => {
     dispatch(loadBoards(boardFilter))

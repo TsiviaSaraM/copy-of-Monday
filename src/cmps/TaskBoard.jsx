@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { getEmptyGroup } from './../services/boardService';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { BoardControls } from './BoardControls';
@@ -8,13 +8,21 @@ import { useDispatch } from 'react-redux';
 import { getEmptyTask } from './../services/boardService'
 import { TaskGroup } from './TaskGroup';
 import { getBoardById, loadBoards, setFilterBy } from '../store/actions/boardActions';
+import { AiFillInfoCircle, AiOutlineInfoCircle } from 'react-icons/ai'
+import { useState } from 'react';
+import { useOnClickOutside } from '../hooks/useOnClickOutside';
 
 //board is state.currBoard
 export const TaskBoard = ({ board, onEditBoard, }) => {
 
     const dispatch = useDispatch()
+    const ref = useRef()
+    const [showDescription, setShowDescription] = useState(true)
 
-
+    useOnClickOutside(ref, () => {
+        onEditBoard(board)
+        setShowDescription(false)
+    })
 
     const handleFilterChange = async (filterBy) => {
         console.log('filterBy', filterBy);
@@ -22,18 +30,11 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
             await setFilterBy(filterBy)
             dispatch(getBoardById(board._id, filterBy))
         } catch (error) {
-            console.log(error);            
+            console.log(error);
         }
     }
 
     const addGroup = () => {
-        // const newGroup = {
-        //     "id": Math.random().toString(),
-        //     "title": 'New Group',
-        //     "tasks": [
-        //     ],
-        //     "style": {}
-        // }
         const newGroup = getEmptyGroup()
         board.groups.push(newGroup)
         onEditBoard(board)
@@ -58,6 +59,10 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         group.title = prompt('new group title')
         onEditGroup(group)
 
+    }
+
+    const handleDescriptionChange = (ev) => {
+        board.description = ev.target.value
     }
 
     const addTask = (group, title) => {
@@ -108,17 +113,23 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                         <h1  >
                             {board.title}
                         </h1>
+                        {showDescription && <AiFillInfoCircle className="icon-info" onClick={() => setShowDescription(false)} />}
+                        {!showDescription && <AiOutlineInfoCircle className="icon-info" onClick={() => setShowDescription(true)} />}
                     </div>
                     {/* <div className="board-description" contentEditable="true"> */}
                     <div className="board-description" >
-                        {board.description}
+                        {showDescription ?
+                            <textarea onChange={handleDescriptionChange} ref={ref}  className="visible-description"  name="description" id="" cols="30" rows="10"></textarea> :
+                            <div onClick={()=>setShowDescription(true)} className="hidden-description">{board.description || 'add board descripti/on'}</div>
+
+                        }
                     </div>
-                    
+
                     <BoardControls handleFilterChange={handleFilterChange} addGroup={addGroup} />
                     {/* <BoardFilter /> */}
                     {/* may need to put "if (board.groups && board.groups.length )" */}
                     {board.groups.length ?
-                   
+
                         <Droppable droppableId={board._id} type="GROUP">
                             {provided => (
                                 <div className="droppable-area"
@@ -126,13 +137,13 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                                     {...provided.droppableProps}
                                 >
 
-                                    
-                                    {board.groups.map((group, index) => 
-                                    
-                                    <div key={group.id}>
-                                        <TaskGroup group={group} index={index} key={group.id} onEditBoard={onEditBoard} onEditGroup={onEditGroup}
-                                        onDeleteGroup={onDeleteGroup} editGroup={editGroup} addTask={addTask}></TaskGroup>
-                                    </div>)}
+
+                                    {board.groups.map((group, index) =>
+
+                                        <div key={group.id}>
+                                            <TaskGroup group={group} index={index} key={group.id} onEditBoard={onEditBoard} onEditGroup={onEditGroup}
+                                                onDeleteGroup={onDeleteGroup} editGroup={editGroup} addTask={addTask}></TaskGroup>
+                                        </div>)}
 
 
                                     {provided.placeholder}

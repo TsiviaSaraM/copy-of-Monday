@@ -1,9 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
-import {AiOutlineClose} from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai"
 
 export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
-
     const [newBoard, setNewBoard] = useState(null)
     const closeForm = () => {
         console.log('closing the form');
@@ -22,7 +21,6 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
             alert('please give your board a title')
             return
         }
-        // debugger
         onAddBoard(newBoard)
         setAddBoardFormOpen(false);
     }
@@ -34,9 +32,6 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
                 {/* <p className="x" onClick={()=>setAddBoardFormOpen(false)}>X</p> */}
 
                 <div className="form-body flex-col">
-
-
-
                     <h1 className="form-title">Create board</h1>
 
                     <div className="board-name flex-col">
@@ -46,7 +41,7 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
                     </div>
 
                     <div className="privacy">
-                        <label htmlFor="main">privacy</label>
+                        <div >privacy</div> {/* TODO fix the css here  */}
                         <div className="radio flex" >
                             <div className="main">
                                 <input type="radio" id="main" name="privacy" onChange={handleChange} />
@@ -68,8 +63,8 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
 
                 </div>
                 <div className="form-btns flex">
-                <button onClick={closeForm} className="btn-cancel">Cancel</button>
-                <button onClick={addBoard} className="btn-submit">Create Board</button>
+                    <button onClick={closeForm} className="btn-cancel">Cancel</button>
+                    <button onClick={addBoard} className="btn-submit">Create Board</button>
 
                 </div>
 
