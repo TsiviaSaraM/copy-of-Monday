@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import { getEmptyTask } from './../services/boardService'
 import { TaskGroup } from './TaskGroup';
-import { getBoardById, loadBoards, setFilterBy } from '../store/actions/boardActions';
+import { getBoardById, setFilterBy } from '../store/actions/boardActions';
 import { AiFillInfoCircle, AiOutlineInfoCircle } from 'react-icons/ai'
 import { useState } from 'react';
 import { useOnClickOutside } from '../hooks/useOnClickOutside';
@@ -24,6 +24,13 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         setShowDescription(false)
     })
 
+    useEffect(() => {
+        console.log('TaskBoard is loaded');
+        return () => {
+            
+        }
+    }, [])
+
     const handleFilterChange = async (filterBy) => {
         console.log('filterBy', filterBy);
         try {
@@ -34,6 +41,8 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         }
     }
 
+    console.log(board);
+
     const addGroup = () => {
         const newGroup = getEmptyGroup()
         board.groups.push(newGroup)
@@ -43,6 +52,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     const onEditGroup = (updatedGroup) => {
         console.log('updated group: ', updatedGroup);
         const groupIndex = board.groups.findIndex(group => group.id === updatedGroup.id)
+        debugger
         board.groups.splice(groupIndex, 1, updatedGroup)
         onEditBoard(board)
         // const newBoard = {...board, groups:[...board.groups]}
@@ -69,7 +79,9 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         if (!title) return
         const newTask = getEmptyTask()
         newTask.title = title
+        newTask.status='new'
         group.tasks.push(newTask)
+        debugger
         onEditGroup(group)
     }
 
@@ -103,8 +115,10 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     }
 
     if (!board) return (<p>loading...</p>)
+    if (!board.groups) return (<p>no groups...</p>)
     return (
         <div className="task-board">
+           
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className="board-header-container">
                     <div className="board-title">
@@ -136,16 +150,12 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
                                 >
-
-
                                     {board.groups.map((group, index) =>
 
                                         <div key={group.id}>
                                             <TaskGroup group={group} index={index} key={group.id} onEditBoard={onEditBoard} onEditGroup={onEditGroup}
                                                 onDeleteGroup={onDeleteGroup} editGroup={editGroup} addTask={addTask}></TaskGroup>
                                         </div>)}
-
-
                                     {provided.placeholder}
                                 </div>
                             )}

@@ -43,6 +43,7 @@ function get(entityType, entityId) {
         .then(entities => entities.find(entity => entity._id === entityId))
 }
 function post(entityType, newEntity) {
+    debugger
     newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {
@@ -53,6 +54,7 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
+    debugger
     return query(entityType)
         .then(entities => {
             console.log('entities', entities);
@@ -64,6 +66,7 @@ function put(entityType, updatedEntity) {
 }
 
 function remove(entityType, entityId) {
+    debugger
     return query(entityType)
         .then(entities => {
             const idx = entities.findIndex(entity => entity._id === entityId)
@@ -75,6 +78,7 @@ function remove(entityType, entityId) {
 
 
 function _save(entityType, entities) {
+    debugger
     //LOCAL STORAGE SETUP
     localStorage.setItem(entityType, JSON.stringify(entities))
 

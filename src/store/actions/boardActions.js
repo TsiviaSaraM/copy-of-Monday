@@ -16,7 +16,10 @@ export function loadBoards(boardFilter) {
 export function getBoardById(boardId, taskFilter) {
   return async dispatch => {
     const board = await boardService.getById(boardId)
-    if (taskFilter) {
+    console.log('taskFilter', taskFilter);
+    // TODO add this later
+    if (taskFilter.taskFilter) {
+      console.log('taskFilter used');
       board.groups = board.groups.map(group => {
         return {
           ...group,

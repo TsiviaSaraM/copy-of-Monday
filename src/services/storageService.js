@@ -1,5 +1,6 @@
 
 function store(key, value) {
+    debugger
     localStorage[key] = JSON.stringify(value);
 }
 

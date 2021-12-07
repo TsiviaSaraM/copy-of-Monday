@@ -41,8 +41,8 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
                         </div>
 
                         <div className="tbl-task-group">
-                        {/* was table */}    
-                                        
+                            {/* was table */}
+
                             {/* <thead>
                                 <tr>
                                     <th>
@@ -68,12 +68,12 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
                                 onEditBoard={onEditBoard} onEditGroup={onEditGroup}>
                             </TaskList>
 
-                        {/* was table */}
-                        </div> 
+                            {/* was table */}
+                        </div>
 
 
 
-                        {group.tasks.map(task =>
+                        {/* {group.tasks.map(task =>
                             <div className="task-list-2" key={task.id}>
                                 <div className="margin-left" style={{ backgroundColor: group.style.hover }}></div>
                                 <div className="title">{task.title}</div>
@@ -88,15 +88,17 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
 
                             </div>
 
-                        )}
+                        )} */}
 
                     </div>
                 )}
             </Draggable>
 
             <AddTask group={group} addTask={addTask}></AddTask>
-            <p onClick={() => editGroup(group)}>edit group</p>
-            <p onClick={() => onDeleteGroup(group.id)}>delete group</p>
+            <div className="temp-controls flex">
+                <p onClick={() => editGroup(group)}>edit group</p> |
+                <p onClick={() => onDeleteGroup(group.id)}>delete group</p>
+            </div>
         </div>
 
     )

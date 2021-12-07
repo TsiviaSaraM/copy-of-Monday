@@ -428,8 +428,10 @@ export function getEmptyTask() {
 
 function _loadBoards() {
     let boards = storageService.load(STORAGE_KEY)
-    if (!boards || !boards.length) boards = gDefaultBoards
-    storageService.store(STORAGE_KEY, boards)
+    if (!boards || !boards.length) {
+        boards = gDefaultBoards
+        storageService.store(STORAGE_KEY, boards)
+    }
     return boards
 }
 

@@ -15,6 +15,7 @@ const INITIAL_STATE = {
           boards: action.boards
         }
       case 'SET_BOARD':
+        // debugger
         return {
           ...state,
           currBoard: action.board
@@ -28,7 +29,7 @@ const INITIAL_STATE = {
         const {position, board } = action
         const updatedBoards = {...state.boards}
         updatedBoards.splice(position, 0, board)
-        debugger
+        // debugger
         console.log('board=', board.title, 'position=', position, 'boards=', updatedBoards);
         return {
           ...state,
