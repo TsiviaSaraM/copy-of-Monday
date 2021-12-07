@@ -4,13 +4,15 @@ import { FormEditStatus } from './forms/FormEditStatus'
 import { FormEditDate } from './forms/FormEditDate'
 import { Draggable } from 'react-beautiful-dnd'
 import { useOnClickOutside } from '../hooks/useOnClickOutside'
+import { FaRegUserCircle } from "react-icons/fa";
 
 
-export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId }) => {
+export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId, hoverColor}) => {
 
     const [statusFormOpen, setStatusFormOpen] = useState(false)
     const [dateFormOpen, setDateFormOpen] = useState(false)
     const [styles, setStyles] = useState({})
+    const [rowHover, setRowHover] = useState(false)
 
     // Create a ref that we add to the element for which we want to detect outside clicks
     const ref = useRef();
@@ -53,33 +55,45 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
         setDateFormOpen(false)
     }
 
-    return (
-        <>
+    const handleRowHover = () => {
+        setRowHover(true)
+    }
 
+    return (
+        <>  
             <Draggable draggableId={groupId + '*' + task.id} index={index} key={task.id} type="TASK">
                 {provided => (
 
-                    <tr className="task-preview"
+                    // <tr className="task-preview"
+                    // <tr className="task-list-2"
+                    <div className="task-list-2"
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-
+                        onMouseEnter={() => setRowHover(true)}
+                        onMouseLeave={() => setRowHover(false)}
                     >
-                        
-                        <td className="task-detail td-title">{task.title}</td>
-                        <td>MEMBERS</td>
-                        <td className={"task-detail status " + task.status} onClick={togglestatusFormOpen}>
-                            {task.status}
-                        </td>
-                        <td className="task-detail" onClick={toggleDateFormOpen}>
-                            {task.dueDate}
-                        </td>
-                        <td className="task-detail" onClick={editTask}>edit task</td>
-                        <td className="task-detail" onClick={() => onRemoveTask(task.id)} >remove task</td>
-                        {dateFormOpen && <td  ref={ref}><FormEditDate  styles={styles} oldDate={task.dueDate} editDate={editDate}></FormEditDate></td>}
-                        {statusFormOpen && <td  ref={ref} ><FormEditStatus togglestatusFormOpen={togglestatusFormOpen} styles={styles} selectStatus={selectStatus} className={task.id}></FormEditStatus></td>}
-                        <td className="task-detail" >{task.id}</td>
-                        {/* <td className={"status " + task.status} >
+                        <div className="margin-left" style={{ backgroundColor: hoverColor }}></div>
+                        <div className="task-detail title-edit-msg">{task.title}
+                            
+                           { rowHover && <span className="edit" onClick={editTask}>Edit</span>}
+                        </div>
+                        <div className="person">
+                            <FaRegUserCircle /> person
+                        </div>
+                        <div className={"task-detail status " + task.status} onClick={togglestatusFormOpen}>
+                            status: {task.status}
+                        </div>
+                        <div className="task-detail date" onClick={toggleDateFormOpen}>
+                            due: {task.dueDate}
+                        </div>
+                        {/* <div className="task-detail" onClick={editTask}>edit task</div> */}
+                        <div className="task-detail" onClick={() => onRemoveTask(task.id)} >remove task</div>
+                        {dateFormOpen && <div ref={ref}><FormEditDate styles={styles} oldDate={task.dueDate} editDate={editDate}></FormEditDate></div>}
+                        {statusFormOpen && <div ref={ref} ><FormEditStatus togglestatusFormOpen={togglestatusFormOpen} styles={styles} selectStatus={selectStatus} className={task.id}></FormEditStatus></div>}
+                        <div className="task-detail" >{task.id}</div>
+                        <div className="margin-right"></div>
+                        {/* <div className={"status " + task.status} >
                                 {statusFormOpen ? (
                                     <div ref={ref}>
                                         {task.status}
@@ -90,8 +104,9 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
                                     <div ref={ref} onClick={() => setStatusFormOpen(true)}>{task.status}</div>
                                 )}
                             
-                        </td> */}
-                    </tr>
+                        </div> */}
+                    </div>
+                    // </tr>
                 )}
             </Draggable>
 

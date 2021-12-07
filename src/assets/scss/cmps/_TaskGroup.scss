@@ -1,0 +1,94 @@
+
+.task-group{
+    
+    table { white-space: nowrap; }
+    th{
+        color: rgb(87, 155, 252);
+    }
+    tbody{position: relative;}
+    .flex{
+        display: flex;
+    }
+    .group-title{
+        font-size: 18px;
+        font-weight: 300;
+        text-align: left; /*TODO remove or poss put in entire th*/
+        white-space: nowrap; /*TODO poss put in entire th, will see overflow*/    
+    }   
+
+    
+    .up{
+        position: relative;
+        top: -16px;
+    }
+
+    .down{
+        position: -8px;
+    }
+    
+    .up, .down, .expand{
+        background-color: rgb(225, 225, 225);
+
+    }
+
+    .expand::before{
+        font-family: AwesomeSolid;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 19px;
+        content: "\f338";
+        color: rgb(102, 102, 102);
+
+
+    }
+    .up::before{
+        font-family: AwesomeSolid;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 19px;
+        content: "\f077";
+        color: rgb(102, 102, 102);
+
+
+    }
+    .down::before{
+        font-family: AwesomeSolid;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 19px;
+        content: "\f078";
+        color: rgb(102, 102, 102);
+
+
+    }
+    .status{
+        width: 144px;
+    }
+    
+}
+
+.task-group-header{
+    text-transform: capitalize;
+    .status, .date{
+        width: 140px;
+    }
+    .title{
+        flex-grow: 2;
+        padding-left: 10px;
+        // border-right: 1px solid rgb(158, 158, 158);
+        // border-bottom: 1px solid rgb(158, 158, 158);
+        color: rgb(87, 155, 252);
+        text-align: left;
+        // width: 100%;
+        font-size: 18px;
+    }
+    .person{width: 98px;}
+}
+
+.task-group-header-wrapper{
+    font-size: 15px;
+    max-width: 378px;
+    text-size-adjust: 100%;
+    vertical-align: baseline;
+    color: rgb(50, 51, 56);
+}

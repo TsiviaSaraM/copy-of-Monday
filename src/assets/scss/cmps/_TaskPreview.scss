@@ -31,7 +31,7 @@ $clr-row-hover: #e6e9ef;
     // position: absolute;
     // background-color: rgb(245, 246, 248);
     background-color: rgba(253, 253, 250, 0.95);/*non-highlighted color*/
-border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
+    border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
 
     td{
         background-color: #E6E9EF;
@@ -41,73 +41,6 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     // tr{position: relative;}
 }
 
-.task-group{
-    
-    table { white-space: nowrap; }
-    th{
-        color: rgb(87, 155, 252);
-    }
-    tbody{position: relative;}
-    .flex{
-        display: flex;
-    }
-    .group-title{
-        font-size: 18px;
-        font-weight: 300;
-        text-align: left; /*TODO remove or poss put in entire th*/
-        white-space: nowrap; /*TODO poss put in entire th, will see overflow*/    
-    }   
-
-    
-    .up{
-        position: relative;
-        top: -16px;
-    }
-
-    .down{
-        position: -8px;
-    }
-    
-    .up, .down, .expand{
-        background-color: rgb(225, 225, 225);
-
-    }
-
-    .expand::before{
-        font-family: AwesomeSolid;
-        font-weight: 300;
-        font-size: 13px;
-        line-height: 19px;
-        content: "\f338";
-        color: rgb(102, 102, 102);
-
-
-    }
-    .up::before{
-        font-family: AwesomeSolid;
-        font-weight: 300;
-        font-size: 13px;
-        line-height: 19px;
-        content: "\f077";
-        color: rgb(102, 102, 102);
-
-
-    }
-    .down::before{
-        font-family: AwesomeSolid;
-        font-weight: 300;
-        font-size: 13px;
-        line-height: 19px;
-        content: "\f078";
-        color: rgb(102, 102, 102);
-
-
-    }
-    .status{
-        width: 144px;
-    }
-    
-}
 
 
 .row-add-task{
@@ -154,16 +87,38 @@ border-bottom-color: rgb(50, 51, 56);/*highlighted color*/
     background-color: #e6e9ef;
 }
 .task-list-2{
+    height: 36px;
     display: flex;
     font-size: 13px;
-    line-height: 19.5px;
+    // line-height: 19.5px;
     color: rgb(102, 102, 102);
+    background-color: rgb(245, 246, 248);
+    border-bottom: 1px solid white;
+    align-items: center;
+
     
-    .title{
+    .title-edit-msg{
         flex-grow: 2;
-        padding-left: 10px;
-        border-right: 1px solid rgb(158, 158, 158);
-        border-bottom: 1px solid rgb(158, 158, 158);
+        padding: 0 3px 0 10px;
+        // padding-left: 10px;
+        // border-right: 1px solid rgb(158, 158, 158);
+        // border-bottom: 1px solid rgb(158, 158, 158);
+    
+    }
+    .title-edit-msg:hover{
+        color: rgb(31, 118, 194);
+        .edit{
+            padding: 0 3px;
+            margin-left: 8px;
+            padding: 2px 8px 4px 8px;
+            color: rgb(102, 102, 102);
+            cursor: pointer;
+        }
+        .edit:hover{
+            background-color: rgb(245, 246, 248);
+            border-radius: 4px;
+
+        }
     }
     .status, .date{
         width: 140px;

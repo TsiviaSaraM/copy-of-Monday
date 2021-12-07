@@ -30,21 +30,24 @@ export const TaskList = ({ group, onEditGroup, onDeleteGroup }) => {
         onEditGroup(group)
     }
 
-    return ( 
-    // <p>TASK_LIST</p>
-                <Droppable className="task-group" droppableId={group.id} type="TASK">
-                    {provided => (
-                        
-                        <tbody
-                        ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
-                            {group.tasks.map((task, index) => (
-                                <TaskPreview index={index} groupId={group.id} task={task} key={task.id} onEditTask={onEditTask} onRemoveTask={onRemoveTask}></TaskPreview>
-                            ))}
-                            {provided.placeholder}
-                        </tbody>
-                    )}
-                </Droppable>
+    return (
+        // <p>TASK_LIST</p>
+        <Droppable className="task-group" droppableId={group.id} type="TASK">
+            {provided => (
+
+                // <tbody
+                <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                >
+                    {group.tasks.map((task, index) => (
+                        <TaskPreview hoverColor={group.style.hover} index={index} groupId={group.id} task={task} key={task.id} onEditTask={onEditTask} onRemoveTask={onRemoveTask}></TaskPreview>
+                        // <div className="task" groupId={group.id} >hi</div>
+                    ))}
+                    {provided.placeholder}
+                </div>
+                // </tbody>
+            )}
+        </Droppable>
     )
 }

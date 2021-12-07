@@ -17,7 +17,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
 
     const dispatch = useDispatch()
     const ref = useRef()
-    const [showDescription, setShowDescription] = useState(true)
+    const [showDescription, setShowDescription] = useState(false)
 
     useOnClickOutside(ref, () => {
         onEditBoard(board)
