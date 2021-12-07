@@ -2,9 +2,10 @@ import { storageService } from './asyncStorageService'
 // import { httpService } from './http.service'
 import users from './../data/user.json'
 // import { utilService } from './util-service'
-const SCORE_FOR_REVIEW = 10
+// import { storageService } from './storageService.js'
+import { makeId } from './utilService'
 
-console.log(users);
+console.log('users', users);
 
 export const userService = {
     query,
@@ -58,21 +59,32 @@ function _saveLocalUser(user) {
     return user
 }
 
-function _createUser(name, price=100, type="Funny", inStock=false) {
+function _createUser(fullname, username, password, imgUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fen%2Fpng-ymxim&psig=AOvVaw3OoNBQPOwmAktMYE3vjz_9&ust=1637082366316000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNiB05rtmvQCFQAAAAAdAAAAABAJ") {
     return {
-        // _id:utilService.makeId(),
-        name,
-        price,
-        type,
-        createdAt: new Date(),
-        inStock,
-        reviews: [],
+        "_id": "u" + makeId(3),
+        "fullname": fullname,
+        "username": username,
+        "password": password,
+        "imgUrl": imgUrl,
+        "mentions": [
+            // {"id": "m101",
+            // "boardId": "m101",
+            // "taskId": "t101"}
+        ]
     }
 }
 
 function getEmptyUser() {
     console.log('getting empty user...');
-    return { _id: '', name: '', price:0, type:'', inStock:false, reviews: []}
+    return {
+        "_id": '',
+        "fullname": '',
+        "username": '',
+        "password": '',
+        "imgUrl": '',
+        "mentions": [
+        ]
+    }
 }
 
 
