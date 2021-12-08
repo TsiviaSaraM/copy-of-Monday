@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { utilService } from '../services/utilService'
 import {getEmptyUser} from '../services/userService'
+import {UserList} from '../cmps/forms/UserList'
 
 export const UserPage = () => {
     const dispatch = useDispatch()
@@ -64,6 +65,7 @@ export const UserPage = () => {
 
             <input type="text" onChange={handleChange} name="fullname" value={newUser.fullname} />
             <button onClick={createUser} >create new user</button>
+            <UserList />
         </div >
     )
 }
