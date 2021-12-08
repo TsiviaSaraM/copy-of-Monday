@@ -1,4 +1,6 @@
 .user-list{
+    // color: rgb(50, 51, 56);
+    color: rgb(103, 104, 121);
     width: 264px;
     position: relative;
     left: 317px;
@@ -10,9 +12,38 @@
     transition-property: width right left;
     transition-timing-function: ease-in ease-in ease-in;
     padding: 2px;
-    max-height: 230px;
-    overflow-y: scroll;
+    // max-height: 230px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    .user-search{
+        font-size: 14px;
+        padding: 2px 0px 3px 8px;
+        border: none;
+        height: 35px;
+        width: 100%;
+    }
+    
+    .title-container{
+        background-color: rgb(197, 199, 208);
+        height: 1px;
+        width: 80%;
+        margin: 10px auto;
+        text-align: center;
+        // position: relative;
+        .title{
+            background-color: white;
+            // width: 40%;
+            padding: 0 10px;
+            margin: 0 auto;
+            position: relative;
+            top: -11px;
+            padding: 5px;
+            height: 19px;
+            
+        }
+    }
     .user-preview{
+        // color: rgb(197, 199, 208);
         width: 256px;
         padding: 4px 8px;
         height: 34px;

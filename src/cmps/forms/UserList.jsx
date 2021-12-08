@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import {loadUsers} from './../../store/actions/userActions'
+import { loadUsers } from './../../store/actions/userActions'
 import { useSelector } from 'react-redux'
 import { UserPreview } from './UserPreview'
 
 export function UserList() {
-    const {users} = useSelector(state => state.userModule)
+    const { users } = useSelector(state => state.userModule)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -26,6 +26,10 @@ export function UserList() {
     if (!users.length) return <div className="no-data">no users</div>
     return (
         <div className="user-list">
+            <input className="user-search" type="text" placeholder="Enter name" />
+            <div className="title-container">
+                <span className="title">People</span>
+            </div>
             {users.map(user => {
                 return (
                     <UserPreview user={user} key={user._id} />
