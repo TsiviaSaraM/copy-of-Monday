@@ -316,10 +316,12 @@ function query(boardFilter) {
     return Promise.resolve([...boardsToReturn]);
 }
 
+ // eslint-disable-next-line
 function _filteredGroups(filterBy, groups) {
 
     return groups.map(group => {
         const filteredTasks = _filteredTasks(filterBy, group.tasks)
+         // eslint-disable-next-line
         if (!filteredTasks.length) return
         return { ...group, tasks: filteredTasks }
     })
@@ -334,7 +336,7 @@ function _filteredTasks(filterBy, group) {
     return { ...group, tasks: group.tasks.filter(task => task.title.includes(filterBy)) }
 }
 
-
+ // eslint-disable-next-line
 function _filteredTask(filterBy, task) {
     if (task.title.includes(filterBy)) return true
     else return false
@@ -434,11 +436,11 @@ function _loadBoards() {
     }
     return boards
 }
-
+ // eslint-disable-next-line
 function getGroupById(board, groupId) {
     return board.groups.find(group => group.id === groupId)
 }
-
+ // eslint-disable-next-line
 function getTaskById(board, taskId) {
 
 }

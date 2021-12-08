@@ -3,10 +3,11 @@ import { TaskList } from './TaskList.jsx';
 import { Draggable } from 'react-beautiful-dnd'
 import { useState } from 'react';
 import { AddTask } from './AddTask.jsx';
-import { FaRegUserCircle } from "react-icons/fa";
 
 export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGroup, addTask, editGroup }) => {
+    // eslint-disable-next-line
     const [hoverAddRow, sethoverAddRow] = useState(false)
+    // eslint-disable-next-line
     const [showAddBtn, setshowAddBtn] = useState(false)
     return (
 

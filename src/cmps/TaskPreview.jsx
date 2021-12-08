@@ -55,6 +55,7 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
         setDateFormOpen(false)
     }
 
+    // eslint-disable-next-line
     const handleRowHover = () => {
         setRowHover(true)
     }
@@ -113,10 +114,3 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
         </>
     )
 }
-
-{/* <th>Title</th>
-                        <th>Members</th>
-                        <th>Status</th>
-                        <th>Due date</th>
-                        <th>priority</th>
-                        <th>other</th> */}

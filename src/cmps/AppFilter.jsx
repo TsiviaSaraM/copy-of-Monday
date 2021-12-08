@@ -1,5 +1,8 @@
+// eslint-disable-next-line
 import React, { useEffect } from 'react'
+// eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux'
+// eslint-disable-next-line
 import { loadBoards, setFilterBy } from '../store/actions/boardActions'
 
 export const AppFilter = ({handleFilterChange}) => {

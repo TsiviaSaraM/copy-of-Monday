@@ -1,22 +1,22 @@
 import { userService } from "../../services/userService";
 
-export function loadBoards(boardFilter) {
+export function loadUsers(userFilter) {
     return async (dispatch, getState) => {
-        // const { filterBy } = getState().boardModule
+        // const { filterBy } = getState().userModule
         try {
-            const boards = await boardService.query(boardFilter)
-            dispatch({ type: 'SET_BOARDS', boards })
+            const users = await userService.query(userFilter)
+            dispatch({ type: 'LOAD_USERS', users })
         } catch (err) {
             console.log(err);
         }
     }
 }
 
-export function getBoardById(boardId, taskFilter) {
+export function getUserById(userId, taskFilter) {
     return async dispatch => {
-        const board = await boardService.getById(boardId)
+        const user = await userService.getById(userId)
         if (taskFilter) {
-            board.groups = board.groups.map(group => {
+            user.groups = user.groups.map(group => {
                 return {
                     ...group,
                     tasks: group.tasks.filter(task => {
@@ -25,32 +25,41 @@ export function getBoardById(boardId, taskFilter) {
                 }
             })
         }
-        dispatch({ type: 'SET_BOARD', board })
+        dispatch({ type: 'SET_USER', user })
+    }
+}
+
+export function updateUser(userToUpdate) {
+    const type = 'UPDATE_USER'
+    return async dispatch => {
+        await userService.update(userToUpdate)
+        dispatch({type, userToUpdate})
+    }
+}
+
+export function saveUser(user) {
+    // const type = user._id ? 'UPDATE_USER' : 'ADD_USER'
+    const type = 'ADD_USER'
+    debugger
+    return async dispatch => {
+        user = await userService.add(user)
+        dispatch({ type, user })
+    }
+}
+
+export function insertUser(user, position) {
+    console.log('user=', user.title, 'position=', position);
+    return async dispatch => {
+        await userService.save(user, position)
+        dispatch({ type: 'UPDATE_USER', user, position })
     }
 }
 
 
-export function saveBoard(board) {
-    const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
+export function removeUser(userId) {
     return async dispatch => {
-        await boardService.save(board)
-        dispatch({ type, board })
-    }
-}
-
-export function insertBoard(board, position) {
-    console.log('board=', board.title, 'position=', position);
-    return async dispatch => {
-        await boardService.save(board, position)
-        dispatch({ type: 'UPDATE_BOARD', board, position })
-    }
-}
-
-
-export function removeBoard(boardId) {
-    return async dispatch => {
-        await boardService.remove(boardId)
-        dispatch({ type: 'REMOVE_BOARD', boardId })
+        await userService.remove(userId)
+        dispatch({ type: 'REMOVE_USER', userId })
     }
 }
 

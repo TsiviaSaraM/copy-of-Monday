@@ -1,4 +1,5 @@
 // const gTodos = require('./../data/todos.json') //JSON STORAGE SETUP
+ // eslint-disable-next-line
 const fs = require('fs')//JSON STORAGE SETUP
 // const { resolve } = require('path')//JSON STORAGE SETUP
 
@@ -43,7 +44,6 @@ function get(entityType, entityId) {
         .then(entities => entities.find(entity => entity._id === entityId))
 }
 function post(entityType, newEntity) {
-    debugger
     newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {
@@ -54,7 +54,6 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
-    debugger
     return query(entityType)
         .then(entities => {
             console.log('entities', entities);
@@ -78,7 +77,6 @@ function remove(entityType, entityId) {
 
 
 function _save(entityType, entities) {
-    debugger
     //LOCAL STORAGE SETUP
     localStorage.setItem(entityType, JSON.stringify(entities))
 

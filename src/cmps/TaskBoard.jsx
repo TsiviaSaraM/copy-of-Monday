@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { getEmptyGroup } from './../services/boardService';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { BoardControls } from './BoardControls';
+// eslint-disable-next-line
 import { BoardFilter } from './BoardFilter';
 import { useDispatch } from 'react-redux';
 
@@ -86,6 +87,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     }
 
     const onDragEnd = (result) => {
+        // eslint-disable-next-line
         const { destination, source, draggableId } = result
 
         //if we are moving a group on a board...

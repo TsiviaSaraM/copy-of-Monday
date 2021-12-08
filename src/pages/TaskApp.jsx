@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { BoardAside } from '../cmps/BoardAside.jsx'
 import { TaskBoard } from '../cmps/TaskBoard.jsx'
-import { userService } from '../services/userService'
 import { removeBoard, loadBoards, getBoardById, saveBoard, insertBoard } from '../store/actions/boardActions.js'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router'
 
 
 export const TaskApp = ({ match, history }) => {
@@ -14,6 +12,7 @@ export const TaskApp = ({ match, history }) => {
     const dispatch = useDispatch()
     const { boards, currBoard, filterBy } = useSelector(state => state.boardModule)
 
+    // eslint-disable-next-line
     useEffect(async () => {
         await dispatch(loadBoards())
         if (match.params.id) {

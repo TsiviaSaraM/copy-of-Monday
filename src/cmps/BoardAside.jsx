@@ -1,8 +1,7 @@
 import React from 'react'
+// eslint-disable-next-line
 import { BoardFilter } from './BoardFilter'
 import { FormAddBoard } from './forms/FormAddBoard'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { DragAndDropList } from './DragAndDropList';
 import { useRef } from 'react';
 import { useOnClickOutside } from '../hooks/useOnClickOutside';
 import { useState } from 'react';
@@ -28,6 +27,7 @@ export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onS
         onInsertBoard(position)
     }
 
+    // eslint-disable-next-line
     const onEditBoardName = (board) => {
         const newName = prompt('new name')
         onEditBoard({ ...board, title: newName })
