@@ -2,9 +2,9 @@
     // color: rgb(50, 51, 56);
     color: rgb(103, 104, 121);
     width: 264px;
-    position: relative;
-    left: 317px;
-    top: 318px;
+    position: fixed;
+    // left: 317px;
+    // top: 318px;
     border-radius: 8px;
     box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.3);
     transition-delay: 0s, 0s, 0s, 0s;
@@ -15,6 +15,8 @@
     // max-height: 230px;
     overflow-y: hidden;
     overflow-x: hidden;
+    background-color: white;
+    z-index: 2;
     .user-search{
         font-size: 14px;
         padding: 2px 0px 3px 8px;

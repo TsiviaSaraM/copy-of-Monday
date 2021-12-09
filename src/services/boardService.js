@@ -55,12 +55,30 @@ const gDefaultBoards = [
                     {
                         "id": "c101",
                         "title": "Replace logo",
-                        "status": "done"
+                        "status": "done",
+                        "person": {},
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            }
+                        ]
                     },
                     {
                         "id": "c102",
                         "title": "Add Samples",
-                        "status": "done"
+                        "status": "done",
+                        "person": {},
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            }
+                        ]
                     }
                 ],
                 "style": {
@@ -76,7 +94,16 @@ const gDefaultBoards = [
                     {
                         "id": "c103",
                         "title": "Do that",
-                        "status": "done"
+                        "status": "done",
+                        "person": {},
+                        "members": [
+                            {
+                                "_id": "u101",
+                                "username": "Tal",
+                                "fullname": "Tal Tarablus",
+                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            }
+                        ]
                     },
                     {
                         "id": "c104",
@@ -108,6 +135,7 @@ const gDefaultBoards = [
                                 ]
                             }
                         ],
+                        "person": {},
                         "members": [
                             {
                                 "_id": "u101",
@@ -187,12 +215,14 @@ const gDefaultBoards = [
                     {
                         "id": "c101",
                         "title": "Replace logo",
-                        "status": "done"
+                        "status": "done",
+                        "person": {}
                     },
                     {
                         "id": "c102",
                         "title": "Add Samples",
-                        "status": "done"
+                        "status": "done",
+                        "person": {}
                     }
                 ],
                 "style": {
@@ -207,7 +237,8 @@ const gDefaultBoards = [
                     {
                         "id": "c103",
                         "title": "Do that",
-                        "status": "done"
+                        "status": "done",
+                        "person": {}
                     },
                     {
                         "id": "c104",
@@ -238,6 +269,7 @@ const gDefaultBoards = [
                                 ]
                             }
                         ],
+                        "person": {},
                         "members": [
                             {
                                 "_id": "u101",
@@ -423,7 +455,8 @@ export function getEmptyTask() {
     return {
         id: makeId(4),
         status: '',
-        title: ''
+        title: '',
+        person: null,
     }
 }
 

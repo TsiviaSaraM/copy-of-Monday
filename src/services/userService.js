@@ -106,6 +106,7 @@ function _createUser(fullname, username, password, imgUrl = "https://www.google.
         "username": username,
         "password": password,
         "imgUrl": imgUrl,
+        "members":[],
         "mentions": [
             // {"id": "m101",
             // "boardId": "m101",

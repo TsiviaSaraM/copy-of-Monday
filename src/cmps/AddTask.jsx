@@ -18,7 +18,7 @@ export const AddTask = ({addTask, group}) => {
                 <div style={{ backgroundColor: hoverAddRow ? group.style.hover : group.style.color }} className="margin-left"></div>
 
                 <div ref={ref} className="add-task" onClick={() => setShowAddBtn(true)}>
-                    <input onChange={handleChange} className="input-add-task" type="text" placeholder="+Add" />
+                    <input onChange={handleChange} className="input-add-task" type="text" placeholder="+ Add" />
                     {showAddBtn && <button className="btn-add-group" onMouseUp={() => {setShowAddBtn(false);}} onMouseDown={() => addTask(group, taskTitle)}>Add</button>}
                 </div>
 

@@ -53,7 +53,6 @@ export const TaskApp = ({ match, history }) => {
     }
 
     const onEditBoard = async (updatedboard) => {
-        debugger
         await dispatch(saveBoard(updatedboard))
         dispatch(loadBoards()) //TODO may not need this
     }

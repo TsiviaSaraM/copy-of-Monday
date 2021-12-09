@@ -8,7 +8,7 @@ $clr-left2: #A25DDC;
 
 $clr-row: #f5f6f8;
 $clr-row-hover: #e6e9ef;
-
+$task-height: 36px;
 
 
 .task-preview{
@@ -17,16 +17,7 @@ $clr-row-hover: #e6e9ef;
         margin: 8px solid black;
     }
     height: 36px;
-    .status{
-        color: white;
-        text-align: center;
-        vertical-align: middle;
-        background-color: rgb(103, 104, 121);
-        &.working{background-color:  rgb(253, 171, 61);}
-        &.stuck{background-color: rgb(226, 68, 92);}
-        &.done{background-color: rgb(0, 200, 117)}
-
-    }
+   
 
     // position: absolute;
     // background-color: rgb(245, 246, 248);
@@ -87,7 +78,7 @@ $clr-row-hover: #e6e9ef;
     background-color: #e6e9ef;
 }
 .task-list-2{
-    height: 36px;
+    height: $task-height;
     display: flex;
     font-size: 13px;
     // line-height: 19.5px;
@@ -120,11 +111,42 @@ $clr-row-hover: #e6e9ef;
 
         }
     }
+    .task-detail{
+        height: $task-height;
+        vertical-align: middle;
+        line-height: $task-height;
+    }
+    .margin-left, .margin-right{
+        height: 100%;
+        // line-height: $task-height;
+    }
     .status, .date{
         width: 140px;
+        text-align: center;
     }
-    .person{width: 98px;}
+    .person{
+        width: 98px;
+        .img-avatar{
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+        }
+        span{margin-left: 5px;}
+      
+    }
+    .status{
+        color: white;
+        vertical-align: middle;
+        background-color: rgb(103, 104, 121);
+        &.working{background-color:  rgb(253, 171, 61);}
+        &.stuck{background-color: rgb(226, 68, 92);}
+        &.done{background-color: rgb(0, 200, 117)}
+
+    }
     .status:hover{background-color: #d1d8de;}
+    .delete-task{
+        cursor: pointer;
+    }
 }
 
 .margin-right{

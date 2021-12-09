@@ -53,7 +53,6 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     const onEditGroup = (updatedGroup) => {
         console.log('updated group: ', updatedGroup);
         const groupIndex = board.groups.findIndex(group => group.id === updatedGroup.id)
-        debugger
         board.groups.splice(groupIndex, 1, updatedGroup)
         onEditBoard(board)
         // const newBoard = {...board, groups:[...board.groups]}
@@ -82,7 +81,6 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         newTask.title = title
         newTask.status='new'
         group.tasks.push(newTask)
-        debugger
         onEditGroup(group)
     }
 
