@@ -1,5 +1,5 @@
 import { storageService } from './asyncStorageService'
-// import { httpService } from './http.service'
+import { httpService } from './http.service'
 import users from './../data/user.json'
 import { utilService } from './utilService'
 // import { storageService } from './storageService.js'
@@ -34,10 +34,10 @@ async function query(filterBy) {
     console.log('front end user service');
     //TODO filterBy can be added as param below
     try {
-        const users = await storageService.query(USER_KEY)
-        console.log('users', users);
-        return users
-        // return httpService.get(`user`, filterBy)
+        // const users = await storageService.query(USER_KEY)
+        // console.log('users', users);
+        // return users
+        return httpService.get(`user`, filterBy)
     } catch (error) {
         console.log(error);
     }
