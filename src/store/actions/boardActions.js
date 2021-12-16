@@ -15,29 +15,35 @@ export function loadBoards(boardFilter) {
 //sets currBoard and returns the board
 export function getBoardById(boardId, taskFilter) {
   return async dispatch => {
-    const board = await boardService.getById(boardId)
-    console.log('taskFilter', taskFilter);
-    // TODO add this later
-    if (taskFilter.taskFilter) {
-      console.log('taskFilter used');
-      board.groups = board.groups.map(group => {
-        return {
-          ...group,
-          tasks: group.tasks.filter(task => {
-            return task.title.includes(taskFilter)
-          })
-        }
-      })
+
+    try {
+      const board = await boardService.getById(boardId)
+      console.log('taskFilter', taskFilter);
+      // TODO add this later
+      if (taskFilter.taskFilter) {
+        console.log('taskFilter used');
+        board.groups = board.groups.map(group => {
+          return {
+            ...group,
+            tasks: group.tasks.filter(task => {
+              return task.title.includes(taskFilter)
+            })
+          }
+        })
+      }
+      dispatch({ type: 'SET_BOARD', board })
+    } catch (error) {
+      console.log(error);
     }
-    dispatch({ type: 'SET_BOARD', board })
+
   }
 }
-export function tryBoard(boardId) {
-  return async dispatch => {
-    const board = await boardService.tryBoard(boardId)
-    dispatch({ type: 'UPDATE_BOARD', board })
-  }
-}
+// export function tryBoard(boardId) {
+//   return async dispatch => {
+//     const board = await boardService.tryBoard(boardId)
+//     dispatch({ type: 'UPDATE_BOARD', board })
+//   }
+// }
 
 export function saveBoard(board) {
   const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'

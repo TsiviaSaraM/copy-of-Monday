@@ -7,9 +7,9 @@ import { makeId } from './utilService'
 
 const USER_KEY = 'users'
 // const PAGE_SIZE = 10
-console.log('users', users);
 
-_createUsers()
+//this created boards if we have frontend only and are not taking them from the backend database
+// _createUsers()
 
 export const userService = {
     query,

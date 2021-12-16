@@ -1,28 +1,13 @@
-import { storageService } from './storageService.js'
-import { makeId } from './utilService.js'
+// import { storageService } from './storageService.js'
+import { storageService } from './asyncStorageService.js'
+import { makeId, utilService } from './utilService.js'
+//ellint-disable-next-line
+import { httpService } from './http.service.js'
 
-export const boardService = {
-    query,
-    save,
-    remove,
-    getById,
-    getEmptyBoard,
-    getEmptyGroup,
-    getEmptyTask,
-    tryBoard,
-}
-
-const groupHoverColors = ['#66ccff', '#037f4c', '#00c875', '#9cd326', '#cab641', '#ffcb00', '#784bd1', '#a25ddc', '#0086c0',
-    '#579bfc', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080']
-const groupDefaultColors = ['#66ccff', '#81bfa5', '#80e3ba', '#9cd326', '#e4daa0', '#ffe580', '#bba5e8', '#d1aeee', '#80c2df',
-    '#abcdfd', '##dd99a9', '#f0a1ad', '#ff8ac4', '#fface1', '#ffb196', 'fed59e', '#bfa9a3', '#e1e1e1', '#bfbfbf']
-
-const STORAGE_KEY = 'boards'
-
-//status can be done, working, stuck or none
+const BOARD_KEY = 'board'
 const gDefaultBoards = [
     {
-        "_id": "b101",
+        // "_id": "b101",
         "title": "Board #1 title",
         "description": "Add board description",
         "createdAt": 1589983468418,
@@ -73,7 +58,7 @@ const gDefaultBoards = [
                         "person": {},
                         "members": [
                             {
-                                "_id": "u101",
+                                "_id": "u103",
                                 "username": "Tal",
                                 "fullname": "Tal Tarablus",
                                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
@@ -182,7 +167,7 @@ const gDefaultBoards = [
         ]
     },
     {
-        "_id": "b102",
+        // "_id": "b102",
         "title": "Robot dev proj (board2)",
         "description": "Add board description",
         "createdAt": 1589983468418,
@@ -318,34 +303,45 @@ const gDefaultBoards = [
     }
 ]
 
-var gBoards = _loadBoards()
+//this created boards if we have frontend only and are not taking them from the backend database
+// _createBoards()
+
+export const boardService = {
+    query,
+    save,
+    remove,
+    getById,
+    getEmptyBoard,
+    getEmptyGroup,
+    getEmptyTask,
+    // tryBoard,
+}
+
+const groupHoverColors = ['#66ccff', '#037f4c', '#00c875', '#9cd326', '#cab641', '#ffcb00', '#784bd1', '#a25ddc', '#0086c0',
+    '#579bfc', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080']
+const groupDefaultColors = ['#66ccff', '#81bfa5', '#80e3ba', '#9cd326', '#e4daa0', '#ffe580', '#bba5e8', '#d1aeee', '#80c2df',
+    '#abcdfd', '##dd99a9', '#f0a1ad', '#ff8ac4', '#fface1', '#ffb196', 'fed59e', '#bfa9a3', '#e1e1e1', '#bfbfbf']
+
+//status can be done, working, stuck or none
+
+
+// var gBoards = _loadBoards()
+_createBoards()
 
 function query(boardFilter) {
-    var boardsToReturn = gBoards;
-
-    if (boardFilter) {
-        boardsToReturn = boardsToReturn.filter(board => board.title.includes(boardFilter))
+    // var boardsToReturn = gBoards;
+    try {
+        return httpService.get(BOARD_KEY, boardFilter)
+    } catch (error) {
+        console.log(error);
     }
 
-    //FILTER HAS MOVED TO STORE
-    // if (filterBy) {
-    //     boardsToReturn = boardsToReturn.map(board => {
-    //         return {
-    //             ...board, groups: board.groups.map(group => {
-    //                 console.log(group.title);
-    //                 return {
-    //                     ...group,
-    //                     tasks: group.tasks.filter(task => {
-    //                         return task.title.includes(filterBy)
-    //                     }
-    //                     )
-    //                 }
-
-    //             })
-    //         }
-    //     })
+    // if (boardFilter) {
+    //     boardsToReturn = boardsToReturn.filter(board => board.title.includes(boardFilter))
     // }
-    return Promise.resolve([...boardsToReturn]);
+
+    //FILTER HAS MOVED TO STORE
+    // return Promise.resolve([...boardsToReturn]);
 }
 
  // eslint-disable-next-line
@@ -375,31 +371,35 @@ function _filteredTask(filterBy, task) {
 }
 
 
-function tryBoard(id) {
-    const board = gBoards.find(board => board._id === id)
-    board.strength -= 10
-    return Promise.resolve({ ...board })
-}
+// function tryBoard(id) {
+//     const board = gBoards.find(board => board._id === id)
+//     board.strength -= 10
+//     return Promise.resolve({ ...board })
+// }
 
 async function getById(id) {
-    const board = await gBoards.find(board => board._id === id)
-    if (!board) return Promise.reject()
-    return Promise.resolve({ ...board })
+    return httpService.get(`${BOARD_KEY}/${id}`)
+    // const board = await gBoards.find(board => board._id === id)
+    // if (!board) return Promise.reject()
+    // return Promise.resolve({ ...board })
 }
 
 function remove(id) {
-    const idx = gBoards.findIndex(board => board._id === id)
-    gBoards.splice(idx, 1)
-    if (!gBoards.length) gBoards = gDefaultBoards.slice()
-    storageService.store(STORAGE_KEY, gBoards)
-    return Promise.resolve()
+    debugger
+    return httpService.delete(`${BOARD_KEY}/${id}`)
+    // const idx = gBoards.findIndex(board => board._id === id)
+    // gBoards.splice(idx, 1)
+    // if (!gBoards.length) gBoards = gDefaultBoards.slice()
+    // storageService.store(BOARD_KEY, gBoards)
+    // return Promise.resolve()
 }
 
 function save(boardToSave, position = -1) {
     //if this is an update
     if (boardToSave._id) {
-        const idx = gBoards.findIndex(board => board._id === boardToSave._id)
-        gBoards.splice(idx, 1, boardToSave)
+        return _update(boardToSave)
+        // const idx = gBoards.findIndex(board => board._id === boardToSave._id)
+        // gBoards.splice(idx, 1, boardToSave)
     } else {
         boardToSave._id = makeId()
         boardToSave.groups = [
@@ -408,11 +408,29 @@ function save(boardToSave, position = -1) {
         ]
         boardToSave.members = []
         boardToSave.columns = []
-        gBoards.splice(position, 0, boardToSave)
+        return _add(boardToSave)
+        // gBoards.splice(position, 0, boardToSave)
         // else gBoards.push(boardToSave)
     }
-    storageService.store(STORAGE_KEY, gBoards)
-    return Promise.resolve(boardToSave);
+    // storageService.store(BOARD_KEY, gBoards)
+    // return Promise.resolve(boardToSave);
+}
+
+function _update(board){
+    try {
+        board = httpService.put(`${BOARD_KEY}/${board._id}`, board)
+        return board
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function _add(board) {
+    try {
+        return httpService.post(BOARD_KEY, board)
+    } catch (error) {
+        console.log(error);        
+    }
 }
 
 function getEmptyBoard() {
@@ -460,15 +478,19 @@ export function getEmptyTask() {
     }
 }
 
-
-function _loadBoards() {
-    let boards = storageService.load(STORAGE_KEY)
-    if (!boards || !boards.length) {
-        boards = gDefaultBoards
-        storageService.store(STORAGE_KEY, boards)
-    }
-    return boards
+function _createBoard(board) {
+    return
 }
+
+
+// function _loadBoards() {
+//     let boards = storageService.load(BOARD_KEY)
+//     if (!boards || !boards.length) {
+//         boards = gDefaultBoards
+//         storageService.store(BOARD_KEY, boards)
+//     }
+//     return boards
+// }
  // eslint-disable-next-line
 function getGroupById(board, groupId) {
     return board.groups.find(group => group.id === groupId)
@@ -478,5 +500,14 @@ function getTaskById(board, taskId) {
 
 }
 
-// function insertBoard
+function _createBoards(){
+    let boards = utilService.loadFromStorage(BOARD_KEY)
+    if (!boards || !boards.length) {
+        boards = []
+        boards.push(_createBoard(gDefaultBoards[0]))
+        boards.push(_createBoard(gDefaultBoards[1]))
+        utilService.saveToStorage(BOARD_KEY, boards)
+    } 
+    return boards
+}
 
