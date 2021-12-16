@@ -51,6 +51,7 @@ export function userReducer(state = INITIAL_STATE, action) {
         users: updatedUsers
       }
     case 'ADD_USER':
+      console.log('user**********in reducers****', action.user);
       return {
         ...state,
         users: [...state.users, action.user]

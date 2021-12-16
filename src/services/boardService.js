@@ -326,7 +326,8 @@ const groupDefaultColors = ['#66ccff', '#81bfa5', '#80e3ba', '#9cd326', '#e4daa0
 
 
 // var gBoards = _loadBoards()
-_createBoards()
+//this created boards if we have frontend only and are not taking them from the backend database
+// _createBoards()
 
 function query(boardFilter) {
     // var boardsToReturn = gBoards;
@@ -478,11 +479,6 @@ export function getEmptyTask() {
     }
 }
 
-function _createBoard(board) {
-    return
-}
-
-
 // function _loadBoards() {
 //     let boards = storageService.load(BOARD_KEY)
 //     if (!boards || !boards.length) {
@@ -500,12 +496,14 @@ function getTaskById(board, taskId) {
 
 }
 
+//not needed if running from backend server
+//eslint-disable-next-line
 function _createBoards(){
     let boards = utilService.loadFromStorage(BOARD_KEY)
     if (!boards || !boards.length) {
         boards = []
-        boards.push(_createBoard(gDefaultBoards[0]))
-        boards.push(_createBoard(gDefaultBoards[1]))
+        boards.push(gDefaultBoards[0])
+        boards.push(gDefaultBoards[1])
         utilService.saveToStorage(BOARD_KEY, boards)
     } 
     return boards

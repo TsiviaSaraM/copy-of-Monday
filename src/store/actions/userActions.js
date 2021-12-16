@@ -40,10 +40,13 @@ export function updateUser(userToUpdate) {
 export function saveUser(user) {
     // const type = user._id ? 'UPDATE_USER' : 'ADD_USER'
     const type = 'ADD_USER'
-    debugger
     return async dispatch => {
-        user = await userService.add(user)
-        dispatch({ type, user })
+        try {
+            user = await userService.add(user)
+            dispatch({ type, user })
+        } catch (error) {
+            console.log(error);            
+        }
     }
 }
 

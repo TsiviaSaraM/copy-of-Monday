@@ -44,21 +44,21 @@ async function query(filterBy) {
 }
 
 function getById(userId) {
-    return storageService.get(USER_KEY, userId)
-    // return httpService.get(`user/${userId}`)
+    // return storageService.get(USER_KEY, userId)
+    return httpService.get(`user/${userId}`)
 }
 function remove(userId) {
-    console.log('removing user...');
-    return storageService.remove(USER_KEY, userId)
-    // return httpService.delete(`user/${userId}`)
+    console.log('removing user...', userId);
+    // return storageService.remove(USER_KEY, userId)
+    return httpService.delete(`user/${userId}`)
 }
 // eslint-disable-next-line
 async function xupdate(user) {
     console.log('user in service front:', user);
-    return storageService.put(USER_KEY, user)
-    // user = await httpService.put(`user/${user._id}`, user)
+    // return storageService.put(USER_KEY, user)
+    user = await httpService.put(`user/${user._id}`, user)
     // console.log('user in service front:', user);
-    // return user;
+    return user;
 
 
     // Handle case in which admin updates other user's details
@@ -87,8 +87,8 @@ async function update(user) {
 async function add(user) {
 
     user = _createUser(user.fullname, user.username, user.password)
-    return storageService.post(USER_KEY, user)
-    // user = await httpService.post(`user`, user)
+    // return storageService.post(USER_KEY, user)
+    return await httpService.post(`user`, user)
 }
 
 // eslint-disable-next-line

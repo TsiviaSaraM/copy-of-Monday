@@ -12,6 +12,7 @@ import BlankAvatar from "./../assets/img/avatar2.svg"
 
 export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId, hoverColor }) => {
 
+
     const [statusFormOpen, setStatusFormOpen] = useState(false)
     const [userListOpen, setUserListOpen] = useState(false)
     const [dateFormOpen, setDateFormOpen] = useState(false)
@@ -26,6 +27,8 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
     useOnClickOutside(ref, () => setStatusFormOpen(false));
     useOnClickOutside(ref, () => setDateFormOpen(false));
     useOnClickOutside(ref, () => setUserListOpen(false));
+
+    console.log('*********task*****', task);
 
     const editTask = () => {
         task.title = prompt("new title")
@@ -79,6 +82,7 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
     const handleRowHover = () => {
         setRowHover(true)
     }
+
 
     return (
         <>

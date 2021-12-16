@@ -80,6 +80,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         const newTask = getEmptyTask()
         newTask.title = title
         newTask.status='new'
+        newTask.person = newTask.person || {}
         group.tasks.push(newTask)
         onEditGroup(group)
     }
