@@ -12,6 +12,7 @@
     .group-title{
         font-size: 18px;
         font-weight: 300;
+        font-family: 'RobotoLight';
         text-align: left; /*TODO remove or poss put in entire th*/
         white-space: nowrap; /*TODO poss put in entire th, will see overflow*/    
     }   
@@ -34,6 +35,7 @@
     .expand::before{
         font-family: AwesomeSolid;
         font-weight: 300;
+        font-family: 'RobotoLight';
         font-size: 13px;
         line-height: 19px;
         content: "\f338";
@@ -44,6 +46,7 @@
     .up::before{
         font-family: AwesomeSolid;
         font-weight: 300;
+        font-family: 'RobotoLight';
         font-size: 13px;
         line-height: 19px;
         content: "\f077";
@@ -54,6 +57,7 @@
     .down::before{
         font-family: AwesomeSolid;
         font-weight: 300;
+        font-family: 'RobotoLight';
         font-size: 13px;
         line-height: 19px;
         content: "\f078";

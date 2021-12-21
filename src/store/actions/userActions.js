@@ -69,8 +69,9 @@ export function removeUser(userId) {
 
 export function login(userCred) {
     return async dispatch => {
-        await authService.login(userCred)
-        dispatch({type: 'LOGIN', userCred})
+        const user = await authService.login(userCred)
+        console.log('user in actions', user);
+        dispatch({type: 'LOGIN', user})
     }
 }
 

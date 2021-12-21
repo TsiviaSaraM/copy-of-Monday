@@ -8,9 +8,8 @@ export function userReducer(state = INITIAL_STATE, action) {
     case 'LOGIN':
       return {
         ...state,
-        loggedInUser: {
-          ...state.loggedInUser,
-        }
+        // 
+        loggedInUser: action.user
       }
     case 'LOAD_USERS': //using :-)
       return {

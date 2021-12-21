@@ -9,9 +9,9 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
     }
 
     const handleChange = ({ target }) => {
-        console.log('handling change');
         const field = target.name
         const value = target.type === "number" ? +target.value : target.value
+        console.log('handling change', field, value);
         setNewBoard({ ...newBoard, [field]: value })
         console.log('newBoard', newBoard);
     }
@@ -36,26 +36,37 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
 
                     <div className="board-name flex-col">
                         <label htmlFor="board_name">Board name</label>
-                        <input className="input-txt" type="text" id="board_name" placeholder="new board" name="title" onChange={handleChange} />
+                        <input className="input-txt" type="text" id="board_name" placeholder="New Board" name="title" onChange={handleChange} />
 
                     </div>
 
                     <div className="privacy">
-                        <div >privacy</div> {/* TODO fix the css here  */}
-                        <div className="radio flex" >
+                        <div className="label-privacy" >privacy</div> {/* TODO fix the css here  */}
+                        <div className="radio flex" onChange={handleChange} >
                             <div className="main">
-                                <input type="radio" id="main" name="privacy" onChange={handleChange} />
-                                <label htmlFor="main">main</label>
+                                <label>
+                                    <input type="radio" id="main" name="privacy" value="main" />
+                                    Main
+                                </label>
+                                {/* <label htmlFor="main">main</label> */}
 
                             </div>
                             <div className="private">
-                                <input type="radio" id="private" name="privacy" onSelect={handleChange} />
-                                <label htmlFor="main">private</label>
+                                <label>
+
+                                    <input type="radio" id="private" name="privacy" value="private" />
+                                    Private
+                                </label>
+                                {/* <label htmlFor="main">private</label> */}
 
                             </div>
                             <div className="shareable">
-                                <input type="radio" id="shareable" name="privacy" onSelect={handleChange} />
-                                <label htmlFor="main">shareable</label>
+                                <label >
+                                    <input type="radio" id="shareable" name="privacy" value="shareable" />
+                                    shareable
+                                </label>
+                                <label htmlFor=""></label>
+                                {/* <label htmlFor="main">shareable</label> */}
 
                             </div>
                         </div>

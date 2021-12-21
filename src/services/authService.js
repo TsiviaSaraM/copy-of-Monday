@@ -37,6 +37,7 @@ async function login(userCred) {
   
   function _saveLocalUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user));
+    console.log('user in auth service', user);
     return user;
   }
   
