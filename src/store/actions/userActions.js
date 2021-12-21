@@ -1,4 +1,5 @@
 import { userService } from "../../services/userService";
+import { authService } from "../../services/authService";
 
 export function loadUsers(userFilter) {
     return async (dispatch, getState) => {
@@ -68,14 +69,14 @@ export function removeUser(userId) {
 
 export function login(userCred) {
     return async dispatch => {
-        await userService.login(userCred)
+        await authService.login(userCred)
         dispatch({type: 'LOGIN', userCred})
     }
 }
 
 export function logout(userCred) {
     return async dispatch => {
-        await userService.logout()
+        await authService.logout()
         dispatch({type: 'LOGOUT', userCred}) //cn be ({SET_USER_CRED, null})
     }
 }

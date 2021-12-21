@@ -1,18 +1,15 @@
 const INITIAL_STATE = {
-  loggedInUser: {
-    name: 'Muki',
-    balance: 100
-  },
-  users: []
+  loggedInUser: null,
+  users: [],
+  test: 'test'
 }
 export function userReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'login':
+    case 'LOGIN':
       return {
         ...state,
         loggedInUser: {
           ...state.loggedInUser,
-          balance: state.loggedInUser.balance - action.spendAmount
         }
       }
     case 'LOAD_USERS': //using :-)
@@ -51,7 +48,6 @@ export function userReducer(state = INITIAL_STATE, action) {
         users: updatedUsers
       }
     case 'ADD_USER':
-      console.log('user**********in reducers****', action.user);
       return {
         ...state,
         users: [...state.users, action.user]

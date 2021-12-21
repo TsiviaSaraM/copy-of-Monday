@@ -1,14 +1,21 @@
 import React from 'react'
+import { FormLogin } from '../cmps/forms/FormLogin'
+import { useDispatch, useSelector } from 'react-redux'
 
 export function HomePage() {
 
+    const dispatch = useDispatch()
+    // const loggedInUser = useSelector(state => state.loggedInUser)
+    const { loggedInUser} = useSelector(state => state.userModule)
+
+    
+    if (!loggedInUser) return (<FormLogin />)
     
     return (
         <div>
-            {/* <BoardAside onInsertBoard={onInsertBoard} setBoardFilter={setBoardFilter} boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
-        {boards.forEach(board => {
-            <p>{board._id}</p>
-        })} */}
+            <h1>Home page</h1>
+            <p>Hi {loggedInUser.fullname} </p>
+
         </div>
     )
 }

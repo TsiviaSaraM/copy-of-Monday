@@ -11,6 +11,7 @@ export const TaskApp = ({ match, history }) => {
 
     const dispatch = useDispatch()
     const { boards, currBoard, filterBy } = useSelector(state => state.boardModule)
+    const { loggedInUser, test } = useSelector(state => state.userModule)
 
     // eslint-disable-next-line
     useEffect(async () => {
@@ -66,6 +67,7 @@ export const TaskApp = ({ match, history }) => {
             {boards.forEach(board => {
                 <p>{board._id}</p>
             })}
+            <p>Hi {test}</p>
             {match.params.id && <TaskBoard board={{...currBoard}} onEditBoard={onEditBoard} ></TaskBoard>}
             {!match.params.id && <h1>Please select a board to look at</h1> }
             

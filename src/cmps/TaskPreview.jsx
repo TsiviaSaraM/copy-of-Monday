@@ -28,7 +28,6 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
     useOnClickOutside(ref, () => setDateFormOpen(false));
     useOnClickOutside(ref, () => setUserListOpen(false));
 
-    console.log('*********task*****', task);
 
     const editTask = () => {
         task.title = prompt("new title")

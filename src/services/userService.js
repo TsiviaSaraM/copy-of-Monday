@@ -30,7 +30,7 @@ function xquery(filterBy) {
     // return httpService.get(`user`, filterBy)
 }
 
-async function query(filterBy) {
+export async function query(filterBy) {
     console.log('front end user service');
     //TODO filterBy can be added as param below
     try {
@@ -91,11 +91,6 @@ async function add(user) {
     return await httpService.post(`user`, user)
 }
 
-// eslint-disable-next-line
-function _saveLocalUser(user) {
-    sessionStorage.setItem('loggedinUser', JSON.stringify(user))
-    return user
-}
 
 function _createUser(fullname, username, password, imgUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fen%2Fpng-ymxim&psig=AOvVaw3OoNBQPOwmAktMYE3vjz_9&ust=1637082366316000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNiB05rtmvQCFQAAAAAdAAAAABAJ") {
     if (!username) username = 'un' + utilService.makeName(3)
@@ -142,5 +137,7 @@ function _createUsers() {
     }
     return users;
 }
+
+//LOGIN FUNCTIONS can go here - I have moed them to auth service
 
 
