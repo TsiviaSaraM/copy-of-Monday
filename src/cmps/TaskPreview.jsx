@@ -111,7 +111,7 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
 
                         </div>
                         <div className={"task-detail status " + task.status} onClick={togglestatusFormOpen}>
-                            status: {task.status}
+                            {task.status}
                         </div>
                         <div className="task-detail date" onClick={toggleDateFormOpen}>
                             due: {task.dueDate}

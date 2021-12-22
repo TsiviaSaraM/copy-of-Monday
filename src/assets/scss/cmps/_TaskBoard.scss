@@ -107,6 +107,7 @@
     >div{
         color: rgb(50, 51, 56);
         font-size: 15px;
+        display: flex;
     }
     >:hover{
         background-color: #e6e9ef;
@@ -117,5 +118,8 @@
             // background-color: yellow;
             color: pink;
         }
+    }
+    input:focus-visible{
+        outline-width: 0px;
     }
 }

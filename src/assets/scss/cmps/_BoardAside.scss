@@ -54,5 +54,15 @@
     .board-preview:first-child{
         margin-top: 3px;
     }
+    .input-search{
+        border: none;
+        width: 100%;
+        background-color: inherit;
+        font-size: 14px;
+        color: rgb(50, 51, 56);
+    }
+    .input-search:focus-visible{
+        outline-width: 0px;
+    }
     // .kebab{background-color: pink;}
 }
