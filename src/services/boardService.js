@@ -331,7 +331,6 @@ const groupDefaultColors = ['#66ccff', '#81bfa5', '#80e3ba', '#9cd326', '#e4daa0
 // _createBoards()
 
 function query(boardFilter) {
-    console.log('boardFilter in service**', boardFilter);
     try {
         return httpService.get(BOARD_KEY, boardFilter)
     } catch (error) {

@@ -39,7 +39,6 @@ export const BoardAside = ({ boards, onAddBoard, onRemoveBoard, onEditBoard, onS
         const value = event.target.value
         // setBoardFilter({[field]: value})
         setBoardFilter(boardFilter => {return {...boardFilter, [field]: value}});
-        console.log('boardfilter in boardAside', boardFilter);
         // dispatch(setFilterBy())
         editBoardFilter({[field]: value})
     }

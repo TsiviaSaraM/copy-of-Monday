@@ -11,7 +11,7 @@ export const AppFilter = ({handleFilterChange}) => {
 
     const handleChange = (event) => {
         const searchText = event.target.value
-        dispatch(setFilterBy(searchText))
+        dispatch(setFilterBy(searchText, 'taskFilter'))
         handleFilterChange(searchText)
     } 
 

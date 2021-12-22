@@ -15,18 +15,16 @@ export function loadBoards(boardFilter) {
 //sets currBoard and returns the board
 export function getBoardById(boardId, taskFilter) {
   return async dispatch => {
-
     try {
       const board = await boardService.getById(boardId)
-      console.log('taskFilter', taskFilter);
       // TODO add this later
-      if (taskFilter.taskFilter) {
+      if (taskFilter) {
         console.log('taskFilter used');
         board.groups = board.groups.map(group => {
           return {
             ...group,
             tasks: group.tasks.filter(task => {
-              return task.title.includes(taskFilter)
+              return task.title.toUpperCase().includes(taskFilter.toUpperCase())
             })
           }
         })
@@ -74,6 +72,13 @@ export function setFilterBy(filterBy, filterName) {
     return dispatch => {
       dispatch({ type: 'SET_BOARD_FILTER', filterBy })
     }
+  }
+  if (filterName === 'taskFilter'){
+    return dispatch => {
+      dispatch({type: 'SET_TASK_FILTER', filterBy})
+    } 
+    
+    
   }
 }
 

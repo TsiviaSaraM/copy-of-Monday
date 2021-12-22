@@ -25,24 +25,15 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         setShowDescription(false)
     })
 
-    useEffect(() => {
-        console.log('TaskBoard is loaded');
-        return () => {
-            
-        }
-    }, [])
 
     const handleFilterChange = async (filterBy) => {
-        console.log('filterBy', filterBy);
         try {
-            await setFilterBy(filterBy)
             dispatch(getBoardById(board._id, filterBy))
         } catch (error) {
             console.log(error);
         }
     }
 
-    console.log(board);
 
     const addGroup = () => {
         const newGroup = getEmptyGroup()
@@ -51,7 +42,6 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     }
 
     const onEditGroup = (updatedGroup) => {
-        console.log('updated group: ', updatedGroup);
         const groupIndex = board.groups.findIndex(group => group.id === updatedGroup.id)
         board.groups.splice(groupIndex, 1, updatedGroup)
         onEditBoard(board)

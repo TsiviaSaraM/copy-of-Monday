@@ -29,7 +29,6 @@ export const TaskApp = ({ match, history }) => {
     }, [match.params.id])
 
     const editBoardFilter = async (boardFilter) => {
-        console.log('boardFilter in TaskApp', boardFilter);
         await dispatch(setFilterBy(boardFilter, 'boardFilter'))
         dispatch(loadBoards(boardFilter))
     }
@@ -49,7 +48,6 @@ export const TaskApp = ({ match, history }) => {
     }
 
     const onInsertBoard = async (position) => {
-        console.log('board=', { title: 'New Board' }, 'position=', position);
         await dispatch(insertBoard({ title: 'New Board' }, position))
         dispatch(loadBoards())
     }
@@ -60,16 +58,16 @@ export const TaskApp = ({ match, history }) => {
     }
 
     if (!boards) return (<p>loading</p>)
-    if (!boards.length) return (<p>no boards</p>)
+    // if (!boards.length) return (<p>no boards</p>)
     return (
         <div className="task-app">
             <BoardAside onInsertBoard={onInsertBoard} editBoardFilter={editBoardFilter} boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
             {boards.forEach(board => {
                 <p>{board._id}</p>
             })}
-            {match.params.id && <TaskBoard board={{...currBoard}} onEditBoard={onEditBoard} ></TaskBoard>}
-            {!match.params.id && <h1>Please select a board to look at</h1> }
-            
+            {match.params.id && boards.length && <TaskBoard board={{...currBoard}} onEditBoard={onEditBoard} ></TaskBoard>}
+            {!match.params.id && boards.length && <h1>Please select a board to look at</h1> }
+            {!match.params.id && !boards.length && <h1>There are no boards to choose from</h1> }
           
         </div>
     )
