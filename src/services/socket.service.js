@@ -1,17 +1,19 @@
+//eslint-disable-next-line
 import io from 'socket.io-client';
+//eslint-disable-next-line
 import { httpService } from './http.service';
 
 export const SOCKET_EMIT_USER_WATCH = 'user-watch';
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated';
 export const SOCKET_EVENT_REVIEW_ADDED = 'review-added';
 export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you';
-
+//eslint-disable-next-line
 const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030';
 // export const socketService = createSocketService(); //SERVER STORAGE
 // export const socketService = createDummySocketService();//CLIENT STORAGE
 
 // window.socketService = socketService;
-
+//eslint-disable-next-line
 var socketIsReady = false; //SERVER STORAGE
 // socketService.setup();
 

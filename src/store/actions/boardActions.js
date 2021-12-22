@@ -69,9 +69,11 @@ export function removeBoard(boardId) {
   }
 }
 
-export function setFilterBy(filterBy) {
-  return dispatch => {
-    dispatch({ type: 'SET_FILTER_BY', filterBy })
+export function setFilterBy(filterBy, filterName) {
+  if (filterName === 'boardFilter'){
+    return dispatch => {
+      dispatch({ type: 'SET_BOARD_FILTER', filterBy })
+    }
   }
 }
 

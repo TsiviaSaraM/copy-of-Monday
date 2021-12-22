@@ -1,4 +1,5 @@
 import { httpService } from "./http.service";
+//eslint-disable-next-line
 import { socketService } from "./socket.service";
 import {query as getUsers} from './userService'
 

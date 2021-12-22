@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { BoardAside } from '../cmps/BoardAside.jsx'
 import { TaskBoard } from '../cmps/TaskBoard.jsx'
-import { removeBoard, loadBoards, getBoardById, saveBoard, insertBoard } from '../store/actions/boardActions.js'
+import { removeBoard, loadBoards, getBoardById, saveBoard, insertBoard, setFilterBy } from '../store/actions/boardActions.js'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -20,7 +20,6 @@ export const TaskApp = ({ match, history }) => {
             const { id } = match.params
             dispatch(getBoardById(id, filterBy))
         }
-        console.log('TaskApp is loaded');
         // else {
         //     const boardId = boards[0]._id;
         //     debugger
@@ -29,7 +28,9 @@ export const TaskApp = ({ match, history }) => {
         // eslint-disable-next-line
     }, [match.params.id])
 
-    const setBoardFilter = (boardFilter) => {
+    const editBoardFilter = async (boardFilter) => {
+        console.log('boardFilter in TaskApp', boardFilter);
+        await dispatch(setFilterBy(boardFilter, 'boardFilter'))
         dispatch(loadBoards(boardFilter))
     }
 
@@ -60,10 +61,9 @@ export const TaskApp = ({ match, history }) => {
 
     if (!boards) return (<p>loading</p>)
     if (!boards.length) return (<p>no boards</p>)
-    console.log('boards: ' + boards[0].groups[0].tasks.length);
     return (
         <div className="task-app">
-            <BoardAside onInsertBoard={onInsertBoard} setBoardFilter={setBoardFilter} boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
+            <BoardAside onInsertBoard={onInsertBoard} editBoardFilter={editBoardFilter} boards={boards} onAddBoard={onAddBoard} onSelectBoard={onSelectBoard} onRemoveBoard={onRemoveBoard} onEditBoard={onEditBoard} />
             {boards.forEach(board => {
                 <p>{board._id}</p>
             })}

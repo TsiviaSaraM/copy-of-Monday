@@ -1,11 +1,12 @@
 const INITIAL_STATE = {
     boards: [],
     currBoard: null,
-    filterBy: {
-      boardFilter: '',
-      groupFilter: '',
-      taskFilter: '',
-    }
+    // filterBy: {
+    //   boardFilter: '',
+    //   groupFilter: '',
+    //   taskFilter: '',
+    // },
+    boardFilter: null
   }
   export function boardReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
@@ -19,10 +20,20 @@ const INITIAL_STATE = {
           ...state,
           currBoard: action.board
         }
-      case 'SET_FILTER_BY':
+      // case 'SET_FILTER_BY':
+      //   return {
+      //     ...state,
+      //     filterBy: {
+      //       ...state.filterBy,
+      //       [action.filterName]: action.filterBy
+      //     }
+      //     // filterBy: action.filterBy
+      //   }
+      case 'SET_BOARD_FILTER':
+        const {boardFilter} = action
         return {
           ...state,
-          filterBy: action.filterBy
+          boardFilter
         }
       case 'INSERT_BOARD':
         const {position, board } = action

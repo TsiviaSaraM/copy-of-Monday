@@ -1,6 +1,5 @@
 import { storageService } from './asyncStorageService'
 import { httpService } from './http.service'
-import users from './../data/user.json'
 import { utilService } from './utilService'
 // import { storageService } from './storageService.js'
 import { makeId } from './utilService'
@@ -123,7 +122,7 @@ export function getEmptyUser() {
     }
 }
 
-
+//eslint-disable-next-line
 function _createUsers() {
     let users = utilService.loadFromStorage(USER_KEY)
     // let users = storageService.query()
