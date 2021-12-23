@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { getEmptyGroup } from './../services/boardService';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { BoardControls } from './BoardControls';
@@ -8,10 +8,11 @@ import { useDispatch } from 'react-redux';
 
 import { getEmptyTask } from './../services/boardService'
 import { TaskGroup } from './TaskGroup';
-import { getBoardById, setFilterBy } from '../store/actions/boardActions';
+import { getBoardById } from '../store/actions/boardActions';
 import { AiFillInfoCircle, AiOutlineInfoCircle } from 'react-icons/ai'
 import { useState } from 'react';
 import { useOnClickOutside } from '../hooks/useOnClickOutside';
+import { BoardDescription } from './BoardDescription';
 
 //board is state.currBoard
 export const TaskBoard = ({ board, onEditBoard, }) => {
@@ -19,6 +20,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     const dispatch = useDispatch()
     const ref = useRef()
     const [showDescription, setShowDescription] = useState(false)
+    const [writeDescription, setWriteDescription] = useState(false)
 
     useOnClickOutside(ref, () => {
         onEditBoard(board)
@@ -34,6 +36,9 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         }
     }
 
+    const editDescription = (newDescription) => {
+        onEditBoard({...board, description: newDescription})
+    }
 
     const addGroup = () => {
         const newGroup = getEmptyGroup()
@@ -61,15 +66,11 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
 
     }
 
-    const handleDescriptionChange = (ev) => {
-        board.description = ev.target.value
-    }
-
     const addTask = (group, title) => {
         if (!title) return
         const newTask = getEmptyTask()
         newTask.title = title
-        newTask.status='new'
+        newTask.status = 'new'
         newTask.person = newTask.person || {}
         group.tasks.push(newTask)
         onEditGroup(group)
@@ -93,7 +94,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         if (!destination) return
 
         //if 'moved' to original location, do nothing
-        if (destination.droppableId && destination.index == source.index) return
+        if (destination.droppableId && destination.index === source.index) return
         // if they are in different groups, move the group
 
         const sourceGroup = board.groups.find(group => group.id === source.droppableId)
@@ -109,7 +110,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     if (!board.groups) return (<p>no groups...</p>)
     return (
         <div className="task-board">
-           
+
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className="board-header-container">
                     <div className="board-title">
@@ -122,13 +123,27 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                         {!showDescription && <AiOutlineInfoCircle className="icon-info" onClick={() => setShowDescription(true)} />}
                     </div>
                     {/* <div className="board-description" contentEditable="true"> */}
-                    <div className="board-description" >
+
+
+                    {   showDescription &&
+                        <BoardDescription 
+                        writeDescription={writeDescription}
+                        showDescription={showDescription}
+                        setWriteDescription={setWriteDescription}
+                        currDescription={board.description}
+                        editDescription={editDescription}
+                    />}
+
+
+                    {/* <div className="board-description" >
                         {showDescription ?
-                            <textarea onChange={handleDescriptionChange} ref={ref}  className="visible-description"  name="description" id="" cols="30" rows="10"></textarea> :
-                            <div onClick={()=>setShowDescription(true)} className="hidden-description">{board.description || 'add board descripti/on'}</div>
+                            <textarea 
+                            // onChange={handleDescriptionChange} 
+                            ref={ref} className="visible-description" name="description" id="" cols="30" rows="10"></textarea> :
+                            <div onClick={() => setShowDescription(true)} className="hidden-description">{board.description || 'add board descripti/on'}</div>
 
                         }
-                    </div>
+                    </div> */}
 
                     <BoardControls handleFilterChange={handleFilterChange} addGroup={addGroup} />
                     {/* <BoardFilter /> */}

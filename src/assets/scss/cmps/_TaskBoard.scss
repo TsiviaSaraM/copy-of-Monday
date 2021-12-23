@@ -122,4 +122,16 @@
     input:focus-visible{
         outline-width: 0px;
     }
+    .search{
+        .input-search{
+            padding: 1px 0px 1px 5px;
+            border-width: 0px;
+            background-color: white;
+            color: rgb(50, 51, 56);
+            font-size: 15px;
+            font-weight: 300;
+            font-family: 'RobotoLight';
+            // color: black NB probably not necessary
+        }
+    }
 }
