@@ -14,16 +14,17 @@ export function loadBoards(boardFilter) {
 
 //sets currBoard and returns the board
 export function getBoardById(boardId, taskFilter) {
+
   return async dispatch => {
     try {
+      // if (boardId !== state.c/)
       const board = await boardService.getById(boardId)
-      // TODO add this later
-      if (taskFilter) {
-        console.log('taskFilter used');
+      if (taskFilter) { //TODO can move this to the app and then only filter the currBoard, so no need to call service every time you use the filter
         board.groups = board.groups.map(group => {
           return {
             ...group,
             tasks: group.tasks.filter(task => {
+              if (!task.title) return false
               return task.title.toUpperCase().includes(taskFilter.toUpperCase())
             })
           }

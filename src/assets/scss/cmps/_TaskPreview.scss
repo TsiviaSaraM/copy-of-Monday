@@ -51,7 +51,7 @@ $task-height: 36px;
             border: 1px solid rgb(230, 233, 239);
             padding: 5px 0px 3px 20px;
             width: 100%;
-
+            height: 35px;
         }
         .input-add-task:focus{
             border: 1px solid rgb(0, 115, 234);
@@ -60,6 +60,17 @@ $task-height: 36px;
             border: 1px solid rgb(0, 115, 234);
             // outline-color: rgb(0, 115, 234);
             outline: none;
+        }
+        .btn-add-task{
+            background-color: rgb(0, 115, 234);
+            border-width: 0px;
+            color: white;
+            font-size: 15px;
+            font-family: 'RobotoLight';
+            font-weight: 300;
+            padding: 0px 12px;
+            display: flex;
+            text-align: center;
         }
     }
     .margin-right{
@@ -91,6 +102,7 @@ $task-height: 36px;
     .title-edit-msg{
         flex-grow: 2;
         padding: 0 3px 0 10px;
+        min-width: 258px;
         // padding-left: 10px;
         // border-right: 1px solid rgb(158, 158, 158);
         // border-bottom: 1px solid rgb(158, 158, 158);
@@ -118,6 +130,7 @@ $task-height: 36px;
     }
     .margin-left, .margin-right{
         height: 100%;
+        min-width: 8px;
         // line-height: $task-height;
     }
     .status, .date{

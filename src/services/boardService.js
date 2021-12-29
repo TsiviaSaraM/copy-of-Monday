@@ -434,6 +434,7 @@ function _add(board) {
     }
 }
 
+//NB this function is not used anywhere
 function getEmptyBoard() {
     // console.log('getting empty board in service');
     // return Promise.resolve({
@@ -442,14 +443,20 @@ function getEmptyBoard() {
     //     strength: 100
     // })
     return {
-        id: '',
-        name: '',
-        type: '',
-        strength: 100,
+        _id: '',
+        description: '',
+        createdBy: null, //this will become loggedInUser
+        style: null,
+        labels: null,
+        members: null, //this will become loggedInUser
+        columns: [],
+        privacy: '',
+        type: '',//no longer need this - have privacy field instead
         groups: [
-            // getEmptyGroup(),
-            // getEmptyGroup()
-        ]
+            getEmptyGroup(),
+            getEmptyGroup()
+        ],
+        activities: []
 
     }
 }
@@ -470,6 +477,7 @@ export function getEmptyGroup() {
     }
 }
 
+//task fields: id, status, title, person, date, createdBy, lastUpdated
 export function getEmptyTask() {
     return {
         id: makeId(4),

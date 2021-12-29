@@ -48,20 +48,27 @@
     // width: 100%;
 }
 
-.btn-add-group{
-    // border-radius: 4px 0 0 4px; //this is for if there is another button touching it
-    // border-radius: 4px;
-    // cursor: pointer;
-    // align-items: center;
-    // justify-content: center;
-    width: 75.4531px;//this can be made wider is there will be no button touching it
-    height: 32px;
-    // margin-right: 14px;
-    background-color: rgb(0, 115, 234);
-    color: white;
-    font-size: 14px;
-    border: 0px;
+.btn-add-group-container{
+
+    .btn-add-group{
+        // border-radius: 4px 0 0 4px; //this is for if there is another button touching it
+        // border-radius: 4px;
+        // cursor: pointer;
+        // align-items: center;
+        // justify-content: center;
+        // width: 75.4531px;//NB this is the width of a 'New item' button
+        width: 85px;
+        height: 32px;
+        // margin-right: 14px;
+        background-color: rgb(0, 115, 234);
+        padding: 4px 8px;
+        color: white;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 0px;
+    }
 }
+
 
 .board-description{
     font-size: 14px;
@@ -103,18 +110,19 @@
         align-items: center;
         justify-content: center;
         height: 32px;
+        // border: 1px solid blue;
     }
     >div{
         color: rgb(50, 51, 56);
         font-size: 15px;
         display: flex;
     }
-    >:hover{
+    >:hover:not(.expanded-search-container>*){
         background-color: #e6e9ef;
     }
     .btn-add-group{
         :hover{
-            background-color: rgb(0, 96, 185);
+            // background-color: rgb(0, 96, 185);
             // background-color: yellow;
             color: pink;
         }
@@ -122,8 +130,23 @@
     input:focus-visible{
         outline-width: 0px;
     }
+    // border: 1px solid green;
     .search{
-        .input-search{
+        .expanded-search-container{
+            background-color: white;
+            // background-color: pink;
+            height: 100%;
+            width: 100%;
+            border: 1px solid rgb(0, 115, 234);
+            border-radius: 4px;
+            
+        }
+        .expanded-search-container, .collapsed-search-container{
+            align-items: center;
+
+        }
+        position:relative;
+        .expanded-search{
             padding: 1px 0px 1px 5px;
             border-width: 0px;
             background-color: white;
@@ -131,7 +154,22 @@
             font-size: 15px;
             font-weight: 300;
             font-family: 'RobotoLight';
+            margin-right: 6px;
+            font-size: 15px;
+            font-family: RobotoLight;
+            font-weight: 300;
             // color: black NB probably not necessary
         }
+        svg{
+            padding: 1px 0px;
+            position:relative;
+            margin-left: 10px;
+        }
+        .txt{
+            margin-right: 4px;
+            // border: 1px solid green;
+            width: 55px;
+        }
+
     }
 }

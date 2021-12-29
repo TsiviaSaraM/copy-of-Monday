@@ -13,6 +13,7 @@ import { AiFillInfoCircle, AiOutlineInfoCircle } from 'react-icons/ai'
 import { useState } from 'react';
 import { useOnClickOutside } from '../hooks/useOnClickOutside';
 import { BoardDescription } from './BoardDescription';
+import { useSelector } from 'react-redux';
 
 //board is state.currBoard
 export const TaskBoard = ({ board, onEditBoard, }) => {
@@ -21,6 +22,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     const ref = useRef()
     const [showDescription, setShowDescription] = useState(false)
     const [writeDescription, setWriteDescription] = useState(false)
+    const {loggedInUser} = useSelector(state => state.userModule)
 
     useOnClickOutside(ref, () => {
         onEditBoard(board)
@@ -42,7 +44,8 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
 
     const addGroup = () => {
         const newGroup = getEmptyGroup()
-        board.groups.push(newGroup)
+        board.groups.unshift(newGroup)
+        console.log(board.groups);
         onEditBoard(board)
     }
 
@@ -71,7 +74,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         const newTask = getEmptyTask()
         newTask.title = title
         newTask.status = 'new'
-        newTask.person = newTask.person || {}
+        newTask.person = loggedInUser
         group.tasks.push(newTask)
         onEditGroup(group)
     }

@@ -198,3 +198,148 @@
     }
   
 }
+
+.form-login{
+    width: 100%;
+    .login-header{
+        background-color: rgb(247, 247, 247);
+        border-bottom: 1px solid #e0e0e0;
+        padding-top: 10px;
+        padding-left: 8px;
+        height: 65px;
+        .logo-full{
+            width: 180px;
+            height: 44px;
+            margin-left: 12px;
+        }
+        
+    }
+    .login-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        flex-grow: 1;
+        padding: 40px;
+        .login-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            .login-title{
+                font-size: 40px;
+                font-weight: 100;
+                margin-bottom: 8px;
+                font-family: 'RobotoThin';
+            }
+            
+            .email-page, .password-page{
+                margin-top: 28px;
+                width: 360px;
+                margin-bottom: 32px;
+                .email-input-wrapper, .password-input-wrapper, .username-input-wrapper{
+                    width: 100%;
+                    margin-bottom: 20px;
+                    label{
+                        height: 20px;
+                        margin-bottom: 4px;
+                        font-weight: 500;
+                        font-size: 16px;
+                        font-family: 'RobotoMedium';
+                        font-weight: 500;
+                        display: block;
+                        // width: 100%;
+                    }
+                    input{
+                        width: 100%;
+                        height: 40px;
+                        border-radius: 4px;
+                        border: 1px solid #ccc;
+                        padding: 6px 12px;
+                        font-size: 16px;
+                        color: #555;
+                        outline: none;
+                        font-family: 'RobotoLight';
+                        font-weight: 300;
+                        color: rgb(85, 85, 85); //NB this is the color for the placeholder
+                    }
+                }
+                
+                .btn-container{
+                    height: 48px;
+                    width: 100%;
+                    .btn-next{
+                        width: 100%;
+                        height: 100%;
+                        cursor: pointer;
+                        outline: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        line-height: 28px;
+                        border: none;
+                        border-bottom: 2px solid #0d91ca;
+                        background: #0fa2e2;
+                        font-size: 18px;
+                        border-radius: 15rem;
+                        color: #fff;
+                        background-color: rgb(15, 162, 226);
+                        .btn-text{
+                            margin-right: 4px;
+                        }
+                        span{
+                            padding-left: 8px;
+                        }
+                        span::before{
+                            font-size: 14px;
+                            content: '\f061';
+                            font-family: 'AwesomeSolid';
+                        }
+                    }
+                }
+            }
+            
+            .separator{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 32px;
+                .line{
+                    width: 200px;
+                    border: 0.5px solid #c5c7d0;
+                    margin: 16px;
+                }
+                h2{
+                    font-size: 16px;
+                    font-family: 'RobotoLight';
+                    font-weight: 300;
+                }
+            }
+            .signup{
+                margin: 32px;
+                font-size: 16px;
+                font-family: 'RobotoLight';
+                font-weight: 300;
+                .signup-question{
+                    padding-right: 5px;
+                    color: rgb(51, 51, 51);
+                }
+                button{
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    width: auto;
+                    overflow: visible;
+                    background: transparent;
+                    font: inherit;
+                    line-height: normal;
+                    cursor: pointer;
+                    color: #0fa2e2;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

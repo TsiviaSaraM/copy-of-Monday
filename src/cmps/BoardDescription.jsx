@@ -18,8 +18,6 @@ export const BoardDescription = ({ writeDescription, setWriteDescription, showDe
         setWriteDescription(false)
     })
 
-    showDescription = true
-
     const handleDescriptionChange = (ev) => {
         setDescription(ev.target.value)
     }
