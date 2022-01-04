@@ -49,21 +49,27 @@ export const FormLogin = () => {
                     </div>
 
                     <div className="password-page">
-                        <div className="uername-input-wrapper">
+                        <div className="username-input-wrapper">
+                            <span>username</span>
+                            <div className="input-wrapper">
+                                <input type="text" name="username" onChange={handleChange} />
 
-                            <label htmlFor="username">Username</label>
-                            <input type="text" name="username" onChange={handleChange} />
+                            </div>
+                            {/* <label htmlFor="username">Username</label> */}
                         </div>
                         <div className="password-input-wrapper">
 
+                            <span>password</span>
+                            <div className="input-wrapper">
+                                <input type="text" name="password" onChange={handleChange} />
 
-                            <label htmlFor="password">Password</label>
-                            <input type="text" name="password" onChange={handleChange} />
+                            </div>
+                            {/* <label htmlFor="password">Password</label> */}
                         </div>
 
                     </div>
                     {/* <button>Next →</button> */}
-                    <button onClick={doLogin}>login</button>
+                    <button className="btn-login" onClick={doLogin}>Log in</button>
 
 
                     <div className="signup">

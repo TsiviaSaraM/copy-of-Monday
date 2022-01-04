@@ -3,24 +3,32 @@
     src: url(../../font/font-awesome/fa-solid-900.ttf);
 }
 
-
-
+//font-weight 100
 @font-face {
-    font-family: 'Roboto';
-    src: url(../../font/roboto/RobotoRegular.ttf)
+    font-family: 'RobotoThin';
+    src: url(../../font/roboto/RobotoThin.ttf)
 }
 
-@font-face {
-    font-family: 'RobotoMedium';
-    src: url(../../font/roboto/RobotoMedium.ttf)
-}
-
+//font-weight 300
 @font-face {
     font-family: 'RobotoLight';
     src: url(../../font/roboto/RobotoLight.ttf)
 }
 
+//font-weight 400
 @font-face {
-    font-family: 'RobotoThin';
-    src: url(../../font/roboto/RobotoThin.ttf)
+    font-family: 'Roboto';
+    src: url(../../font/roboto/RobotoRegular.ttf)
+}
+
+//font-weight 500
+@font-face {
+    font-family: 'RobotoMedium';
+    src: url(../../font/roboto/RobotoMedium.ttf)
+}
+
+//font-weight 700
+@font-face {
+    font-family: 'RobotoBold';
+    src: url(../../font/roboto/RobotoBold.ttf)
 }

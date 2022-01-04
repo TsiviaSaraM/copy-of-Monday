@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  loggedInUser: null,
+  loggedInUser: null, //contains all user fields besides password (03Jan22)
   users: [],
   test: 'test'
 }

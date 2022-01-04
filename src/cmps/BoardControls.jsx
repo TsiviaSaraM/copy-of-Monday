@@ -11,7 +11,7 @@ export const BoardControls = ({ addGroup, handleFilterChange }) => {
 
     return (
         <div className="board-controls">
-            <div className="-container">
+            <div className="btn-add-group-container">
                 <button className="btn-add-group" onClick={addGroup} >New group</button>
 
             </div>

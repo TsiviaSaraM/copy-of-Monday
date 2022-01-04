@@ -69,7 +69,7 @@ export function removeUser(userId) {
 
 export function login(userCred) {
     return async dispatch => {
-        const user = await authService.login(userCred)
+        const user = await authService.login(userCred) //returns all user fields besides password (03Jan22)
         console.log('user in actions', user);
         dispatch({type: 'LOGIN', user})
     }
