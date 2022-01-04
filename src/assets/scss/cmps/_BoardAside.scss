@@ -65,4 +65,105 @@
         outline-width: 0px;
     }
     // .kebab{background-color: pink;}
+    .header{
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 12px 16px 18px 16px;
+        height: 68px;
+        vertical-align: baseline;
+        .user{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 4px;
+            span{
+                color: rgb(103, 104, 121);
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+        .workspace{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            border: 1px solid;
+            border-color: rgb(103, 104, 121);
+            .workspace-title-container{
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                margin-bottom: 0;
+                line-height: unset;
+                font-weight: 500;
+                position: relative;
+                .letter-container{
+                    font-size: 22px;
+                    margin-right: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    transition: transform .1s ease-out;
+    
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    flex-shrink: 0;
+                    background-color: rgb(242, 121, 242);
+                    color: #fff;
+                    span{
+                        font-family: 'RobotoMedium';
+                    }
+                }
+                .icon-container{
+                    position: absolute;
+                    right: -4px;
+                    bottom: -6px;
+                    border-top-left-radius: 10px;
+                    z-index: 22;
+                    // background-color: rgb(245, 246, 248);
+                    i::before{
+                        font-family: 'AwesomeSolid';
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 18px;
+                        content: "\f015";
+                        color: rgb(50, 51, 56);
+                        display: inline-block;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-variant: normal;
+                        line-height: 1;
+                    }
+                }
+                .workspace-title{
+                    flex-grow: 1;
+                    height: auto;
+                    overflow: hidden;
+                    max-width: 135px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    width: 100%;
+                    height: 100%;
+                    overflow-x: hidden;
+                    overflow-y: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    border: 1px solid transparent;
+                    padding: 0 2px;
+                    vertical-align: baseline;
+                    font-family: 'RobotoMedium';
+                }
+            }
+        }
+    }
 }
