@@ -1,5 +1,7 @@
+import { authService } from "../../services/authService"
+
 const INITIAL_STATE = {
-  loggedInUser: null, //contains all user fields besides password (03Jan22)
+  loggedInUser: authService.getLoggedinUser() || null, //contains all user fields besides password (03Jan22)
   users: [],
   test: 'test'
 }
