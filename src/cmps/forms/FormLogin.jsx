@@ -31,7 +31,7 @@ export const FormLogin = () => {
                     <div className="email-page">
                         <div className="email-input-wrapper">
                             <label htmlFor="email">Enter your work email address</label>
-                            <input type="email" name="email" placeholder="Example@company.com" />
+                            <input type="email" name="email" placeholder="Example@company.com" onChange={handleChange} />
 
                         </div>
                         <div className="btn-container">

@@ -23,6 +23,9 @@ $clr-selected: rgba(255,255,255,.3);
         align-items: center;
     }
     
+    .filler{
+        flex-grow: 1;
+    }
     .aside-icon:hover, .aside-img :hover{
         background-color: #1c1f3b;
         // background-color: rgb(51, 51, 51);

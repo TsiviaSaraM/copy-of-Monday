@@ -12,6 +12,8 @@ export const authService = {
   getLoggedinUser
 }
 
+// userCred should contain the following fields:
+// username, password, email
 async function login(userCred) {
   // const users = await storageService.query('user'); //CLIENT STORAGE
   // const user = users.find((user) => user.username === userCred.username); //CLIENT STORAGE
@@ -22,7 +24,10 @@ async function login(userCred) {
   if (user) return _saveLocalUser(user); //SERVER STORAGE
 }
 
+//userCred must be object containing the following fields:
+// username, password, fullname, email
 async function signup(userCred) {
+  console.log('userCred', userCred);
   // const user = await storageService.post('user', userCred); //CLIENT STORAGE
   const user = await httpService.post('auth/signup', userCred)  //SERVER STORAGE
   // socketService.emit('set-user-socket', user._id); //SERVER STORAGE, SOCKETS
@@ -46,7 +51,7 @@ function _saveLocalUser(user) {
 
 function getLoggedinUser() {
   if (!sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, 'null');
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, null);
   }
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER));
 }

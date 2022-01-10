@@ -1,13 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import {useForm} from './../hooks/useForm'
+import { useForm } from './../hooks/useForm'
 //eslint-disable-next-line
-import { getUserById, loadUsers, updateUser, removeUser, saveUser } from './../store/actions/userActions'
+import { getUserById, loadUsers, updateUser, removeUser, saveUser, signup } from './../store/actions/userActions'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { utilService } from '../services/utilService'
-import {getEmptyUser} from '../services/userService'
-import {UserList} from '../cmps/forms/UserList'
+import { getEmptyUser } from '../services/userService'
+import { UserList } from '../cmps/forms/UserList'
 
 export const UserPage = () => {
     const dispatch = useDispatch()
@@ -24,15 +24,15 @@ export const UserPage = () => {
     useEffect(() => {
         // Use effect cannot return promise, so we use an IIFE
         const loadUser = async () => {
-          try {
-            const user = getEmptyUser()
-            setNewUser(user)
-          } catch (err) {
-            console.log(err);
-          }
+            try {
+                const user = getEmptyUser()
+                setNewUser(user)
+            } catch (err) {
+                console.log(err);
+            }
         }
         loadUser()
-      }, [])
+    }, [])
 
     const editUser = (userToEdit) => {
         const newName = utilService.makeName()
@@ -46,7 +46,10 @@ export const UserPage = () => {
     }
 
     const createUser = async () => {
-        dispatch(saveUser(newUser))
+        newUser.username = 'new' + Math.floor(Math.random() * 10)
+        newUser.password = 'pw' + Math.floor(Math.random() * 10)
+        newUser.email = 'new' + Math.floor(Math.random() * 10) + '@gmail.com'
+        dispatch(signup(newUser))
     }
 
     if (!users) return <div className="page-loading">loading users</div>

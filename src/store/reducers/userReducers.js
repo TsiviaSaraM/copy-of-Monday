@@ -13,6 +13,11 @@ export function userReducer(state = INITIAL_STATE, action) {
         // 
         loggedInUser: action.user
       }
+      case 'SIGNUP':
+        return {
+          ...state,
+          users: [...state.users, action.newUser]
+        }
     case 'LOAD_USERS': //using :-)
       return {
         ...state,
@@ -48,11 +53,12 @@ export function userReducer(state = INITIAL_STATE, action) {
         ...state,
         users: updatedUsers
       }
-    case 'ADD_USER':
+    case 'ADD_USER': //redundant
       return {
         ...state,
         users: [...state.users, action.user]
       }
+   
     case 'REMOVE_USER':
       return {
         ...state,

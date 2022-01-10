@@ -75,6 +75,13 @@ export function login(userCred) {
     }
 }
 
+export function signup(userCred){
+    return async dispatch => {
+        const newUser = await authService.signup(userCred)
+        dispatch({type: 'SIGNUP', newUser})
+    }
+}
+
 export function logout(userCred) {
     return async dispatch => {
         await authService.logout()

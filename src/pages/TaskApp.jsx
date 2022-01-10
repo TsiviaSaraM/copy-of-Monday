@@ -65,8 +65,9 @@ export const TaskApp = ({ match, history }) => {
             {boards.forEach(board => {
                 <p>{board._id}</p>
             })}
-            {match.params.id && boards.length && <TaskBoard board={{...currBoard}} onEditBoard={onEditBoard} ></TaskBoard>}
-            {!match.params.id && boards.length && <h1>Please select a board to look at</h1> }
+            {match.params.id && boards.length && <TaskBoard board={{...currBoard}} onEditBoard={onEditBoard} ></TaskBoard>} 
+            {!match.params.id && boards.length && <TaskBoard board={{...boards[0]}} onEditBoard={onEditBoard} ></TaskBoard> }
+            {/* {!match.params.id && boards.length && <h1>Please select a board to look at</h1> } */}
             {!match.params.id && !boards.length && <h1>There are no boards to choose from</h1> }
           
         </div>
