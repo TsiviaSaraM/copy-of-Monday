@@ -65,6 +65,7 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
     }
 
     const addMember = (user) => {
+        console.log('task', task);
         task.members.push(user)
         task.person = user
         onEditTask(task)

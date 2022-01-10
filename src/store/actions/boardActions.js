@@ -14,7 +14,6 @@ export function loadBoards(boardFilter) {
 
 //sets currBoard and returns the board
 export function getBoardById(boardId, taskFilter) {
-
   return async dispatch => {
     try {
       // if (boardId !== state.c/)

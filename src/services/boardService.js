@@ -386,7 +386,6 @@ async function getById(id) {
 }
 
 function remove(id) {
-    debugger
     return httpService.delete(`${BOARD_KEY}/${id}`)
     // const idx = gBoards.findIndex(board => board._id === id)
     // gBoards.splice(idx, 1)

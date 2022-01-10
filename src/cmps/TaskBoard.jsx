@@ -75,6 +75,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         newTask.title = title
         newTask.status = 'new'
         newTask.person = loggedInUser
+        newTask.members = []
         group.tasks.push(newTask)
         onEditGroup(group)
     }

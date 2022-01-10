@@ -21,12 +21,15 @@ export const TaskApp = ({ match, history }) => {
             const { id } = match.params
             dispatch(getBoardById(id, filterBy))
         }
+        else if (boards.length) {
+            dispatch(getBoardById(boards[0]._id, filterBy))
+        }
         // else {
         //     const boardId = boards[0]._id;
         //     dispatch(getBoardById(boardId, filterBy))
         // }
         // eslint-disable-next-line
-    }, [match.params.id])
+    }, [match.params.id], boards)
 
     const editBoardFilter = async (boardFilter) => {
         await dispatch(setFilterBy(boardFilter, 'boardFilter'))
@@ -57,8 +60,10 @@ export const TaskApp = ({ match, history }) => {
         dispatch(loadBoards()) //TODO may not need this
     }
 
+    
     if (!loggedInUser) return (<FormLogin />)
     if (!boards) return (<p>loading</p>)
+    if (!match.params.id && !currBoard && boards.length) dispatch(getBoardById(boards[0]._id, filterBy))
     // if (!boards.length) return (<p>no boards</p>)
     return (
         <div className="task-app">
