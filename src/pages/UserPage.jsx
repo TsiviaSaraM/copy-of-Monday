@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { utilService } from '../services/utilService'
 import { getEmptyUser } from '../services/userService'
 import { UserList } from '../cmps/forms/UserList'
+import {FormLogin} from '../cmps/forms/FormLogin'
 
 export const UserPage = () => {
     const dispatch = useDispatch()
@@ -52,6 +53,7 @@ export const UserPage = () => {
         dispatch(signup(newUser))
     }
 
+    // if (!loggedInUser) return (<FormLogin />)
     if (!users) return <div className="page-loading">loading users</div>
     if (!users.length) return <div className="no-data">no users</div>
     return (
@@ -59,14 +61,14 @@ export const UserPage = () => {
             <h1>Users Page</h1>
             <p>{users.length} users</p>
             {users.map(user => {
-                return (<p key={user._id}>{user._id}, {user.fullname}, {user.username} hi
+                return (<p key={user._id}>{user._id}, {user.fullname}, {user.username} {user.email}
                     <button onClick={() => editUser(user)} >edit</button>
                     <button onClick={() => deleteUser(user._id)} > delete</button>
                 </p>)
             })}
 
 
-            <input type="text" onChange={handleChange} name="fullname" value={newUser.fullname} />
+            <input type="text" onChange={handleChange} name="fullname" value={newUser.fullname || ''} />
             <button onClick={createUser} >create new user</button>
             <UserList />
         </div >

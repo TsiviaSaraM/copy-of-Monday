@@ -15,7 +15,6 @@ export const FormSignup = () => {
     const handleChange = ({ target }) => {
         const field = target.name
         const value = target.type === "number" ? +target.value : target.value
-        // debugger
         if (field === "policy") togglePolicyChecked()
         setNewUser({ ...newUser, [field]: value })
     }
@@ -41,7 +40,7 @@ export const FormSignup = () => {
         try {
             await dispatch(signup(newUser))
             await dispatch(login({ username, password }))
-            // debugger
+            // 
             // history.push('/boards')
         } catch (error) {
             console.log(error);

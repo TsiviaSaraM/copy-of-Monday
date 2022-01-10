@@ -18,13 +18,17 @@ export function userReducer(state = INITIAL_STATE, action) {
           ...state,
           users: [...state.users, action.newUser]
         }
+    case 'LOGOUT':
+      return {
+        ...state,
+        loggedInUser: null
+      }
     case 'LOAD_USERS': //using :-)
       return {
         ...state,
         users: action.users
       }
     case 'SET_USER':
-      // debugger
       return {
         ...state,
         currUser: action.user
@@ -47,7 +51,6 @@ export function userReducer(state = INITIAL_STATE, action) {
       const { position, user } = action
       const updatedUsers = { ...state.users }
       updatedUsers.splice(position, 0, user)
-      // debugger
       console.log('user=', user.title, 'position=', position, 'users=', updatedUsers);
       return {
         ...state,

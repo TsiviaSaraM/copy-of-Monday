@@ -82,9 +82,9 @@ export function signup(userCred){
     }
 }
 
-export function logout(userCred) {
+export function logout() {
     return async dispatch => {
         await authService.logout()
-        dispatch({type: 'LOGOUT', userCred}) //cn be ({SET_USER_CRED, null})
+        dispatch({type: 'LOGOUT'}) //cn be ({SET_USER_CRED, null})
     }
 }

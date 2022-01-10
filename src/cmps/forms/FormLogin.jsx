@@ -74,7 +74,11 @@ export const FormLogin = () => {
 
                     <div className="signup">
                         <span className="signup-question">Don't have an account yet?</span>
-                        <button>Signup</button>
+                        <Link to="/signup" >
+                            <button>
+                                Signup
+                            </button>
+                        </Link>
                         {/* <p>
 
                             <Link to="/signup" >Sign up</Link>

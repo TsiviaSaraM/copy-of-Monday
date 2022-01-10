@@ -5,6 +5,7 @@ import { TaskBoard } from '../cmps/TaskBoard.jsx'
 import { removeBoard, loadBoards, getBoardById, saveBoard, insertBoard, setFilterBy } from '../store/actions/boardActions.js'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import {FormLogin} from '../cmps/forms/FormLogin'
 
 
 export const TaskApp = ({ match, history }) => {
@@ -22,7 +23,6 @@ export const TaskApp = ({ match, history }) => {
         }
         // else {
         //     const boardId = boards[0]._id;
-        //     debugger
         //     dispatch(getBoardById(boardId, filterBy))
         // }
         // eslint-disable-next-line
@@ -57,6 +57,7 @@ export const TaskApp = ({ match, history }) => {
         dispatch(loadBoards()) //TODO may not need this
     }
 
+    if (!loggedInUser) return (<FormLogin />)
     if (!boards) return (<p>loading</p>)
     // if (!boards.length) return (<p>no boards</p>)
     return (
