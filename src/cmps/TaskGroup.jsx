@@ -32,7 +32,7 @@ export const TaskGroup = ({ group, index, onDeleteGroup, onEditBoard, onEditGrou
                                                 <div className="down">v</div>
                                                 <div className="up"></div>
                                             </div> */}
-                                <p className="group-title">{group.title || 'Group title'}</p>
+                                <p className="group-title" style={{ color: group.style.hover }} contentEditable="true" suppressContentEditableWarning="true" >{group.title || 'Group title'}</p>
                             </div>
                             <div className="task-group-header-wrapper flex">
                                 <div className="person">Person</div>

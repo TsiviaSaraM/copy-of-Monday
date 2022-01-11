@@ -21,6 +21,19 @@ $clr-selected: rgba(255,255,255,.3);
         display: flex;
         justify-content: center;
         align-items: center;
+        a{
+            color: inherit;
+        }
+        // a:active{
+        //     // background-color: red;
+        //     color: red;
+        // }
+        // a:visited{
+        //     color: yellow;
+        // }
+        // a:link{
+        //     color: green;
+        // }
     }
     
     .filler{

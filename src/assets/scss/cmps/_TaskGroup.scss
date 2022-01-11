@@ -85,6 +85,12 @@
         text-align: left;
         // width: 100%;
         font-size: 18px;
+        .group-title:hover{
+            border: 1px dashed rgb(197, 199, 208)
+        }
+        .group-title:focus-visible{
+
+        }
     }
     .person{width: 98px;}
 }

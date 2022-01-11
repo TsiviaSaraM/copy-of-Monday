@@ -48,6 +48,18 @@
     // width: 100%;
 }
 
+.task-board{
+    .divider{
+        height: 1px;
+        width: 100%;
+        // position: absolute;
+        // bottom: 0;
+        background-color: rgb(230, 233, 239);
+        margin-bottom: 41px;
+    }
+
+}
+
 .btn-add-group-container{
 
     .btn-add-group{
