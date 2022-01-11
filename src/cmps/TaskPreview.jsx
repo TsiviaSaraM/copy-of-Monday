@@ -4,6 +4,7 @@ import { FormEditStatus } from './forms/FormEditStatus'
 import { FormEditDate } from './forms/FormEditDate'
 import { Draggable } from 'react-beautiful-dnd'
 import { useOnClickOutside } from '../hooks/useOnClickOutside'
+//eslint-disable-next-line
 import { FaRegUserCircle } from "react-icons/fa";
 import { UserList } from './forms/UserList';
 import Avatar from "./../assets/img/avatar1.png"
@@ -16,6 +17,9 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
     const [statusFormOpen, setStatusFormOpen] = useState(false)
     const [userListOpen, setUserListOpen] = useState(false)
     const [dateFormOpen, setDateFormOpen] = useState(false)
+    const [isTitleEditable, setIsTitleEditable] = useState(false)
+    const [titleRef, setTitleRef] = useState(null)
+    const [updatedTitle, setupdatedTitle] = useState(task.title)
     const [styles, setStyles] = useState({})
     const [rowHover, setRowHover] = useState(false)
 
@@ -27,11 +31,27 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
     useOnClickOutside(ref, () => setStatusFormOpen(false));
     useOnClickOutside(ref, () => setDateFormOpen(false));
     useOnClickOutside(ref, () => setUserListOpen(false));
+    useOnClickOutside(ref, () => setDateFormOpen(false));
+    useOnClickOutside(ref, () => {
+        if (isTitleEditable) {
+            setIsTitleEditable(false)
+            setTitleRef(null)
+            task.title = updatedTitle
+            onEditTask(task)
+        }
+    });
 
 
-    const editTask = () => {
-        task.title = prompt("new title")
-        onEditTask(task)
+    const enableTitleEditing = () => {
+        setIsTitleEditable(true)
+        setTitleRef(ref)
+        setRowHover(false)
+        // onEditTask(task)
+    }
+
+    const onEditTitle = (ev) => {
+        setupdatedTitle(ev.target.innerText)
+        console.log(ev.target.innerText);
     }
 
     const togglestatusFormOpen = (event) => {
@@ -83,6 +103,8 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
         setRowHover(true)
     }
 
+    const isEditable = isTitleEditable ? 'editable' : 'regular'
+
 
     return (
         <>
@@ -98,12 +120,18 @@ export const TaskPreview = ({ task, id, onEditTask, onRemoveTask, index, groupId
 
                     >
                         <div className="margin-left" style={{ backgroundColor: hoverColor }}></div>
-                        <div className="task-detail title-edit-msg"
-                            onMouseEnter={() => setRowHover(true)}
-                            onMouseLeave={() => setRowHover(false)}
-                        >
-                            {task.title}
-                            {rowHover && <span className="edit" onClick={editTask}>Edit</span>}
+                        <div className={"task-detail-wrapper title-edit-msg " + isEditable+ "-container"}>
+                            <div className={"task-detail " + isEditable}
+                                ref={titleRef}
+                                onMouseEnter={() => setRowHover(true)}
+                                onMouseLeave={() => setRowHover(false)}
+
+                            >
+                                <span contentEditable={isTitleEditable} suppressContentEditableWarning={true} onInput={onEditTitle} >{task.title}</span>
+
+                                {rowHover && <span className="edit" onClick={enableTitleEditing}>Edit</span>}
+                            </div>
+
                         </div>
                         <div className="task-detail person" onClick={toggleUserListOpen}>
                             <img className="img-avatar" src={task.person._id ? Avatar : BlankAvatar} alt="" />
