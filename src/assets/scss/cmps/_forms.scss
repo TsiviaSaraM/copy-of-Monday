@@ -3,9 +3,6 @@
     position: fixed;
     z-index: 1;
 }
-.form-edit-date{
-
-}
 
 .form-container{
     background-color: rgba(41, 47, 76, 0.7);
@@ -18,7 +15,7 @@
 
 .form-add-board{
     background-color: white;
-    color: rgb(50, 51, 56);
+    color: $clr-txt-1;
     border-radius: 8px;
     box-shadow: 0px 25px 50px -15px rgba(0, 0 ,0, 0.7);
     // height: 583.2px;
@@ -56,7 +53,7 @@
         input{
             border: 1px solid rgb(197, 199, 208);
             border-radius: 4px;
-            // color: rgb(50, 51, 56); //this is the default
+            // color: $clr-txt-1; //this is the default
             font-weight: 300;
             font-family: 'RobotoLight';
             font-size: 16px;
@@ -64,7 +61,7 @@
             padding: 8px 16px;
         }
         input:focus{
-            border: 1px solid rgb(0, 115, 234);
+            border: 1px solid $clr-btn-1;
         }
         input:focus-visible{
             outline-width: 0px;
@@ -101,12 +98,12 @@
         .btn-cancel{
             min-width: 80px;
             background-color: white;
-            color: rgb(50, 51, 56);
+            color: $clr-txt-1;
             margin-right: 8px;
         }
         .btn-submit{
             min-width: 124px;
-            background-color: rgb(0, 115, 234);
+            background-color: $clr-btn-1;
             color: white;
         }
     }
@@ -116,7 +113,7 @@
 .form-edit-status{
     // TODO these colors are used in the table of tasks, make sure no repeated scss
     .working{background-color:  rgb(253, 171, 61);}
-    .none{ background-color: rgb(103, 104, 121);}
+    .none{ background-color: $clr-grey2;}
     .stuck{background-color: rgb(226, 68, 92);}
     .done{background-color: rgb(0, 200, 117)}
     color: white;
@@ -161,7 +158,7 @@
     top: 290px;
     border-radius: 8px;
     box-shadow: 0px 4px 17px 6px rgba(0, 0, 0, 0.1);
-    color: rgb(50, 51, 56);
+    color: $clr-txt-1;
     // font-size: 15px;
     font-weight: 300;
     font-family: 'RobotoLight';
@@ -180,7 +177,7 @@
         .left-side-icon{
             flex-basis: 16px;
             margin-right: 8px;
-            color: rgb(103, 104, 121);
+            color: $clr-grey2;
         }
         .text{
             flex-basis: 0%;
@@ -422,13 +419,13 @@
                 .titles{
                     width: 360px;
                     .welcome{
-                        color: rgb(50, 51, 56);
+                        color: $clr-txt-1;
                         text-align: left;
                         font-size: 24px;
                         font-weight: bold;
                     }
                     .get-started{
-                        color: rgb(103, 104, 121);
+                        color: $clr-grey2;
                         font-weight: 400;
                         text-align: left;
                         margin-top: 8px;
@@ -444,7 +441,7 @@
                         position: relative;
                         label{
                             font-size: 15px;
-                            color: #323338;
+                            color: $clr-txt-1;
                         }
                         .input-wrapper{
                             margin-top: 16px;
@@ -462,7 +459,7 @@
                                 border: 0;
                                 outline: 0;
                                 padding: 0px 0px 0px 8px;
-                                color: #323338;
+                                color: $clr-txt-1;
                                 font-family: Arial, Helvetica, sans-serif;
                             }
                         }
@@ -474,7 +471,7 @@
                         margin-top: 16px;
                         .btn-continue{
                             font-weight: bold;
-                            background-color: rgb(0, 115, 234);
+                            background-color: $clr-btn-1;
                             color: white;
                             font-size: 16px;
                             line-height: 24px;
@@ -501,11 +498,11 @@
                     .login{
                         font-weight: 400;
                         font-size: 16px;
-                        color: rgb(50, 51, 56);
+                        color: $clr-txt-1;
                         text-align: center;
                         .link-login{
                             margin-left: 4px;
-                            color: rgb(0, 115, 234);
+                            color: $clr-btn-1;
                             cursor: pointer;
                             font-weight: 400;
                             font-size: 16px;
@@ -532,7 +529,7 @@
                 width: 100%;
                 .txt-setup{
                     text-align: left;
-                    color: #323338;
+                    color: $clr-txt-1;
                     font-size: 24px;
                     font-weight: bold;
                     word-break: break-word;
@@ -541,7 +538,7 @@
                 .txt-fillin{
                     font-weight: 400;
                     text-align: left;
-                    color: #676879;
+                    color: $clr-grey2;
                     font-size: 16px;
                     line-height: 26px;
                     margin-top: 8px;
@@ -559,7 +556,7 @@
                         position: relative;
                         label{
                             font-size: 15px;
-                            color: #323338;
+                            color: $clr-txt-1;
                         }
                         .input-wrapper{
                             width: 100%;
@@ -577,7 +574,7 @@
                                 border: 0;
                                 outline: 0;
                                 padding: 0px 0px 0px 8px;
-                                color: #323338;
+                                color: $clr-txt-1;
                             }
                         }
                         
@@ -586,7 +583,7 @@
                     .checkbox-wrapper{
                         font-weight: 400;
                         font-size: 14px;
-                        color: #323338;
+                        color: $clr-txt-1;
                         display: flex;          
                         text-align: left;
                         flex-direction: column;
@@ -638,7 +635,7 @@
                                 height: 12px;
                                 border: solid;
                                 border-color: #0085ff;
-                                border-color: rgb(0, 115, 234);
+                                border-color: $clr-btn-1;
                                 border-width: 0 2px 2px 0;
                                 transform: rotate(45deg);
                                 position: absolute;
@@ -715,7 +712,7 @@
                     font-size: 14px;
                     position: absolute;
                     bottom: 100px;
-                    color: #323338;
+                    color: $clr-txt-1;
                     text-align: center;
                     span{
                         text-align: center;

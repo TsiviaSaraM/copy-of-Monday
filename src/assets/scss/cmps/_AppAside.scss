@@ -1,16 +1,13 @@
 // TODO add speachbox with classname/ title on hover
 
-$clr-selected: rgba(255,255,255,.3);
+$clr-selected: rgba(255,255,255,.3); //TODO REMOVE this
 
 .app-aside{
     width: 66px;
-    // height: 100%;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     align-items: center;
-    // vertical-align: baseline;
-
     background-color: #292F4C;
     color: white;
 
@@ -24,16 +21,6 @@ $clr-selected: rgba(255,255,255,.3);
         a{
             color: inherit;
         }
-        // a:active{
-        //     // background-color: red;
-        //     color: red;
-        // }
-        // a:visited{
-        //     color: yellow;
-        // }
-        // a:link{
-        //     color: green;
-        // }
     }
     
     .filler{
@@ -41,17 +28,14 @@ $clr-selected: rgba(255,255,255,.3);
     }
     .aside-icon:hover, .aside-img :hover{
         background-color: #1c1f3b;
-        // background-color: rgb(51, 51, 51);
     }
 
     .aside-icon, .aside-img{
         border-radius: 4px;
         cursor: pointer;
-
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 
     .aside-icon{
@@ -61,11 +45,6 @@ $clr-selected: rgba(255,255,255,.3);
         font-weight: 300;
         font-family: 'RobotoLight';
         position: relative;
-        // margin-left: 14px;
-        // svg{
-        //     display: block;
-        //     margin: auto;
-        // }
     }
 
     .aside-img{
@@ -75,7 +54,6 @@ $clr-selected: rgba(255,255,255,.3);
     }
     .logo{
         margin-top: 8px;
-        
     }
 
     .avatar{

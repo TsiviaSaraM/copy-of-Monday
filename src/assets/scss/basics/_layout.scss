@@ -1,5 +1,9 @@
 .task-app{
     width: 100%;
+    .board-aside{
+        width: 255px;
+        min-height: 100vh;
+    }
     .task-board{
         width: 100%;
         height: 100%;

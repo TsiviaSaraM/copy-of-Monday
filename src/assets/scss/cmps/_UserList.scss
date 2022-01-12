@@ -1,6 +1,6 @@
 .user-list{
-    // color: rgb(50, 51, 56);
-    color: rgb(103, 104, 121);
+    // color: $clr-txt-1;
+    color: $clr-grey2;
     width: 264px;
     position: fixed;
     // left: 317px;
@@ -74,7 +74,7 @@
             }
         }
         .user-preview-inner:hover{
-            background-color: rgb(0, 115, 234);
+            background-color: $clr-btn-1;
             color: white;
         }
     }
