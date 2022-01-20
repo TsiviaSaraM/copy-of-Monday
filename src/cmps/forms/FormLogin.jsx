@@ -6,13 +6,25 @@ import { login } from '../../store/actions/userActions'
 import Logo from "./../../assets/img/logo-full.png"
 
 export const FormLogin = () => {
-    const [userCred, setUserCred] = useState(null)
+    const [userCred, setUserCred] = useState({})
     const dispatch = useDispatch()
+    const [emailPageVisibility, setEmailPageVisibility] = useState('block')
+    const [passwordPageVisibility, setPasswordPageVisibility] = useState('none')
 
     const handleChange = ({ target }) => {
         const field = target.name
         const value = target.value
         setUserCred({ ...userCred, [field]: value })
+    }
+
+    const showPasswordPage = () => {
+        // debugger
+        if(!userCred.email) {
+            alert('Please enter a valid email')
+            return
+        }
+        setPasswordPageVisibility('block')
+        setEmailPageVisibility('none')
     }
 
     const doLogin = () => {
@@ -28,7 +40,7 @@ export const FormLogin = () => {
             <div className="login-wrapper">
                 <div className="login-content">
                     <h1 className="login-title">Log in to your account</h1>
-                    <div className="email-page">
+                    <div className="email-page" style={{ display: emailPageVisibility }}>
                         <div className="email-input-wrapper">
                             <label htmlFor="email">Enter your work email address</label>
                             <input type="email" name="email" placeholder="Example@company.com" onChange={handleChange} />
@@ -36,19 +48,19 @@ export const FormLogin = () => {
                         </div>
                         <div className="btn-container">
                             <button className="btn-next">
-                                <div className="btn-text">Next</div>
+                                <div className="btn-text" onClick={showPasswordPage}>Next</div>
                                 <span></span>
                             </button>
                         </div>
+                        <div className="separator">
+                            <span className="line"></span>
+                            <h2>Or</h2>
+                            <span className="line"></span>
+                        </div>
                     </div>
 
-                    <div className="separator">
-                        <span className="line"></span>
-                        <h2>Or</h2>
-                        <span className="line"></span>
-                    </div>
 
-                    <div className="password-page">
+                    <div className="password-page" style={{ display: passwordPageVisibility }}>
                         <div className="username-input-wrapper">
                             <span>username</span>
                             <div className="input-wrapper">
@@ -66,10 +78,15 @@ export const FormLogin = () => {
                             </div>
                             {/* <label htmlFor="password">Password</label> */}
                         </div>
+                        <div className="button-container">
+                            <div className="button-wrapper">
+
+                                <button className="btn-login" onClick={doLogin}>Log in</button>
+                            </div>
+                        </div>
 
                     </div>
                     {/* <button>Next →</button> */}
-                    <button className="btn-login" onClick={doLogin}>Log in</button>
 
 
                     <div className="signup">

@@ -10,122 +10,213 @@
         padding-left: 30px;
         // width: 100%;
 
-    
-    
-        
-        .board-title{
-            border: 0px;
-            margin-right: 4px;
-            height: 36px;
+    .board-title-row-container{
+        // width: 100%;
+
+        .board-title-row{//height of this should be 40px
+            
             display: flex;
             align-items: center;
-            
-            svg{
-                color: $clr-grey2;
-                margin-right: 6px;
-            }
-            h1{
-                border-radius: 4px;
-                // line-height: 32px;
-                // height: 32px;
-                padding: 4px;
-                font-size: 24px;
-                // margin-top:2px;
-                // margin-bottom: 2px;
-                position: relative;
-            }
-            .icon-info{
-                margin-left: 4px;
-            }
-    
-    
-            color: $clr-txt-1;
-    
-    
-        }
-        .board-title :hover{
-            border: 0px solid rgb(197, 199, 208);
-    
-        }
-    
-        .board-title h1:hover{
-            border: 1px solid rgb(197, 199, 208);
-    
-        }
-    
-        .board-controls{
-            padding: 16px 0;
-            display: flex;
-            >*{
-                margin-right: 14px;
-                border-radius: 4px;
-                cursor: pointer;
-                align-items: center;
-                justify-content: center;
-                height: 32px;
-                // border: 1px solid blue;
-            }
-            >div{
-                color: $clr-txt-1;
-                font-size: 15px;
+            .board-title{
+                //new stuff
                 display: flex;
-            }
-            >:hover:not(.expanded-search-container>*){
-                background-color: #e6e9ef;
-            }
-            .btn-add-group{
-                :hover{
-                    // background-color: rgb(0, 96, 185);
-                    // background-color: yellow;
-                    color: pink;
+                flex: 1 0;
+                min-width: 100px;
+                margin-right: 8px;
+
+                //old stuff
+                border: 0px;
+                margin-right: 4px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                
+                svg{
+                    color: $clr-grey2;
+                    margin-right: 6px;
                 }
-            }
-            input:focus-visible{
-                outline-width: 0px;
-            }
-            // border: 1px solid green;
-            .search{
-                .expanded-search-container{
-                    background-color: white;
-                    // background-color: pink;
-                    height: 100%;
-                    width: 100%;
-                    border: 1px solid $clr-btn-1;
+                h1{
                     border-radius: 4px;
-                    
+                    // line-height: 32px;
+                    // height: 32px;
+                    padding: 4px;
+                    font-size: 24px;
+                    // margin-top:2px;
+                    // margin-bottom: 2px;
+                    position: relative;
                 }
-                .expanded-search-container, .collapsed-search-container{
+                .icon-info{
+                    margin-left: 4px;
+                }
+        
+        
+                color: $clr-txt-1;
+        
+        
+            }
+            .board-title :hover{
+                border: 0px solid rgb(197, 199, 208);
+        
+            }
+        
+            .board-title h1:hover{
+                border: 1px solid rgb(197, 199, 208);
+        
+            }
+            .board-title-right-wrapper{//called board-header-right, 40px high
+                flex: 0 0 auto;
+                color: $clr-txt-1; //NB check if this line is necessary
+                .board-title-right{//called board-actions-v2
+                    display: flex;
                     align-items: center;
-    
+                    white-space: nowrap;
+                    color: $clr-txt-1; //NB check if this line is necessary
+                    .member-list-wrapper{
+                        display: flex;
+                        background-color: transparent;
+                        color: $clr-txt-1; //NB check if this line is necessary
+                        font-family: Roboto,sans-serif;
+                        font-size: 14px;
+                        font-weight: 400;
+                        // padding: 4px 8px; //not necessary here
+                        height: 32px;
+                        line-height: 24px;
+                        div{
+                            margin-left: 4px;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            height: 100%;
+                            .avatars-container{
+                                position: relative;
+                                height: 100%;
+                                // cursor: pointer;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                img{
+                                    //from overlapping avatars
+                                    width: 30px;
+                                    height: 30px;
+                                    z-index: 0;
+                                    border: 2px solid;
+                                    border-color: #f5f6f8;
+                                    margin: 0 -4px;
+                                    position: relative;
+                                    display: flex;
+                                    border-radius: 50%;
+                                    flex-shrink: 0;
+
+                                    //from top
+                                    line-height: 24px;
+                                    white-space: nowrap;
+                                }
+                            }
+                        }
+                    }
+                    .add-member-wrapper{ //should be 32px
+                        margin: 0 16px;
+                        div{
+                            button{
+                                line-height: 22px;
+                                border: 1px solid;
+                                background-color: transparent;
+                                color: $clr-txt-1; //NB check if this line is necessary
+                                font-size: 14px;
+                                font-weight: 400;
+                                padding: 4px 8px;
+                                height: 32px;
+
+                                //common to many buttons on the website
+                                border-radius: 4px;
+                                cursor: pointer;
+                                white-space: nowrap;
+                                transition: 50ms transform,.1s cubic-bezier(0, 0, 0.35, 1) min-width;
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        }
+                    }
                 }
-                position:relative;
-                .expanded-search{
-                    padding: 1px 0px 1px 5px;
-                    border-width: 0px;
-                    background-color: white;
+
+            }
+            .board-controls{
+                padding: 16px 0;
+                display: flex;
+                >*{
+                    margin-right: 14px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    align-items: center;
+                    justify-content: center;
+                    height: 32px;
+                    // border: 1px solid blue;
+                }
+                >div{
                     color: $clr-txt-1;
                     font-size: 15px;
-                    font-weight: 300;
-                    font-family: 'RobotoLight';
-                    margin-right: 6px;
-                    font-size: 15px;
-                    font-family: RobotoLight;
-                    font-weight: 300;
-                    // color: black NB probably not necessary
+                    display: flex;
                 }
-                svg{
-                    padding: 1px 0px;
+                >:hover:not(.expanded-search-container>*){
+                    background-color: #e6e9ef;
+                }
+                .btn-add-group{
+                    :hover{
+                        // background-color: rgb(0, 96, 185);
+                        // background-color: yellow;
+                        color: pink;
+                    }
+                }
+                input:focus-visible{
+                    outline-width: 0px;
+                }
+                // border: 1px solid green;
+                .search{
+                    .expanded-search-container{
+                        background-color: white;
+                        // background-color: pink;
+                        height: 100%;
+                        width: 100%;
+                        border: 1px solid $clr-btn-1;
+                        border-radius: 4px;
+                        
+                    }
+                    .expanded-search-container, .collapsed-search-container{
+                        align-items: center;
+        
+                    }
                     position:relative;
-                    margin-left: 10px;
+                    .expanded-search{
+                        padding: 1px 0px 1px 5px;
+                        border-width: 0px;
+                        background-color: white;
+                        color: $clr-txt-1;
+                        font-size: 15px;
+                        font-weight: 300;
+                        font-family: 'RobotoLight';
+                        margin-right: 6px;
+                        font-size: 15px;
+                        font-family: RobotoLight;
+                        font-weight: 300;
+                        // color: black NB probably not necessary
+                    }
+                    svg{
+                        padding: 1px 0px;
+                        position:relative;
+                        margin-left: 10px;
+                    }
+                    .txt{
+                        margin-right: 4px;
+                        // border: 1px solid green;
+                        width: 55px;
+                    }
+        
                 }
-                .txt{
-                    margin-right: 4px;
-                    // border: 1px solid green;
-                    width: 55px;
-                }
-    
             }
         }
+    }
+        
 
         .divider{
             height: 1px;

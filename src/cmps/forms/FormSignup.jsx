@@ -5,7 +5,7 @@ import RightImg from '../../assets/img/signup-right.png'
 //eslint-disable-next-line
 import { login, saveUser, signup } from '../../store/actions/userActions'
 
-export const FormSignup = () => {
+export const FormSignup = (props) => {
 
     const [newUser, setNewUser] = useState(null)
     const [pageNo, setPageNo] = useState(1)
@@ -25,12 +25,14 @@ export const FormSignup = () => {
     }
 
     const handleContinue = () => {
-        if (!newUser.email) alert('please enter a valid email address')
+        if (!newUser.email || !newUser.email.length) alert('please enter a valid email address')
         else setPageNo(2)
 
     }
+    // console.log('props', props);
 
     const addUser = async ({ history }) => {
+        
         console.log('newUser', newUser);
         const { fullname, username, password, email, policy } = newUser
         if (!fullname || !username || !password || !email || !policy) { //NB no 100% need to check email here because already checked on page1
@@ -40,6 +42,7 @@ export const FormSignup = () => {
         try {
             await dispatch(signup(newUser))
             await dispatch(login({ username, password }))
+            props.history.push('/')
             // 
             // history.push('/boards')
         } catch (error) {
@@ -47,6 +50,8 @@ export const FormSignup = () => {
         }
 
     }
+
+
 
     return (
         <div className="form-signup">
