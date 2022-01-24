@@ -231,7 +231,6 @@
                 margin-bottom: 8px;
                 font-family: 'RobotoThin';
             }
-            
             .email-page{
                 margin-top: 28px;
                 width: 360px;
@@ -297,8 +296,7 @@
                         }
                     }
                 }
-            }
-            
+            }           
             .separator{
                 display: flex;
                 justify-content: center;
@@ -404,8 +402,38 @@
                     text-decoration: none;
                 }
             }
+            .back-separator-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                vertical-align: baseline;
+                .separator-line{
+                    width: 540px;
+                    height: 0;
+                    border: 0.1px solid rgb(238, 238, 238);
+                    margin: 16px;
+                }
+            }
+            .other-account-wrapper{
+                .other-account-container{
+                    .other-account{
+                        border: none;
+                        margin: 0;
+                        padding: 0;
+                        width: auto;
+                        overflow: visible;
+                        background: transparent;
+                        font: inherit;
+                        line-height: normal;
+                        cursor: pointer;
+                        color: #0fa2e2;
+                        text-decoration: none;
+                    }
+                }
+            }
         }
     }
+
 }
 
 .form-signup{

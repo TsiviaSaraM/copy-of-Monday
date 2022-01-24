@@ -18,13 +18,17 @@ export const FormLogin = () => {
     }
 
     const showPasswordPage = () => {
-        // debugger
         if(!userCred.email) {
             alert('Please enter a valid email')
             return
         }
         setPasswordPageVisibility('block')
         setEmailPageVisibility('none')
+    }
+
+    const showEmailPage = () => { //NB cld combine this with the previous function
+        setPasswordPageVisibility('none')
+        setEmailPageVisibility('block')
     }
 
     const doLogin = () => {
@@ -46,9 +50,9 @@ export const FormLogin = () => {
                             <input type="email" name="email" placeholder="Example@company.com" onChange={handleChange} />
 
                         </div>
-                        <div className="btn-container">
+                        <div className="btn-container" onClick={showPasswordPage}>
                             <button className="btn-next">
-                                <div className="btn-text" onClick={showPasswordPage}>Next</div>
+                                <div className="btn-text">Next</div>
                                 <span></span>
                             </button>
                         </div>
@@ -58,8 +62,6 @@ export const FormLogin = () => {
                             <span className="line"></span>
                         </div>
                     </div>
-
-
                     <div className="password-page" style={{ display: passwordPageVisibility }}>
                         <div className="username-input-wrapper">
                             <span>username</span>
@@ -87,8 +89,6 @@ export const FormLogin = () => {
 
                     </div>
                     {/* <button>Next →</button> */}
-
-
                     <div className="signup">
                         <span className="signup-question">Don't have an account yet?</span>
                         <Link to="/signup" >
@@ -100,6 +100,14 @@ export const FormLogin = () => {
 
                             <Link to="/signup" >Sign up</Link>
                         </p> */}
+                    </div>
+                    <div className="back-separator-container">
+                        <span className="separator-line" ></span>
+                    </div>
+                    <div className="other-account-wrapper" style={{ display: passwordPageVisibility }} onClick={showEmailPage}>
+                        <div className="other-account-container">
+                            <button className="other-account">Login to another account</button>
+                        </div>
                     </div>
                 </div>
 

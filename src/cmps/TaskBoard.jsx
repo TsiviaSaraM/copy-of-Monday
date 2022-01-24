@@ -31,8 +31,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         console.log('outside click');
         setTitleRef(null)
         board.title = boardTitle
-        // debugger
-        onEditBoard(board)
++        onEditBoard(board)
         setShowDescription(false)
     })
 

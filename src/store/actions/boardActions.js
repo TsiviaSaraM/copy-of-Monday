@@ -43,11 +43,13 @@ export function getBoardById(boardId, taskFilter) {
 //   }
 // }
 
-export function saveBoard(board) {
+export function saveBoard(board, loggedInUser) {
   const type = board._id ? 'UPDATE_BOARD' : 'ADD_BOARD'
   return async dispatch => {
-    await boardService.save(board)
+    const board = await boardService.save(board, loggedInUser)
+
     dispatch({ type, board })
+    return board
   }
 }
 

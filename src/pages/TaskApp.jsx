@@ -37,7 +37,10 @@ export const TaskApp = ({ match, history }) => {
     }
 
     const onAddBoard = async (board) => {
-        await dispatch(saveBoard(board))
+        const newBoard = await dispatch(saveBoard(board, loggedInUser))
+        console.log('newBoard', newBoard);
+        loggedInUser.mentions.push(newBoard._id)
+        await dispatch()
         dispatch(loadBoards())
     }
 

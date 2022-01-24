@@ -13,7 +13,6 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
         const value = target.type === "number" ? +target.value : target.value
         console.log('handling change', field, value);
         setNewBoard({ ...newBoard, [field]: value })
-        console.log('newBoard', newBoard);
     }
 
     const addBoard = () => {

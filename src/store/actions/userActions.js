@@ -38,6 +38,22 @@ export function updateUser(userToUpdate) {
     }
 }
 
+//this function could have been in the TaskApp component
+//but it is here so the actions have more control, and the 
+//components dont need to 'know' the structure of the users
+// export function addBoardToUser(boardId){
+//     const type = 'ADD_BOARD_MENTION'
+//     return async dispatch => {
+//         try {
+//             // state.lo
+//             userService.addBoard(boardId)
+//         } catch (error) {
+//             console.log(error);
+            
+//         }
+//     }
+// }
+
 export function saveUser(user) {
     // const type = user._id ? 'UPDATE_USER' : 'ADD_USER'
     const type = 'ADD_USER'
