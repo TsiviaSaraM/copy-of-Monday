@@ -15,6 +15,8 @@ import { useOnClickOutside } from '../hooks/useOnClickOutside';
 import { BoardDescription } from './BoardDescription';
 import { useSelector } from 'react-redux';
 import Avatar from '../assets/img/avatar1.png'
+import { UserList } from './forms/UserList';
+import { getUserById, updateUser } from '../store/actions/userActions';
 
 //board is state.currBoard
 export const TaskBoard = ({ board, onEditBoard, }) => {
@@ -22,6 +24,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
     const dispatch = useDispatch()
     const ref = useRef()
     const [showDescription, setShowDescription] = useState(false)
+    const [isUserListVisible, setIsUserListVisible] = useState(false)
     const [writeDescription, setWriteDescription] = useState(false)
     const [titleRef, setTitleRef] = useState(null)
     const [boardTitle, setBoardTitle] = useState(board.title) //TODO put the actual title here
@@ -31,7 +34,7 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         console.log('outside click');
         setTitleRef(null)
         board.title = boardTitle
-+        onEditBoard(board)
+            + onEditBoard(board)
         setShowDescription(false)
     })
 
@@ -67,6 +70,20 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
         const groupIndex = board.groups.findIndex(group => group.id === groupId)
         board.groups.splice(groupIndex, 1)
         onEditBoard(board)
+    }
+
+    //add member id to board members, add board id to user.mentions
+    const addMember = async (member) => {
+        board.members.unshift(member)
+        onEditBoard(board)
+        setIsUserListVisible(false)
+        try {
+            const user = await dispatch(getUserById(member.id))
+            user.mentions.unshift(board._id)
+            dispatch(updateUser(user))
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const editGroup = (group) => {
@@ -147,20 +164,20 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                                                 <div className="avatars-container">
                                                     {/* TODO replace this with list of avatars of users */}
                                                     {board.members.map(member => (
-                                                        <div className="container">
-                                                            <img src={member.imgUrl || Avatar} key={member.id}/>
-                                                            <img src={member.imgUrl || Avatar} key={member.id}/>
+                                                        <div className="container" key={member.id}>
+                                                            <img src={member.imgUrl || Avatar} key={member.id} />
+                                                            {/* <img src={member.imgUrl || Avatar} key={member.id} /> */}
                                                         </div>
-                                                        
+
                                                     ))}
-                                                    <img src={Avatar} alt="" />
-                                                    <img src={Avatar} alt="" />
+                                                    {/* <img src={Avatar} alt="" /> */}
+                                                    {/* <img src={Avatar} alt="" /> */}
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div className="add-member-wrapper">
+                                    <div className="add-member-wrapper" onClick={()=>{setIsUserListVisible(true)}}>
                                         <div>
                                             <div>
                                                 <div>
@@ -168,6 +185,10 @@ export const TaskBoard = ({ board, onEditBoard, }) => {
                                                 </div>
                                             </div>
                                         </div>
+                                       { isUserListVisible && <div className="user-list-container">
+
+                                            <UserList addMember={addMember} boardId={board._id} />
+                                        </div>}
                                     </div>
                                 </div>
                             </div>

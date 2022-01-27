@@ -39,10 +39,10 @@ export function userReducer(state = INITIAL_STATE, action) {
         filterBy: action.filterBy
       }
     case 'UPDATE_USER':
-      const {userToUpdate} = action
-      const position1 = state.users.findIndex(user => user._id === userToUpdate._id)
+      const {updatedUser} = action
+      const position1 = state.users.findIndex(user => user._id === updatedUser._id)
       const updatedUsers1 = [...state.users]
-      updatedUsers1.splice(position1, 1, userToUpdate)
+      updatedUsers1.splice(position1, 1, updatedUser)
       return {
         ...state,
         users: updatedUsers1,

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { login } from '../../store/actions/userActions'
 import Logo from "./../../assets/img/logo-full.png"
 
-export const FormLogin = () => {
+export const FormLogin = (props) => {
     const [userCred, setUserCred] = useState({})
     const dispatch = useDispatch()
     const [emailPageVisibility, setEmailPageVisibility] = useState('block')
@@ -31,8 +31,9 @@ export const FormLogin = () => {
         setEmailPageVisibility('block')
     }
 
-    const doLogin = () => {
-        dispatch(login(userCred))
+    const doLogin = async ({history}) => {
+        await dispatch(login(userCred))
+        history.push('/boards')
 
     }
 

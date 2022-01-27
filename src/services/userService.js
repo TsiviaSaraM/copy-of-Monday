@@ -4,7 +4,7 @@ import { utilService } from './utilService'
 // import { storageService } from './storageService.js'
 import { makeId } from './utilService'
 
-const USER_KEY = 'users'
+const USER_KEY = 'user'
 // const PAGE_SIZE = 10
 
 //this created boards if we have frontend only and are not taking them from the backend database
@@ -25,8 +25,8 @@ window.userService = userService
 function xquery(filterBy) {
     console.log('front end user service');
     //TODO filterBy can be added as param below
-    return storageService.query(USER_KEY)
-    // return httpService.get(`user`, filterBy)
+    // return storageService.query(USER_KEY)
+    return httpService.get(`user`, filterBy)
 }
 
 export async function query(filterBy) {
@@ -67,7 +67,8 @@ async function xupdate(user) {
 async function update(user) {
     console.log('user in service front:', user);
     try {
-        const updatedUser = await storageService.put(USER_KEY, user)
+        // const updatedUser = await storageService.put(USER_KEY, user)
+        const updatedUser = httpService.put(`${USER_KEY}/${user._id}`, user)
         console.log('update user in service', updatedUser);
         return updatedUser
     } catch (error) {
@@ -85,13 +86,14 @@ async function update(user) {
 
 async function add(user) {
 
-    user = _createUser(user.fullname, user.username, user.password)
+    user = _createUser(user.fullname, user.username, user.password, user.mentions)
+    user.mentions.push()
     // return storageService.post(USER_KEY, user)
     return await httpService.post(`user`, user)
 }
 
-
-function _createUser(fullname, username, password, imgUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fen%2Fpng-ymxim&psig=AOvVaw3OoNBQPOwmAktMYE3vjz_9&ust=1637082366316000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNiB05rtmvQCFQAAAAAdAAAAABAJ") {
+//'mentions' field is an array of the ids of the baords that this user has access to 
+function _createUser(fullname, username, password, mentions = [], imgUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fen%2Fpng-ymxim&psig=AOvVaw3OoNBQPOwmAktMYE3vjz_9&ust=1637082366316000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNiB05rtmvQCFQAAAAAdAAAAABAJ") {
     if (!username) username = 'un' + utilService.makeName(3)
     if (!password) password = 'pw' + utilService.makeId(4)
     return {
@@ -100,12 +102,7 @@ function _createUser(fullname, username, password, imgUrl = "https://www.google.
         "username": username,
         "password": password,
         "imgUrl": imgUrl,
-        "members":[],
-        "mentions": [
-            // {"id": "m101",
-            // "boardId": "m101",
-            // "taskId": "t101"}
-        ]
+        "mentions": mentions //'mentions' field is an array of the ids of the baords that this user has access to 
     }
 }
 

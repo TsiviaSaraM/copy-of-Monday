@@ -4,7 +4,7 @@ import { loadUsers } from './../../store/actions/userActions'
 import { useSelector } from 'react-redux'
 import { UserPreview } from './UserPreview'
 
-export function UserList({toggleUserListOpen, addMember, styles}) {
+export function UserList({ addMember, styles, boardId }) {
     const { users } = useSelector(state => state.userModule)
     const dispatch = useDispatch()
 
@@ -30,12 +30,21 @@ export function UserList({toggleUserListOpen, addMember, styles}) {
             <div className="title-container">
                 <span className="title">People</span>
             </div>
-            {users.map(user => {
-                
-                return (
-                    <UserPreview user={user} key={user._id} addMember={addMember} />
-                )
-            })}
+            {
+                // users.map(user => {
+                // return (
+                //     <UserPreview user={user} key={user._id} addMember={addMember} />
+                // )
+                (users.filter(user => {
+                    console.log('user mentions',user.mentions);
+                    return !user.mentions.includes(boardId)
+                }))
+                    .map(user => {
+                        return (
+                            <UserPreview user={user} key={user._id} addMember={addMember} />
+                        )
+                    })
+            }
 
         </div>
     )

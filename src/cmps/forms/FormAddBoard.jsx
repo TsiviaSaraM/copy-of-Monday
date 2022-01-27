@@ -11,7 +11,6 @@ export const FormAddBoard = ({ onAddBoard, styles, setAddBoardFormOpen }) => {
     const handleChange = ({ target }) => {
         const field = target.name
         const value = target.type === "number" ? +target.value : target.value
-        console.log('handling change', field, value);
         setNewBoard({ ...newBoard, [field]: value })
     }
 

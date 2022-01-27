@@ -394,7 +394,7 @@ function remove(id) {
     // return Promise.resolve()
 }
 
-function save(boardToSave, loggedInUser, position = -1) {
+function save(boardToSave, position = -1) {
     //if this is an update
     if (boardToSave._id) {
         return _update(boardToSave)
@@ -408,7 +408,7 @@ function save(boardToSave, loggedInUser, position = -1) {
         ]
         if (!boardToSave.title) boardToSave.title = 'New Board'
         if (!boardToSave.description) boardToSave.description = ''
-        boardToSave.members = [...loggedInUser] || []
+        // boardToSave.members = [{...loggedInUser}] || []
         boardToSave.columns = []
         return _add(boardToSave) //returns the new user
         // gBoards.splice(position, 0, boardToSave)

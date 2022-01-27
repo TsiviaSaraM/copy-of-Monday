@@ -6,6 +6,7 @@ import { removeBoard, loadBoards, getBoardById, saveBoard, insertBoard, setFilte
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import {FormLogin} from '../cmps/forms/FormLogin'
+import { updateUser } from '../store/actions/userActions.js'
 
 
 export const TaskApp = ({ match, history }) => {
@@ -36,12 +37,17 @@ export const TaskApp = ({ match, history }) => {
         dispatch(loadBoards(boardFilter))
     }
 
-    const onAddBoard = async (board) => {
-        const newBoard = await dispatch(saveBoard(board, loggedInUser))
+    const onAddBoard = async (board, position = boards.length) => {
+        board.members = [{
+            id: loggedInUser._id,
+            fullname: loggedInUser.fullname,
+            imgURL: loggedInUser.imgURL
+        }]
+        const newBoard = await dispatch(saveBoard(board, position))
         console.log('newBoard', newBoard);
-        loggedInUser.mentions.push(newBoard._id)
-        await dispatch()
         dispatch(loadBoards())
+        loggedInUser.mentions.push(newBoard._id)
+        await dispatch(updateUser(loggedInUser))
     }
 
     const onSelectBoard = async (board) => {
@@ -54,8 +60,9 @@ export const TaskApp = ({ match, history }) => {
     }
 
     const onInsertBoard = async (position) => {
-        await dispatch(insertBoard({ title: 'New Board' }, position))
-        dispatch(loadBoards())
+        onAddBoard({ title: 'New Board' }, position)
+        // await dispatch(saveBoard({ title: 'New Board' }, position))
+        // dispatch(loadBoards())
     }
 
     const onEditBoard = async (updatedboard) => {

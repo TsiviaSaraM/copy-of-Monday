@@ -26,6 +26,7 @@ export function getUserById(userId, taskFilter) {
                 }
             })
         }
+        return user
         dispatch({ type: 'SET_USER', user })
     }
 }
@@ -33,8 +34,15 @@ export function getUserById(userId, taskFilter) {
 export function updateUser(userToUpdate) {
     const type = 'UPDATE_USER'
     return async dispatch => {
-        await userService.update(userToUpdate)
-        dispatch({type, userToUpdate})
+        try {
+            const updatedUser = await userService.update(userToUpdate)
+            console.log('updated user mentions in actions', updatedUser.mentions);
+            dispatch({type, updatedUser})
+            return updatedUser
+            
+        } catch (error) {
+            console.log('error in actions', error);
+        }
     }
 }
 

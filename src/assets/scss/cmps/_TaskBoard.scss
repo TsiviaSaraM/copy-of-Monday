@@ -137,6 +137,18 @@
                                 justify-content: center;
                             }
                         }
+                        .user-list-container{
+                            position: absolute; 
+                            top: 0;
+                            height: 0;
+
+                            .user-list{
+                                position: relative;
+                                top: 60px;
+                                left: -106.375px;
+                                width: 220px;
+                            }
+                        }
                     }
                 }
 
